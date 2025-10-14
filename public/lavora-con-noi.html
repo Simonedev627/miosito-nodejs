@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavora con noi</title>
+    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fulmine.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="corpo">
+   <div class="header-bar">
+  <img src="chatgpt.png" alt="Logo"/>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+
+    <!-- Dropdown SERVIZI -->
+    <div class="dropdown">
+      <a href="servizi-introduzione.html">SERVIZI 🠗 </a>
+      <div class="dropdown-content">
+
+        <!-- Impianti Rete con sottomenù -->
+        <div class="submenu">
+          <a href="#">Impianti Rete</a>
+          <div class="submenu-content">
+            <a href="servizi-fibra-ottica.html">Fibra Ottica</a>
+            <a href="servizi-ftt-cab.html">FTTCab</a>
+          </div>
+        </div>
+
+        <!-- Impianti Elettrici con sottomenù -->
+        <div class="submenu">
+          <a href="#">Impianti Elettrici</a>
+          <div class="submenu-content">
+            <a href="servizi-impianti-industriali.html">Impianti Industriali</a>
+            <a href="impianti-elettrici-civili.html">Impianti Civili</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="contatti.html">CONTATTI</a>
+    <a href="chi-siamo.html">CHI SIAMO</a>
+
+    <!-- PRENOTAZIONI spostato a destra -->
+    <a href="prenotazioni.html" class="prenotazioni">PRENOTAZIONI</a>
+
+    <a href="team.html">TEAM</a>
+  </div>
+</div>
+
+  </div>
+</div>
+  <main class="lavora-container">
+    <h1>Lavora con noi</h1>
+    <p>Compila il modulo per proporre la tua candidatura. Cerchiamo persone con passione, iniziativa e voglia di crescere.</p>
+
+    <form id="form-lavora" action="/lavora" method="POST" enctype="multipart/form-data">
+
+      <label>Nome e Cognome:</label>
+      <input type="text" name="nome" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <label>Telefono:</label>
+      <input type="tel" name="telefono" placeholder="es. 3331234567">
+
+      <label>Esperienze lavorative precedenti:</label>
+      <textarea name="esperienze" rows="4" placeholder="Descrivi brevemente la tua esperienza..."></textarea>
+
+      <label>Perché dovremmo scegliere te?</label>
+      <textarea name="motivazione" rows="4" placeholder="Spiega cosa ti rende unico..."></textarea>
+
+      <label>Ruolo desiderato:</label>
+      <input type="text" name="ruolo" placeholder="Es. tecnico di rete, programmatore, consulente...">
+
+      <label>Competenze principali:</label>
+      <input type="text" name="competenze" placeholder="Es. Lingua, Manodopera, Excel, Teamwork...">
+
+      <label>Disponibilità (full-time / part-time / freelance):</label>
+      <input type="text" name="disponibilita" placeholder="Es. full-time">
+
+      <label>Allega il tuo Curriculum (PDF, JPG, PNG):</label>
+      <input type="file" name="cv" accept=".pdf,.jpg,.jpeg,.png" required>
+
+      <button type="submit" class="btn-noi">Invia candidatura</button>
+    </form>
+    </main>
+    <div class="info-box">
+  <!-- Blocco Logo separato e blu -->
+  <div class="logo-blocco">
+    <img src="chatgpt.png" alt="Logo">
+  </div>
+
+  <!-- Blocco Assistenza -->
+  <div class="info-blocco">
+    <h5><i class="fas fa-phone-alt"></i> Assistenza clienti</h5>
+    <p>********</p>
+  </div>
+
+  <!-- Blocco Email -->
+  <div class="info-blocco">
+    <h5><i class="fas fa-envelope"></i> Email aziendale</h5>
+    <p>abatelsrl@pec.it</p>
+  </div>
+
+  <!-- Blocco Sede -->
+  <div class="info-blocco">
+    <h5><i class="fas fa-map-marker-alt"></i> Sede operativa</h5>
+    <p>Pannarano (BN) Via Campitello 41 CAP 82017</p>
+  </div>
+</div>
+
+      <footer class="footer">
+      <div class="chi-siamo">
+        <h3>Chi siamo</h3>
+        <p>Abatel Srl è un’azienda specializzata in impianti elettrici e soluzioni tecnologiche innovative.<br> 
+          Con professionalità e attenzione alla qualità, offriamo servizi affidabili per migliorare comfort,<br> 
+          sicurezza ed efficienza.</p>
+      </div>
+      <nav>
+        <h2>Link Utili</h2>
+        <a href="chi-siamo.html"> ➜ Chi siamo </a>
+        <a href="servizi-introduzione.html"> ➜ I nostri servizi </a>
+        <a href="contatti.html"> ➜ Contatti </a>
+      </nav>
+      <nav>
+        <h2>Link rapidi</h2>
+        <a href="index.html"> ➜ Home </a>
+        <a href="team.html"> ➜ Team </a>
+        <a href="prenotazioni.html"> ➜ Prenotazioni </a>
+      </nav>
+      
+</footer>
+
+    </section>
+    <section class="settima-sezione">
+      <p> |&copy; Abatel s.r.l. 2025| P.IVA 01869210623 | Tutti i diritti riservati | Sviluppato da CodeFactory </p>
+    </section>
+
+    <button id="btn-torna-su" class="button">&#x3C;↑&#x3E;</button>
+
+  
+</body>
+</html>

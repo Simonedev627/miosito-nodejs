@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="script.js" defer></script>
+  <title>Calendari Prenotazioni - Calendario Annuale </title>
+    <!-- 🔧 Il tuo contenuto originale -->
+</head>
+<body>
+     <main>
+ <div class="header-bar">
+  <img src="chatgpt.png" alt="Logo"/>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+
+    <!-- Dropdown SERVIZI -->
+    <div class="dropdown">
+      <a href="servizi-introduzione.html">SERVIZI 🠗 </a>
+      <div class="dropdown-content">
+
+        <!-- Impianti Rete con sottomenù -->
+        <div class="submenu">
+          <a href="#">Impianti Rete</a>
+          <div class="submenu-content">
+            <a href="servizi-fibra-ottica.html">Fibra Ottica</a>
+            <a href="servizi-ftt-cab.html">FTTCab</a>
+          </div>
+        </div>
+
+        <!-- Impianti Elettrici con sottomenù -->
+        <div class="submenu">
+          <a href="#">Impianti Elettrici</a>
+          <div class="submenu-content">
+            <a href="servizi-impianti-industriali.html">Impianti Industriali</a>
+            <a href="impianti-elettrici-civili.html">Impianti Civili</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <a href="contatti.html">CONTATTI</a>
+    <a href="chi-siamo.html">CHI SIAMO</a>
+
+    <!-- PRENOTAZIONI spostato a destra -->
+    <a href="prenotazioni.html" class="prenotazioni">PRENOTAZIONI</a>
+
+    <a href="team.html">TEAM</a>
+  </div>
+</div>
+
+  </div>
+</div>
+<!-- MODAL PRENOTAZIONE -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeBtn" class="close">&times;</span>
+    <h2 id="modalTitle">Dettagli Prenotazione</h2>
+    <p id="modalDate"></p>
+
+    <label for="nameInput">Nome:</label>
+    <input type="text" id="nameInput" placeholder="Inserisci il nome">
+
+    <label for="timeInput">Orario:</label>
+    <input type="time" id="timeInput">
+
+    <div class="modal-buttons">
+      <button id="saveBtn">Salva</button>
+      <button id="deleteBtn">Elimina</button>
+    </div>
+  </div>
+</div>
+
+
+  <style>
+    /* Modal base */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-content input {
+  width: 80%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+}
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#06b6d4;
+      --muted:#94a3b8;
+      --free:#0ea5a4;
+      --booked:#ef4444;
+      --text:#e6eef6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#041025);color:var(--text)}
+    .wrap{max-width:1200px;margin:24px auto;padding:20px}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    header h1{font-size:1.2rem;margin:0}
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--card);border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:8px;color:var(--text);cursor:pointer}
+    .year-label{font-weight:700}
+
+    /* layout grid: months in rows (responsive). Using auto-fit with minmax to keep them horizontal then wrap */
+    .months-grid{
+      margin-top:18px;
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* on wide screens multiple columns, on small screens 1 column */
+    }
+
+    .month-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);}
+    .month-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .month-title{font-weight:700}
+    .weekdays{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:0.75rem;color:var(--muted);margin-bottom:6px}
+    .days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+    .day{min-height:44px;padding:6px;border-radius:8px;display:flex;align-items:flex-start;justify-content:flex-start;flex-direction:column;font-size:0.85rem;cursor:pointer;border:1px dashed transparent}
+    .day.out{opacity:0.28}
+    .day .num{font-weight:600}
+    .day.free:hover{outline:2px solid rgba(6,182,212,0.12)}
+    .day.booked{background:linear-gradient(180deg, rgba(239,68,68,0.12), rgba(239,68,68,0.06));border-color:rgba(239,68,68,0.18)}
+    .day.selected{box-shadow:0 6px 18px rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.18)}
+    .legend{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:0.85rem}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    .dot{width:10px;height:10px;border-radius:50%}
+
+    /* small adjustments */
+    @media (max-width:640px){
+      .day{min-height:48px}
+      header{flex-direction:column;align-items:flex-start;gap:10px}
+    }
+
+    /* tooltip/modal simple */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(3,7,18,0.5);backdrop-filter:blur(2px);visibility:hidden;opacity:0;transition:opacity .18s, visibility .18s}
+    .modal.show{visibility:visible;opacity:1}
+    .modal-card{background:var(--card);padding:14px;border-radius:10px;min-width:260px;color:var(--text);border:1px solid rgba(255,255,255,0.03)}
+    .modal-card h3{margin:0 0 8px 0}
+    .modal-row{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px}
+    .input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);min-width:140px}
+    .small{font-size:0.85rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Calendari prenotazioni - Anno <span id="currentYear">2025</span></h1>
+      <div class="controls">
+        <button id="prevYear" class="btn">« Anno precedente</button>
+        <div class="year-label" id="yearLabel">2025</div>
+        <button id="nextYear" class="btn">Anno successivo »</button>
+      </div>
+    </header>
+
+    <p class="small">Clicca su un giorno per segnare / togliere una prenotazione. I dati vengono salvati nel <strong>localStorage</strong> del browser.</p>
+
+    <div class="months-grid" id="monthsGrid" aria-live="polite"></div>
+
+    <div class="legend">
+      <div class="chip"><span class="dot" style="background:var(--free)"></span> Giorno libero</div>
+      <div class="chip"><span class="dot" style="background:var(--booked)"></span> Prenotato</div>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <h3 id="modalTitle">Dettagli giorno</h3>
+      <div id="modalDate" class="small">--</div>
+      <div class="modal-row">
+        <input id="nameInput" class="input" placeholder="Nome prenotazione (opz.)">
+        <button id="saveBtn" class="btn">Salva</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button id="deleteBtn" class="btn">Elimina</button>
+        <button id="closeBtn" class="btn">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /* --- Config --- */
+const LO_KEY = 'bookings'; // rimane per eventuale backup locale
+let bookings = {}; // memorizza le prenotazioni
+const monthsGrid = document.getElementById('monthsGrid');
+const currentYearSpan = document.getElementById('currentYear');
+let currentYear = new Date().getFullYear();
+const locale = 'it';
+const startWeekOnMonday = true;
+
+// --- Modal ---
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalDate = document.getElementById('modalDate');
+const nameInput = document.getElementById('nameInput');
+const timeInput = document.getElementById('timeInput');
+const saveBtn = document.getElementById('saveBtn');
+const deleteBtn = document.getElementById('deleteBtn');
+const closeBtn = document.getElementById('closeBtn');
+let activeDate = null;
+let activeElem = null;
+
+// --- Render calendario ---
+function renderYear(year){
+  monthsGrid.innerHTML = '';
+  currentYearSpan.textContent = year;
+  for(let m=0;m<12;m++){
+    monthsGrid.appendChild(createMonthCard(year,m));
+  }
+}
+
+// Crea un mese
+function createMonthCard(year,monthIndex){
+  const card = document.createElement('div');
+  card.className = 'month-card';
+
+  const monthName = new Date(year,monthIndex,1).toLocaleString(locale,{month:'long'});
+  const header = document.createElement('div'); header.className='month-header';
+  header.innerHTML = `<div class="month-title">${monthName.charAt(0).toUpperCase()+monthName.slice(1)} ${year}</div>`;
+  card.appendChild(header);
+
+  const weekdays = document.createElement('div'); weekdays.className='weekdays';
+  const baseWeekdays = [];
+  for(let i=0;i<7;i++){
+    let dayIndex = startWeekOnMonday ? ((i+1)%7) : i;
+    const d = new Date(2021,7,dayIndex+1);
+    baseWeekdays.push(d.toLocaleString(locale,{weekday:'short'}).slice(0,2));
+  }
+  weekdays.innerHTML = baseWeekdays.map(d=>`<div>${d}</div>`).join('');
+  card.appendChild(weekdays);
+
+  const days = document.createElement('div'); days.className='days';
+  const firstOfMonth = new Date(year,monthIndex,1);
+  const lastOfMonth = new Date(year,monthIndex+1,0);
+  let startDay = firstOfMonth.getDay();
+  if(startWeekOnMonday) startDay = (startDay===0)?6:startDay-1;
+
+  for(let i=0;i<startDay;i++){
+    const blank = document.createElement('div'); blank.className='day out'; days.appendChild(blank);
+  }
+
+  for(let d=1; d<= lastOfMonth.getDate(); d++){
+    const date = new Date(year,monthIndex,d);
+    const iso = `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
+    const el = document.createElement('button'); el.className='day free'; el.setAttribute('data-date', iso);
+    el.innerHTML = `<div class="num">${d}</div>`;
+
+    if(bookings[iso]){
+      updateDayElement(el, bookings[iso]);
+    }
+
+    el.addEventListener('click', ()=> openModal(iso, el));
+    days.appendChild(el);
+  }
+
+  card.appendChild(days);
+  return card;
+}
+
+// --- Modal ---
+function openModal(iso, elem){
+  activeDate = iso; activeElem = elem;
+  const d = new Date(iso);
+  modalTitle.textContent = 'Dettagli: '+d.toLocaleDateString(locale, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  modalDate.textContent = iso;
+  nameInput.value = bookings[iso] ? bookings[iso].name||'' : '';
+  timeInput.value = bookings[iso] ? bookings[iso].time||'' : '';
+  modal.classList.add('show');
+}
+function closeModal(){ modal.classList.remove('show'); activeDate=null; activeElem=null }
+
+saveBtn.addEventListener('click', async ()=>{
+  if(!activeDate) return;
+  const name = nameInput.value.trim();
+  const time = timeInput.value;
+
+  if(!name || !time){
+    alert("Inserisci nome e orario!");
+    return;
+  }
+
+  if(!confirm(`Confermi la prenotazione il ${activeDate} alle ${time}?`)){
+    return;
+  }
+
+const data = { date: activeDate, name, time };
+const res = await fetch('/api/bookings',{
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body: JSON.stringify(data)
+});
+  const json = await res.json();
+  if(json.success){
+    bookings[activeDate] = {name, time, ts: Date.now()};
+    updateDayElement(activeElem, bookings[activeDate]);
+    closeModal();
+  }
+});
+
+deleteBtn.addEventListener('click', async ()=>{
+  if(!activeDate) return;
+  await fetch(`/api/bookings/${activeDate}`, { method:'DELETE' });
+  delete bookings[activeDate];
+  document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el=>{
+    el.classList.remove('booked'); el.classList.add('free'); el.title='';
+  });
+  closeModal();
+});
+
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click',(e)=>{if(e.target===modal) closeModal();});
+
+// --- Utility ---
+function updateDayElement(el, booking){
+  if(el){
+    el.classList.remove('free');
+    el.classList.add('booked');
+    el.title = booking.name ? `Prenotato: ${booking.name} (${booking.time})` : 'Prenotato';
+  }
+}
+
+// --- Year controls ---
+document.getElementById('prevYear').addEventListener('click', ()=>{ currentYear--; renderYear(currentYear); });
+document.getElementById('nextYear').addEventListener('click', ()=>{ currentYear++; renderYear(currentYear); });
+
+// --- Refresh bookings in real-time ---
+async function refreshBookings(){
+  try{
+    const res = await fetch('/api/bookings');
+    const newBookings = await res.json();
+    bookings = newBookings;
+    document.querySelectorAll('.day').forEach(el=>{
+      const date = el.getAttribute('data-date');
+      if(bookings[date]){
+        updateDayElement(el, bookings[date]);
+      } else {
+        el.classList.remove('booked'); el.classList.add('free'); el.title='';
+      }
+    });
+  }catch(e){ console.error(e); }
+}
+setInterval(refreshBookings, 3000); // ogni 3 secondi
+
+// --- Init ---
+renderYear(currentYear);
+refreshBookings();
+
+  /* utility */
+
+  </script>
+  </main>
+</body>
+</html>

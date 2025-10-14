@@ -1,0 +1,6092 @@
+
+/* ================= Header Bar ================= */
+
+.header-bar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center; /* centra verticalmente tutti gli elementi */
+  justify-content: flex-start;
+  background-color: #fff;
+  height: 17vh;          /* prima era 170px */
+  margin: 2vh auto;      /* prima 20px */
+  padding: 0 4vw;        /* prima 40px */
+  max-width: 108vw;      /* prima 1080px */
+  box-sizing: border-box;
+  border: 0.1vh solid #ccc; /* prima 1px */
+  border-radius: 0.8vh;      /* prima 8px */
+}
+
+/* Logo */
+.header-bar img {
+  height: 14vh;           /* prima 140px */
+  object-fit: contain;
+  margin-right: 5vw;      /* prima 50px */
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center; /* centra verticalmente tutti i link */
+  gap: 2.5vw;          /* prima 25px */
+  position: relative;
+  margin-left: -5vw;    /* prima -50px */
+}
+
+.nav-links a,
+.nav-links .dropdown > a,
+.nav-links .dropdown-content .submenu > a {
+  display: flex;
+  align-items: center;
+  height: 4vh;         /* prima 40px */
+  padding: 0 1.5vw;    /* prima 0 15px */
+  font-size: 1.6vh;    /* prima 16px */
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 500;
+  color: #000;
+  border-radius: 0.6vh; /* prima 6px */
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .dropdown > a:hover,
+.nav-links .dropdown-content .submenu > a:hover {
+  color: #186ec5;
+  background-color: #f0f0f0;
+}
+
+/* ================= Dropdown ================= */
+.nav-links .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-links .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 20vw;          /* prima 200px */
+  border-radius: 0.6vh;     /* prima 6px */
+  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.15); /* prima 0 4px 8px */
+  z-index: 200;
+}
+
+/* Mostra dropdown principale al passaggio */
+.nav-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Link dentro dropdown */
+.nav-links .dropdown-content a {
+  display: block;
+  padding: 1vh 1.5vw;     /* prima 10px 15px */
+  font-size: 1.5vh;       /* prima 15px */
+  color: #000;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.nav-links .dropdown-content a:hover {
+  background-color: #f2f2f2;
+  color: #186ec5;
+}
+
+/* Sottomenù */
+.nav-links .dropdown-content .submenu {
+  position: relative;
+}
+
+.nav-links .dropdown-content .submenu-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%; /* appare a destra del link */
+  background-color: #fff;
+  min-width: 18vw;          /* prima 180px */
+  border-radius: 0.6vh;
+  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.1);
+}
+
+.nav-links .dropdown-content .submenu:hover .submenu-content {
+  display: block;
+}
+
+/* Frecce per indicare dropdown e sottomenù */
+.nav-links .dropdown > a::after {
+  content: ' ';
+  font-size: 1.2vh;   /* prima 12px */
+  margin-left: 0.5vw; /* prima 5px */
+}
+
+.nav-links .dropdown-content .submenu > a::after {
+  content: ' ▸';
+  font-size: 1.2vh;   /* prima 12px */
+  margin-left: 0.5vw; /* prima 5px */
+}
+
+/* ================= Responsive ================= */
+@media screen and (max-width: 900px) {
+  .header-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 2vh 4vw;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1vh;
+  }
+
+  .nav-links .dropdown-content, 
+  .nav-links .dropdown-content .submenu-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    box-shadow: none;
+    min-width: 90%; /* adattamento mobile */
+  }
+}
+.prima-sezione {
+  width: 100%;           /* prende tutta la larghezza */
+  min-height: 80vh;      /* altezza minima fluida */
+  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6%, 8vw); /* padding fluido verticale e orizzontale */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente i contenuti */
+  align-items: center;     /* centra orizzontalmente i contenuti */
+  gap: clamp(2vh, 3vw, 4vh); /* distanza fluida tra elementi interni */
+  background-color: #f5f5f5; /* esempio colore di sfondo */
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .prima-sezione {
+    min-height: 70vh;
+    padding: clamp(4vh, 6vw, 5vh) clamp(4vw, 8%, 6vw);
+    gap: clamp(3vh, 5vw, 4vh);
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .prima-sezione {
+    min-height: 75vh;
+    padding: clamp(3vh, 5vw, 6vh) clamp(5vw, 7%, 8vw);
+  }
+}
+
+/* Schermi grandi (Full HD, 2K, 4K) */
+@media (min-width: 1600px) {
+  .prima-sezione {
+    min-height: 85vh;
+    padding: clamp(4vh, 5vw, 6vh) clamp(6vw, 8%, 10vw);
+  }
+}
+/*Titolo index.html*/
+.Titolo {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: blue;
+  
+
+  /* Margini fluidi */
+  margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) auto;
+
+  /* Font size leggermente aumentato */
+  font-size: clamp(1.2rem, 2vw + 0.3rem, 2.1rem);
+
+  /* Animazione */
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione di entrata */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(3vh);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .Titolo {
+    font-size: clamp(1rem, 4.5vw, 1.6rem);
+    margin-top: 3vh;
+  }
+}
+
+/* Schermi molto grandi */
+@media (min-width: 1600px) {
+  .Titolo {
+    font-size: clamp(1.6rem, 1.3vw + 0.3rem, 2.3rem);
+  }
+}
+
+/*Finche non scrivo fine index.html, tutto questo css è appunto per l'index.html*/
+
+/* Contenitore per il blocco descrizione */
+.descrizione {
+  margin-left: 40px; /* sposta leggermente a destra */
+  margin-top: 30px;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Titolo piccolo in arancione */
+/* Animazione fade + slide da sinistra */
+@keyframes fadeSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Applicazione all'h4 e p */
+.descrizione h4,
+.descrizione p {
+  opacity: 0;                /* parte invisibile */
+  animation: fadeSlideLeft 1s ease-out forwards;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Delay sequenziale */
+.descrizione h4 {
+  color: #ff6600;
+  font-weight: 500;
+
+  /* Font-size completamente fluido */
+  font-size: clamp(0.9rem, 1.5vw + 0.2rem, 1.3rem);
+
+  /* Margini fluidi */
+  margin-bottom: clamp(1vh, 1.5vw, 3vh);
+
+  /* Leggera traslazione fluida */
+  transform: translateX(2vw);
+
+  /* Ritardo animazione */
+  animation-delay: 0.5s;
+}
+
+/* Ottimizzazione per smartphone */
+@media (max-width: 480px) {
+  .descrizione h4 {
+    font-size: clamp(0.85rem, 4vw, 1.1rem);
+    transform: translateX(1.5vw);
+  }
+}
+
+/* Ottimizzazione per schermi grandi (Full HD, 2K, 4K) */
+@media (min-width: 1600px) {
+  .descrizione h4 {
+    font-size: clamp(1.1rem, 1vw + 0.3rem, 1.5rem);
+    transform: translateX(1vw);
+  }
+}
+
+/* Paragrafo più grande e nero */
+.descrizione p {
+  color: #000;
+  font-weight: 400;
+  line-height: 1.5;
+
+  /* Font-size fluido */
+  font-size: clamp(1rem, 1.8vw + 0.2rem, 1.4rem);
+
+  /* Spaziatura fluida */
+  margin-top: clamp(1vh, 1.5vw, 2.5vh);
+  margin-bottom: clamp(1.5vh, 2vw, 3vh);
+
+  /* Ritardo animazione */
+  animation-delay: 1s;
+}
+
+/* Ottimizzazione per smartphone */
+@media (max-width: 480px) {
+  .descrizione p {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    line-height: 1.6; /* più leggibile su schermi piccoli */
+  }
+}
+
+/* Ottimizzazione per schermi grandi (Full HD, 2K, 4K) */
+@media (min-width: 1600px) {
+  .descrizione p {
+    font-size: clamp(1.2rem, 1.2vw + 0.3rem, 1.6rem);
+  }
+}
+.link-bottoni {
+  margin-left: 2vw;   /* prima era 40px */
+  margin-top: 2vh;    /* prima era 20px */
+  display: flex;
+  gap: 2vw;           /* prima era 20px */
+  flex-wrap: wrap;    /* permette ai bottoni di andare a capo su schermi piccoli */
+}
+
+/* Pulsante prenotazioni */
+.nav-links .prenotazioni {
+  position: relative;
+  left: -1vw; /* prima era -10px, ora relativo */
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 1024px) {
+  .link-bottoni {
+    margin-left: 3vw;
+    margin-top: 1.5vh;
+    gap: 3vw;
+  }
+  
+  .nav-links .prenotazioni {
+    left: -0.5vw;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 768px) {
+  .link-bottoni {
+    margin-left: 5%;
+    margin-top: 1vh;
+    gap: 4vw;
+    flex-direction: column; /* i bottoni si dispongono verticalmente */
+    align-items: flex-start;
+  }
+  
+  .nav-links .prenotazioni {
+    left: 0; /* allineamento normale su mobile */
+  }
+}
+/* Bottone WhatsApp */
+/* Animazione di comparsa dal basso per bottoni */
+@keyframes fadeInUpButton {
+  0% {
+    opacity: 0;
+    transform: translateY(40px); /* parte un po' più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* posizione finale */
+  }
+}
+
+/* Classe animata */
+.fade-up-button {
+  opacity: 0; /* parte invisibile */
+  animation: fadeInUpButton 0.8s ease-out forwards;
+}
+
+/* Delay sequenziale */
+.fade-up-button.delay-1 { animation-delay: 1.2s; }
+.fade-up-button.delay-2 { animation-delay: 1.3s; }
+.app-messagistica {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  border-radius: 0.5rem; /* fluido e proporzionato */
+  font-family: 'Segoe UI', sans-serif;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  /* Padding fluido */
+  padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1.2rem, 3vw, 1.8rem);
+
+  /* Font-size fluido */
+  font-size: clamp(0.9rem, 1.5vw + 0.2rem, 1.2rem);
+
+  cursor: pointer;
+}
+
+/* Hover effetto */
+.app-messagistica:hover {
+  background-color: #1DA851;
+  transform: scale(1.05); /* piccolo ingrandimento */
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .app-messagistica {
+    padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 5vw, 1.2rem);
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    border-radius: 0.4rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .app-messagistica {
+    padding: clamp(0.6rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  }
+}
+
+/* Schermi grandi */
+@media (min-width: 1600px) {
+  .app-messagistica {
+    padding: clamp(0.8rem, 1vw, 1.2rem) clamp(1.5rem, 2vw, 2rem);
+    font-size: clamp(1rem, 1vw, 1.3rem);
+  }
+}
+
+.contatti-button {
+  position: relative;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 0.5rem; /* fluido */
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 0;
+
+  /* Padding fluido */
+  padding: clamp(0.6rem, 1.5vw, 1rem) clamp(1.2rem, 3vw, 1.8rem);
+
+  /* Font-size fluido */
+  font-size: clamp(0.9rem, 1.5vw + 0.2rem, 1.2rem);
+
+  transition: all 0.3s ease;
+}
+
+/* Pseudo-element per hover */
+.contatti-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #ff6600;
+  z-index: -1;
+  transition: width 0.4s ease;
+}
+
+.contatti-button:hover::before {
+  width: 100%;
+}
+
+/* Hover effetto testo */
+.contatti-button:hover {
+  color: #fff;
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .contatti-button {
+    padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 5vw, 1.2rem);
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    border-radius: 0.4rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .contatti-button {
+    padding: clamp(0.6rem, 1.5vw, 0.9rem) clamp(1.2rem, 3vw, 1.5rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  }
+}
+
+/* Schermi grandi */
+@media (min-width: 1600px) {
+  .contatti-button {
+    padding: clamp(0.8rem, 1vw, 1.2rem) clamp(1.5rem, 2vw, 2rem);
+    font-size: clamp(1rem, 1vw, 1.3rem);
+  }
+}
+.link-bottoni {
+  margin-top: 30px; /* aumenta la distanza dalla scritta sopra */
+  margin-bottom: 7px;
+}
+body {
+  background-color: #f2f2f2; /* grigio chiaro */
+}
+
+.immagine-installazione {
+  position: absolute;
+  right: 0;
+  top: 16vh; /* ancora un po' più in alto */
+  width: clamp(16vw, 23vw, 29vw); /* leggermente più grande */
+  height: auto;
+  z-index: 1;
+
+  clip-path: polygon(0 0, 10% 0, 0 55%, 0 100%, 100% 100%, 100% 0);
+  transition: all 0.4s ease;
+}
+/* Dispositivi verticali */
+/* Contenitore della immagine */
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .contenitore-immagine {
+    position: relative;
+  width: 100%;
+  padding-bottom: clamp(20vw, 30vh, 40vw); /* spazio sotto l'immagine */
+  }
+
+  .immagine-installazione {
+    position: absolute;
+    top: 80%;                /* parte dal basso della section */
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(30vw, 40vw, 60vw);
+    height: auto;
+    z-index: 10;
+    clip-path: none;
+    transition: all 0.4s ease;
+  }
+}
+/* Smartphone */
+@media (max-width: 480px) {
+  .immagine-installazione {
+    position: relative;
+    display: block;
+    margin: 5vh auto 0 auto; /* leggermente più in alto */
+    top: 0;
+    right: 0;
+    width: clamp(32vw, 42vw, 47vw); /* un filo più grande su mobile */
+    clip-path: none; /* evita deformazioni */
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .immagine-installazione {
+    top: 18vh; /* più in alto */
+    width: clamp(21vw, 29vw, 33vw); /* leggermente più grande */
+  }
+}
+
+/* Schermi grandi (Full HD, 2K, 4K) */
+@media (min-width: 1600px) {
+  .immagine-installazione {
+    top: 18vh;
+    width: clamp(19vw, 23vw, 27vw); /* leggermente più grande */
+  }
+}
+/* Animazione dal basso solo per la linea */
+@keyframes fadeInUpLine {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* parte leggermente più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* posizione finale */
+  }
+}
+
+/* Classe animata solo per la linea */
+.linea-orizzontale {
+  position: absolute; 
+  left: 0; 
+  width: 100%; 
+  height: 0.2vh; 
+  background-color: grey; 
+  z-index: 1; 
+  opacity: 0;                  /* invisibile inizialmente */
+  transform: translateY(2vh);  /* leggermente sotto, unità relative */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Classe aggiunta via JS per attivare animazione */
+.linea-fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.seconda-sezione {
+  background-color: #750e0e04; 
+  min-height: 100vh;             /* altezza minima pari al viewport */
+  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6%, 8vw); /* padding fluido verticale e orizzontale */
+  box-sizing: border-box;
+  width: 100%;                   /* occupa tutta la larghezza */
+  display: flex;
+  flex-direction: column;         /* elementi uno sotto l'altro */
+  justify-content: center;        /* centra verticalmente contenuti */
+  align-items: center;            /* centra orizzontalmente contenuti */
+  gap: clamp(2vh, 3vw, 4vh);      /* spazio fluido tra elementi interni */
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .seconda-sezione {
+    padding: clamp(4vh, 6vw, 7vh) clamp(5vw, 7%, 9vw);
+    gap: clamp(3vh, 4vw, 5vh);
+  }
+}
+
+/* Smartphone */
+@media (max-width: 768px) {
+  .seconda-sezione {
+    padding: clamp(5vh, 7vw, 8vh) clamp(6vw, 8%, 10vw);
+    gap: clamp(4vh, 5vw, 6vh);
+  }
+}
+
+/* Cerchio in alto a sinistra, inclinato e che batte */
+/* Cerchio in alto a sinistra, inclinato e che batte */
+/* Cerchio in alto a sinistra che batte */
+.cerchio-superiore {
+  position: absolute;
+  top: -20vh;        /* metà fuori dal viewport in verticale */
+  left: -20vw;       /* metà fuori dal viewport in orizzontale */
+  width: 45vw;       /* larghezza relativa al viewport */
+  height: 45vw;      /* altezza proporzionale alla larghezza */
+  max-width: 450px;  /* dimensione massima */
+  max-height: 450px; /* dimensione massima */
+  background-color: rgba(173, 216, 230, 0.4);
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: battito 2s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* MEDIA QUERY TABLET */
+@media (max-width: 1024px) {
+  .cerchio-superiore {
+    top: -15vh;
+    left: -15vw;
+    width: 35vw;
+    height: 35vw;
+  }
+}
+
+/* MEDIA QUERY MOBILE */
+@media (max-width: 768px) {
+  .cerchio-superiore {
+    top: -12vh;
+    left: -12vw;
+    width: 50vw;  /* più grande rispetto al viewport piccolo */
+    height: 50vw;
+  }
+}
+
+
+
+/* Keyframes con rotate fisso + scale per battito */
+@keyframes battito {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }  /* cresce */
+  100% { transform: scale(1); }
+}
+
+
+/* Cerchio in basso a destra che galleggia */
+.cerchio-inferiore {
+  position: absolute;
+  bottom: 10%;
+  right: -8vw;          /* posizione relativa al viewport */
+  width: 30vw;           /* larghezza relativa */
+  height: 30vw;          /* altezza proporzionale alla larghezza */
+  max-width: 300px;      /* dimensione massima */
+  max-height: 300px;     /* dimensione massima */
+  background-color: rgba(173, 216, 230, 0.5);
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: float 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* MEDIA QUERY TABLET */
+@media (max-width: 1024px) {
+  .cerchio-inferiore {
+    right: -6vw;
+    width: 25vw;
+    height: 25vw;
+  }
+}
+
+/* MEDIA QUERY MOBILE */
+@media (max-width: 768px) {
+  .cerchio-inferiore {
+    right: -5vw;
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+
+/* Keyframes con rotate fisso + translateY per galleggiamento */
+@keyframes float {
+  0%   { transform: rotate(15deg) translateY(0vh); }
+  50%  { transform: rotate(15deg) translateY(2vh); } /* altezza relativa al viewport */
+  100% { transform: rotate(15deg) translateY(0vh); }
+}
+/* Contenitore servizi */
+
+
+/* Contenitore dei box servizi */
+/* CONTENITORE PRINCIPALE */
+.servizi-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;       
+  gap: clamp(1rem, 2vw, 2rem);  
+  margin: clamp(3vh, 4vw, 5vh) auto clamp(2vh, 3vw, 4vh) auto;
+  max-width: 90%;
+}
+.servizi-card {
+  background: #fff;
+  border-radius: clamp(0.5rem, 1vw, 1rem);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  width: clamp(30vw, 35vw, 50vw);   
+  text-align: center;
+  box-shadow: 0 clamp(0.25rem, 1vh, 0.9375rem) clamp(0.9375rem, 3vh, 1.875rem) rgba(0,0,0,0.1);
+  min-height: clamp(30vh, 45vh, 55vh); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+ width: clamp(10vw, 35vw, 30vw);  
+  min-height: clamp(30vh, 45vh, 55vh);
+}
+
+/* WRAPPER INTERNO SENZA ANIMAZIONE CSS */
+.servizi-item {
+  opacity: 0; 
+  transform: translateX(50px); 
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* CLASSE CHE SI AGGIUNGE VIA JS */
+.servizi-item.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* BOX DEI SERVIZI */
+
+/* HOVER CHE ALZA IL BOX */
+.servizi-item:hover .servizi-card {
+  transform: translateY(clamp(-1rem, -2vh, -1.5rem));
+  box-shadow: 0 clamp(1rem, 2vh, 1.5rem) clamp(2rem, 4vh, 3rem) rgba(0,0,0,0.2);
+}
+
+/* IMMAGINI */
+.servizi-card img {
+  width: 100%;
+  height: clamp(20vh, 25vh, 30vh);
+  object-fit: cover;
+  border-radius: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+/* TITOLI */
+.servizi-card h2 {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  margin: clamp(0.5rem, 1vw, 1rem) 0;
+}
+
+/* TESTO */
+.servizi-card p {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* PULSANTE SCOPRI */
+.btn-scopri {
+  position: relative;
+  display: inline-block;
+  padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem);
+  background: #007bff;
+  color: #fff;
+  border-radius: clamp(0.5rem, 1vw, 0.8rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.btn-scopri::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: orange;
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.btn-scopri:hover::before {
+  left: 0;
+}
+
+.btn-scopri span {
+  position: relative;
+  z-index: 1;
+}
+
+/* COLORI LETTERE SPECIALI */
+.titolo-fibra, .titolo-ftt, .titolo-elettrico {
+  color: #ff6600;
+}
+
+/* MEDIA QUERY TABLET */
+@media (max-width: 1024px) {
+  .servizi-card {
+    width: clamp(40vw, 50vw, 60vw);
+    min-height: clamp(25vh, 40vh, 45vh);
+    padding: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .servizi-card img {
+    height: clamp(15vh, 20vh, 25vh);
+  }
+
+  .btn-scopri {
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1.2rem, 4vw, 1.5rem);
+  }
+}
+
+/* MEDIA QUERY MOBILE */
+@media (orientation: portrait) {
+  .servizi-box {
+    flex-direction: column; 
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .servizi-card {
+    width: 90%;
+    min-height: clamp(20vh, 35vh, 40vh);
+    padding: clamp(0.8rem, 2vw, 1rem);
+  }
+
+  .servizi-card img {
+    height: clamp(12vh, 18vh, 20vh);
+  }
+
+  .btn-scopri {
+    margin-top: clamp(1rem, 4vw, 2rem);
+    padding: clamp(0.5rem, 3vw, 0.8rem) clamp(1rem, 4vw, 1.2rem);
+  }
+}
+
+
+/*animazioni di comparsa titoli */
+/* Animazione di comparsa dal basso */
+.fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  text-align: center;        
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  margin: 0.5vh 0;        /* margine verticale minimo in unità relative */
+  line-height: 1.1;       /* interlinea più stretta per avvicinare le scritte */
+}
+
+/* Scritta 1 */
+.fade-up.delay-1 {
+  animation-delay: 1.4s;
+  color: #ff6600;
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  line-height: 1.1;
+}
+
+/* Scritta 2 */
+.fade-up.delay-2 {
+  animation-delay: 1.6s;
+  color: black;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  line-height: 1.1;
+}
+
+/* Scritta 3 */
+.fade-up.delay-3 {
+  animation-delay: 1.7s;
+  color: black;
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  line-height: 1.1;
+}
+
+@media (orientation: portrait) {
+  .fade-up {
+    position: relative;
+    top: -4vh;            /* sposta verso l’alto */
+    margin: 0.5vh 0;       /* distanza verticale tra le scritte */
+    line-height: 1.5;      /* compatta le linee */
+    left: 4vw;             /* sposta un po’ a destra */
+    /* oppure margin-left: 2vw; */
+  }
+
+
+  .fade-up.delay-1 {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .fade-up.delay-2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .fade-up.delay-3 {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px); /* parte un po' più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);   /* torna al suo punto naturale */
+  }
+}
+/* Animazione di comparsa dal basso */
+
+
+.linea-orizzontale
+
+/* Delay opzionale per sequenze */
+.Titolo.delay-1 { animation-delay: 0.2s; }
+
+.terza-sezione {
+  background-color: white; /* nuovo sfondo */
+  padding: 5vh 4vw;        /* prima era 50px 40px */
+  box-sizing: border-box;
+  width: 100%;             /* riempie tutta la larghezza */
+  min-height: 100vh;       /* riempie tutta l’altezza visibile */
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 1024px) {
+  .terza-sezione {
+    padding: 4vh 5vw;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 768px) {
+  .terza-sezione {
+    padding: 3vh 4vw;
+  }
+}
+.abatel {
+  color: #ff6600;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 2rem); /* scala tra 1rem e 2rem in base alla larghezza del viewport */
+  line-height: 1.4; /* linea compatta e leggibile */
+}
+.titolo-vantaggi {
+  color: #000;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 2.2rem); /* scala da 1.2rem a 2.2rem in base alla larghezza dello schermo */
+  line-height: 1.3; /* mantiene compattezza e leggibilità */
+  margin: 0;         /* opzionale: elimina margini predefiniti */
+}
+
+/* CONTAINER SEZIONE */
+/* SEZIONE */
+/* QUARTA SEZIONE */
+.quarta-sezione {
+    text-align: center;
+    padding: 5vh 2vw;
+    background-color: #f5f5f5;
+}
+
+/* TITOLO */
+.quarta-sezione h4.esitare {
+    font-size: 2.5vw; /* si ridimensiona in base alla larghezza viewport */
+    margin-bottom: 1.5vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* PARAGRAFO */
+.quarta-sezione p.esigenti {
+    font-size: 1.5vw;
+    margin-bottom: 3vh;
+    line-height: 1.6;
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* NAV LINKS */
+.quarta-sezione nav.link {
+    display: flex;
+    justify-content: center;
+    gap: 2vw; /* distanza tra i pulsanti */
+    flex-wrap: wrap;
+   font-family: 'Montserrat', sans-serif;
+}
+
+/* PULSANTI */
+.pulsante {
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(45deg, #f1c40f, #e67e22, #9b59b6);
+    padding: 1.2vh 2vw;
+    border-radius: 0.8rem;
+    font-size: 1.5vw;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.pulsante:hover {
+    background: linear-gradient(45deg, #e74c3c, #3498db); /* rosso → blu */
+    transform: scale(1.05);
+}
+.pulsanti {
+    text-decoration: none;
+    color: #fff;
+     background: linear-gradient(45deg, #000000, #0a0a3d, #4b0082);
+    padding: 1.2vh 2vw; /* padding relativo */
+    border-radius: 0.8rem;
+    font-size: 1.5vw;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.pulsanti:hover {
+  background: linear-gradient(45deg, #0a0a3d, #00ffff);
+    transform: scale(1.05);
+}
+
+/* RESPONSIVITÀ AVANZATA */
+@media (max-width: 1200px) {
+    .quarta-sezione h4.esitare {
+        font-size: 3vw;
+    }
+    .quarta-sezione p.esigenti {
+        font-size: 2vw;
+    }
+    .pulsanti, .pulsante {
+        font-size: 2vw;
+        padding: 1vh 4vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .quarta-sezione h4.esitare {
+        font-size: 4vw;
+    }
+    .quarta-sezione p.esigenti {
+        font-size: 2.5vw;
+    }
+    .pulsanti, .pulsante {
+        font-size: 2.5vw;
+        padding: 1.2vh 5vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .quarta-sezione h4.esitare {
+        font-size: 5vw;
+    }
+    .quarta-sezione p.esigenti {
+        font-size: 3.5vw;
+    }
+    .pulsanti, .pulsante {
+        font-size: 3vw;
+        padding: 1.5vh 6vw;
+    }
+}
+/* Layout flessibile */
+
+.quinta-sezione {
+      width: 100%;          /* occupa tutta la larghezza */
+    min-height: 50vh;     /* altezza minima: 50% della viewport */
+    padding: 5vh 2vw;     /* spaziatura interna relativa alla viewport */
+    display: flex;        /* opzionale: per contenuti futuri centrati */
+    justify-content: center; /* centra orizzontalmente */
+    align-items: center;      /* centra verticalmente */
+    background-color: #f5f5f5; /* colore di sfondo chiaro */
+    box-sizing: border-box;    /* include padding nella larghezza */
+}
+.contenitore {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding: 2vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(40vw); /* sposta i testi a destra in modo fluido */
+}
+
+.contenitore h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: orange;
+}
+
+.contenitore h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contenitore p {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+.contenitore h4,
+.contenitore h3,
+.contenitore p {
+  position: relative;
+  right: 0;
+  margin: 1vh 0;
+  line-height: 1.4;
+}
+
+/* Font responsivi */
+.contenitore h4 {
+  font-size: clamp(1vw, 1.5vw, 2.5vw);
+}
+
+.contenitore h3 {
+  font-size: clamp(1.2vw, 1.8vw, 3vw);
+}
+
+.contenitore p {
+  font-size: clamp(0.9vw, 1.4vw, 2vw);
+}
+
+/* Animazione fade + slide da destra */
+.hidden {
+  opacity: 0;
+  transform: translateX(5vw); /* slide iniziale da destra */
+  transition: all 0.6s ease;
+}
+
+.hidden.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Solo per dispositivi verticali */
+@media (orientation: portrait) {
+  .contenitore h4,
+  .contenitore h3,
+  .contenitore p {
+    text-align: right;     
+    transform: translateX(10vw); /* spostamento più ridotto in vw */
+  }
+}
+
+/* MEDIA QUERY PER SCHERMI PICCOLI */
+@media (max-width: 1200px) {
+  .contenitore .solutions { font-size: 2.5vw; }
+  .contenitore .futuro { font-size: 3vw; }
+  .contenitore .stabile { font-size: 2.5vw; }
+}
+
+@media (max-width: 768px) {
+  .contenitore .solutions { font-size: 3.5vw; }
+  .contenitore .futuro { font-size: 4vw; }
+  .contenitore .stabile { font-size: 3.5vw; }
+}
+
+@media (max-width: 480px) {
+  .contenitore .solutions { font-size: 4.5vw; }
+  .contenitore .futuro { font-size: 5vw; }
+  .contenitore .stabile { font-size: 4.5vw; }
+}
+.immagini-sovrapposte {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: -5vh; /* margine relativo alla viewport */
+}
+
+/* Immagine base */
+.immagini-sovrapposte .base {
+  width: clamp(30%, 50vw, 80%); /* dimensione responsiva */
+  height: auto;
+  display: block;
+  margin-left: -50vw; /* molto più a sinistra */
+}
+
+/* Immagine sovrapposta */
+.immagini-sovrapposte .sovrapposta {
+  position: absolute;
+  bottom: -9vh;        
+  left: -35vw;        /* molto più a sinistra */
+  width: clamp(20%, 35vw, 50%); /* dimensione responsiva */
+  height: auto;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.fibra-box {
+  display: flex;
+  justify-content: space-between;
+  border: 0.3vw solid #000;      /* bordi responsivi */
+  border-radius: 1vw;
+  overflow: hidden;
+  max-width: 90%;                 /* scala con lo schermo */
+  opacity: 0;                     
+  transform: translateY(5vh);     /* parte più in basso */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  margin: 5vh auto;               /* centrazione verticale e orizzontale */
+  gap: 2vw;                       /* distanza tra i blocchi */
+}
+
+.fibra-box.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blocco {
+  flex: 1;
+  text-align: center;
+  padding: clamp(2vh, 3vw, 4vh) clamp(2vw, 4vw, 5vw);  /* padding fluido */
+  background: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-width: 25%;                /* evita che diventino troppo piccoli */
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+.blocco i {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1vh;
+  display: block;
+}
+
+.blocco:hover {
+  background: orange;
+  color: white;
+}
+
+/* Per dispositivi verticali: i blocchi diventano in colonna */
+@media (orientation: portrait) {
+  .fibra-box {
+    flex-direction: column;
+    gap: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .blocco {
+    min-width: 70%;       /* occupano quasi tutta la larghezza */
+    padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6vw, 8vw);
+  }
+}
+.sesta-sezione {
+  color: grey
+}
+
+.settima-sezione {
+  background-color: #000;
+}
+.settima-sezione p {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+/*fine index.html*/
+/*inizio di servizi.html*/
+.mondo-fibra {
+  display: block;
+  width: 100%;           /* sempre tutta la larghezza */
+  height: auto;          /* mantiene proporzioni */
+  max-height: 70vh;      /* altezza massima fluida */
+  margin: 0;             /* nessun margine extra */
+  margin-top: -10vh;     /* spostamento verso l’alto proporzionale */
+  object-fit: cover;     /* riempie tutta la larghezza senza deformare */
+    width: 100%;       /* sempre tutta la larghezza */
+  height: auto;      /* mantiene proporzioni */
+  display: block;
+ 
+}
+.immagine-container {
+  position: relative;
+  width: 100%;        /* occupa tutta la larghezza */
+  height: auto;       /* altezza fluida */
+  overflow: hidden;
+  top: -2vh;
+}
+/* Per schermi verticali */
+@media (orientation: portrait) {
+  .mondo-fibra {
+    max-height: 50vh;
+    margin-top: -5vh;
+  }
+}
+
+/* Per schermi verticali */
+@media (orientation: portrait) {
+  .immagine-container {
+    max-height: 50vh;    /* altezza massima ridotta su verticale */
+    margin-top: -5vh;    /* meno spostamento verso l’alto */
+    top: 3vh;
+  }
+}
+
+/* Contenitore dell'immagine */
+/* Contenitore dell'immagine */
+
+
+/* Immagine responsive */
+
+
+/* Testi centrati sopra l'immagine */
+.srl,
+.sotto {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+/* Piccolo offset verticale per il primo testo */
+.srl {
+  top: 25%;         /* posizionamento verticale fluido */
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0;
+}
+
+/* Secondo testo più in basso */
+.sotto {
+  top: 40%;         /* più in basso rispetto a .srl */
+  font-size: clamp(3rem, 6vw, 4rem);
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Animazione fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Media query per schermi piccoli verticali */
+@media (max-width: 768px) {
+  .srl {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+  }
+  .sotto {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+}
+/* introduzione servizi*/
+/* Container generale dei blocchi */
+/* CONTENITORE PRINCIPALE */
+.pezzi-box {
+  width: 100%;
+  max-width: clamp(80vw, 90vw, 95vw); /* larghezza massima fluida */
+  margin: 0 auto;
+  padding: clamp(2vh, 4vw, 5vh) clamp(3vw, 5%, 6vw);
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 5vw, 3rem); /* il gap cresce quando lo schermo si riduce */
+}
+
+@media (max-width: 768px) {
+  .pezzi-box {
+    flex-direction: column;
+    padding: clamp(3vh, 5vw, 4vh) clamp(4vw, 6%, 5vw);
+    gap: clamp(1.5rem, 3vw, 2.5rem); /* un po’ più di spazio su mobile */
+  }
+}
+
+/* GRID INTERNO */
+.blocchi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  width: 100%;
+  margin: 4vh auto;
+}
+
+@media (max-width: 768px) {
+  .blocchi-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 1024px) {
+  .pezzi-box, .bloccchi-grid {
+    gap: clamp(2rem, 6vw, 4rem); /* ancora più spazio su tablet */
+  }
+}
+
+/* BLOCCO GENERICO */
+.blocco-a, .blocco-b, .blocco-c, .blocco-d {
+  background-color: #fff;
+  border-radius: clamp(0.5rem, 1vw, 1rem);
+  box-shadow: 0 clamp(0.5rem, 1vh, 1rem) clamp(1rem, 2vh, 2rem) rgba(0,0,0,0.1);
+  padding: clamp(1.5rem, 2vw, 2.5rem);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;
+  transform: translateX(5vw);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  width: 100%;
+  max-width: clamp(25rem, 40vw, 35rem);
+  margin: clamp(1rem, 1.5vw, 2rem) auto;
+}
+
+/* HOVER BLOCCO */
+.blocco-a:hover, .blocco-b:hover, .blocco-c:hover, .blocco-d:hover {
+  transform: translateY(clamp(-0.5rem, -1vh, -1rem));
+  box-shadow: 0 clamp(1rem, 2vh, 1.5rem) clamp(2rem, 4vh, 3rem) rgba(0,0,0,0.2);
+  background-color: orange;
+}
+
+.blocco-a:hover *, .blocco-b:hover *, .blocco-c:hover *, .blocco-d:hover * {
+  color: #000 !important;
+  transition: color 0.3s ease;
+}
+
+/* TESTI INTERNI */
+.blocco-a p, .blocco-a h2, .blocco-a a,
+.blocco-b p, .blocco-b h2, .blocco-b a,
+.blocco-c p, .blocco-c h2, .blocco-c a,
+.blocco-d p, .blocco-d h2, .blocco-d a {
+  transition: color 0.5s ease;
+}
+
+/* TITOLO SOPRA BLOCCO */
+.titolo-sopra {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.blocco-a:hover .titolo-sopra,
+.blocco-b:hover .titolo-sopra,
+.blocco-c:hover .titolo-sopra,
+.blocco-d:hover .titolo-sopra {
+  transform: translateX(-50%) translateY(clamp(-0.2rem, -0.5vh, -0.5rem));
+}
+
+/* IMMAGINI */
+.img-blocco-a, .img-blocco-b, .img-blocco-c, .img-blocco-d {
+  width: 100%;
+  height: clamp(15vh, 25vh, 30vh); /* leggermente più alte */
+  object-fit: cover;
+  border-radius: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(0.5rem, 1rem, 1.5rem);
+}
+
+/* BOTTONI SIPARIO */
+.btn-a, .btn-b, .btn-c, .btn-d {
+  display: block;
+  position: relative;
+  margin: clamp(1rem, 2vw, 2rem) auto;
+  overflow: hidden;
+  border-radius: clamp(0.5rem, 1vw, 0.8rem);
+  text-decoration: none;
+  background-color: blue;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
+  padding: clamp(0.4rem, 0.8vw, 0.7rem) clamp(1rem, 2vw, 2rem);
+  text-align: center;
+  transition: color 0.4s ease, transform 0.3s ease;
+}
+
+.btn-a::before, .btn-b::before, .btn-c::before, .btn-d::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: red;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.btn-a:hover::before, .btn-b:hover::before, .btn-c:hover::before, .btn-d:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.btn-a span, .btn-b span, .btn-c span, .btn-d span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-a:hover span, .btn-b:hover span, .btn-c:hover span, .btn-d:hover span {
+  color: white;
+}
+
+/* ANIMAZIONI SCROLL */
+.anim-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+.anim-left {
+  transform: translateX(-5vw);
+  opacity: 0;
+}
+
+.anim-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .blocco-a, .blocco-b, .blocco-c, .blocco-d {
+    width: 90%;
+    margin-bottom: clamp(1rem, 2vh, 2rem);
+    transform: translateX(0);
+    padding: clamp(1rem, 2vw, 2rem);
+  }
+
+  .btn-a, .btn-b, .btn-c, .btn-d {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    padding: clamp(0.6rem, 2vw, 0.9rem) clamp(1.5rem, 4vw, 2.5rem);
+    margin: clamp(1rem, 2vw, 2rem) auto;
+  }
+}
+
+
+/* Testo a destra che non copre i link */
+
+
+.titolo {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(255, 0, 0);
+  margin: 30px auto 10px auto;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+
+
+/* Delay opzionale per sequenze */
+.titolo.delay-1 { animation-delay: 0.2s; }
+
+/*inizio servizi fibra ottica */
+.sezione-fibra-ottica {
+  width: 100%;           /* occupa tutta la larghezza disponibile */
+  max-width: 100vw;      /* non supera la larghezza della viewport */
+  margin: 0 auto;        /* centrata orizzontalmente */
+  padding: 5vw 2vw;      /* padding relativo, scala con la larghezza viewport */
+  box-sizing: border-box;/* include padding nel calcolo larghezza */
+}
+/* Contenitore principale (rettangolo grande verticale) */
+/* Contenitore principale (rettangolo grande verticale) */
+/*rettangoli in genere*/
+.cotainer {
+  display: flex;
+  justify-content: flex-end;  /* allinea tutto a destra */
+  padding: 2vw;
+  box-sizing: border-box;
+}
+
+/* Rettangolo verticale che contiene i link */
+.rettangoloo-link {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;                     /* distanza più compatta tra gli ovali */
+  background: linear-gradient(45deg, #000000, #0a0a3d, #4b0082);
+  border-radius: 1vw;
+  padding: 1.5vw;                 /* padding ridotto */
+  width: 20vw;                     /* più compatto */
+  max-width: 40vw;                 /* unità relativa, limita larghezza massima */
+  margin-left: auto;               /* allinea a destra */
+  box-sizing: border-box;
+}
+
+/* Menu link (ovale orizzontale) */
+.rettangoloo-link a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1vh 1.5vw;              /* padding più piccolo */
+  border-radius: 2vw;
+  background-color: white;
+  color: #222;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);  /* scala in modo proporzionale */
+  min-height: 2.3em;                /* leggermente più compatto */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover sugli ovali */
+.rettangoloo-link a:hover {
+  background-color: orange;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Freccia allineata a destra */
+.rettangoloo-link a span:last-child {
+  margin-left: 1vw;
+  flex-shrink: 0;
+}
+
+/* Responsive generale */
+@media (max-width: 768px) {
+  .rettangoloo-link {
+    width: 30vw;
+    max-width: 50vw;
+    gap: 1.5vh;
+    padding: 2vw;
+  }
+  .rettangoloo-link a {
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    padding: 1vh 2vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .rettangoloo-link {
+    width: 40vw;
+    max-width: 60vw;
+    gap: 1vh;
+    padding: 1.5vw;
+  }
+  .rettangoloo-link a {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    padding: 1vh 1.5vw;
+  }
+}
+
+/* Contenitore principale */
+/* Rettangolo verticale contatti */
+.rettangolo-contatti {
+  width: 33vw;                  
+  max-width: 90vw;
+  background: linear-gradient(135deg, 
+    #0a0a3d 10%,     /* blu profondo */
+    #b22222 30%,     /* rosso intenso */
+    #b59f3b 70%,     /* giallo scuro */
+    #ff6600 100%     /* arancione */
+  );
+  border-radius: 1vw;
+  padding: 2vw;
+  margin-top: 1vh;       /* ridotto per avvicinare in alto */
+  margin-left: 2vw;      
+  box-sizing: border-box;
+
+  position: relative;     /* permette di spostare ulteriormente */
+  top: -3vh;             /* spostamento verso l’alto */
+}
+
+/* Scatola interna contatti */
+.scatola-contatti {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;                   /* distanza tra gli oggetti */
+}
+
+/* Ogni oggetto contatto */
+.contatto-oggetto {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  background-color: white;
+  color: #222;
+  border-radius: 2vw;
+  padding: 1vh 2vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem); /* testo scalabile */
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contatto-oggetto:hover {
+  background-color: #007BFF;
+  color: white;
+  transform: scale(1.03);
+}
+
+/* Icone contatto */
+.contatto-oggetto i {
+  font-size: clamp(1rem, 2vw, 1.5rem);  /* icone scalabili */
+  flex-shrink: 0;
+}
+
+/* Link contatto */
+.contatto-oggetto a {
+  color: inherit;
+  text-decoration: none;
+  flex-shrink: 1;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem); /* link scalabile */
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  .rettangolo-contatti {
+    width: 50vw;
+    padding: 3vw;
+  }
+  .contatto-oggetto {
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
+    padding: 1vh 2.5vw;
+    gap: 0.8vw;
+  }
+  .contatto-oggetto i {
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  }
+  .contatto-oggetto a {
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .rettangolo-contatti {
+    width: 70vw;
+    padding: 2vw;
+  }
+  .contatto-oggetto {
+    font-size: clamp(0.6rem, 2.2vw, 0.9rem);
+    padding: 1vh 1.5vw;
+    gap: 0.5vw;
+  }
+  .contatto-oggetto i {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  }
+  .contatto-oggetto a {
+    font-size: clamp(0.6rem, 2.2vw, 0.9rem);
+  }
+}
+
+
+.sinistra {
+  position: relative; /* contenitore relativo */
+  overflow: visible;
+}
+
+.sinistra .fili {
+  position: absolute;            /* esce dal flusso del layout */
+  top: 0;
+  left: 0;                      /* parte da destra per lo slide */
+  width: clamp(20vw, 35vw, 50%); /* più piccola e scalabile */
+  height: auto;
+  border-radius: 2vw;            /* bordi arrotondati */
+  z-index: -1;                    
+  pointer-events: none;          
+  object-fit: cover;             
+  opacity: 0;                     /* inizio trasparente */
+  transform: translateX(20%);    /* parte spostata a destra */
+  animation: fadeSlide 1s ease forwards; /* animazione */
+}
+
+/* Animazione fade-in + slide da destra */
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (orientation: portrait) {
+
+  /* Rettangolo dei link */
+  .cotainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4vw;
+    box-sizing: border-box;
+    margin-top: 10vh; /* sposta più in basso tutto il blocco */
+  }
+
+  .rettangoloo-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background: linear-gradient(45deg, #000000, #0a0a3d, #4b0082);
+    border-radius: 2vw;
+    padding: 3vw;
+    width: 50vw;
+    max-width: 70vw;
+    margin: 0 auto;
+    margin-top: 8vh; /* lo abbassa ulteriormente */
+    box-sizing: border-box;
+  }
+
+  .rettangoloo-link a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.5vh 2.5vw;
+    border-radius: 3vw;
+    background-color: white;
+    color: #222;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    min-height: 2.6em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .rettangoloo-link a:hover {
+    background-color: orange;
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .rettangoloo-link a span:last-child {
+    margin-left: 2vw;
+    flex-shrink: 0;
+  }
+
+  /* Immagine spostata più in basso */
+  .sinistra {
+    position: relative;
+    overflow: visible;
+    margin-top: 12vh; /* sposta l’immagine più in basso */
+  }
+
+  .sinistra .fili {
+    position: absolute;
+    top: -7vh; /* più in basso rispetto all’inizio */
+    left: 50%;
+    transform: translateX(-50%) translateY(10%);
+    width: clamp(40vw, 60vw, 80%);
+    height: auto;
+    border-radius: 3vw;
+    z-index: -1;
+    pointer-events: none;
+    object-fit: cover;
+    opacity: 0;
+    animation: fadeSlide 1.2s ease forwards;
+  }
+
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateX(10%) translateY(10%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}
+
+/*titolo (where innovations meet the future)*/
+/* Contenitore della sezione */
+.contenitore-titolo {
+  position: relative;   /* riferimento per il titolo */
+  width: 100%;
+  height: 40vh;         /* altezza della sezione superiore */
+}
+
+/* Titolo responsive */
+.capo-lista {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -20%); /* parte un po’ più in alto */
+  color: rgb(6, 6, 75);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Quando diventa visibile */
+.capo-lista.visibile {
+  opacity: 1;
+  transform: translate(-50%, 0); /* scende dolcemente nella posizione finale */
+}
+
+/*titolo (perché la fibra ottica sta rivoluzionando il mondo*/
+.TItolo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #000;
+  text-align: right;               
+  line-height: 1.2;
+  font-size: clamp(1vw, 2.5vw, 3vw); 
+  margin: 2vh 0;
+  
+  position: relative;
+  top: -15vh;
+  
+  opacity: 0;                  /* inizialmente invisibile */
+  transform: translateY(20px); /* parte leggermente più in basso */
+  transition: opacity 0.8s ease, transform 0.8s ease; /* animazione smooth */
+}
+
+/* Classe attivata quando entra nello scroll */
+.TItolo.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.descrzione-fibra-ottica {
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+  line-height: 1.4;
+  font-size: clamp(0.6vw, 1vw, 1.4vw);
+  margin: 2vh 0;
+  color: #000;
+  top: -12vh;
+
+  /* inizialmente invisibile */
+  opacity: 0;
+  transform: translateX(5vw);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Quando diventa visibile */
+.descrzione-fibra-ottica.visibile {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stile per i grassetti */
+.descrzione-fibra-ottica .grassetto {
+  font-weight: 700;
+  font-size: clamp(0.65vw, 1.1vw, 1.6vw);
+}
+
+@media (orientation: portrait) {
+  
+  .TItolo.visible {
+    font-size: clamp(3vw, 4.5vw, 6vw); /* titolo più piccolo rispetto prima */
+  }
+
+  .descrzione-fibra-ottica {
+    font-size: clamp(2.5vw, 3.5vw, 4.5vw); /* testo principale ridotto */
+    line-height: 1.4;                     /* leggermente più compatto */
+    top: -6vh;                             /* mantiene posizione buona */
+    margin: 2vh 0;
+  }
+
+  .descrzione-fibra-ottica .grassetto {
+    font-size: clamp(3vw, 4vw, 5.5vw);    /* grassetti proporzionalmente più piccoli */
+  }
+}
+/* Query per smartphone verticali */
+@media (max-width: 480px) {
+  .TItolo.visible {
+    font-size: clamp(4vw, 5.5vw, 6vw); /* titolo visibile e leggibile */
+    text-align: center;                 /* centrato su schermi piccoli */
+    margin-bottom: 2vh;
+  }
+
+  .descrzione-fibra-ottica {
+    font-size: clamp(3vw, 3.8vw, 4.5vw);  /* testo scalabile ma leggibile */
+    line-height: 1.5;                     /* leggermente più arioso */
+    top: 0;                               /* non spostato troppo in alto */
+    margin: 2vh 4vw;                      /* margini adeguati */
+    text-align: left;                     /* mantiene l’allineamento a sinistra */
+  }
+
+  .descrzione-fibra-ottica .grassetto {
+    font-size: clamp(3.3vw, 4vw, 4.8vw);  /* grassetto proporzionato */
+  }
+}
+
+/*titolo (perché scegliere abatel srl per la fibra ottica)*/
+.descrizione-sceglierci {
+  font-family: 'Segoe UI', sans-serif;
+  position: absolute;
+  top: -5vh;
+  right: 2vw;
+  width: 50vw;
+  max-width: 90vw;
+  justify-content: center;
+  line-height: clamp(1.3, 1.8vw, 1.8);
+  font-size: clamp(0.6vw, 1vw, 1.4vw);
+  color: #000;
+  pointer-events: none;
+  z-index: 1;
+
+  /* Stato iniziale invisibile */
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.descrizione-sceglierci strong {
+  font-weight: normal;
+}
+/* Stato attivo dopo lo scroll */
+.descrizione-sceglierci.mostrato {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* Titolo H2 */
+.descrizione-sceglierci h2 {
+  font-size: clamp(1.3vw, 2vw, 2.5vw); /* leggermente più piccolo del precedente */
+  margin-bottom: 1vh;
+  font-weight: 700;
+  color: rgb(8, 10, 110)
+}
+
+/* Grassetti interni */
+.descrizione-sceglierci b,
+.descrizione-sceglierci strong {
+  font-weight: 700;
+  font-size: clamp(0.65vw, 1.1vw, 1.6vw); /* leggermente più piccolo */
+}
+
+/* Solo dispositivi verticali */
+/* Centrare il rettangolo solo in modalità portrait */
+/* Solo dispositivi verticali */
+@media (orientation: portrait) {
+  /* Centrare il rettangolo */
+  .rettangolo-contatti {
+    margin: 0 auto;      /* centra orizzontalmente */
+    display: block;
+    top: 1vh;
+  }
+
+  /* Testo sotto il rettangolo */
+  .descrizione-sceglierci {
+    margin: 2vh auto 0 auto;  /* distanza dal rettangolo e centrato */
+    width: 90%;
+    max-width: 90vw;
+    text-align: center;       /* testo centrato */
+    font-size: clamp(1vw, 2.5vw, 3vw); /* testo scalabile */
+    line-height: 1.5;
+    margin-top: 29vh; /* aumenta lo spazio sopra il testo rispetto al rettangolo */
+    
+
+  }
+
+  .descrizione-sceglierci h2 {
+    font-size: clamp(2vw, 4vw, 5vw);
+    text-align: center;
+    
+  }
+
+  .descrizione-sceglierci b,
+  .descrizione-sceglierci strong {
+    font-size: clamp(1.2vw, 3vw, 4vw);
+  }
+}
+/*rettangolo del work process*/
+/* Rettangolo contenitore */
+.work-process-rectangle {
+  width: 80vw; /* larghezza relativa */
+  max-width: 90%; 
+  margin: 5vh auto; /* distanza verticale e centrato */
+  padding: 2vh 2vw;
+  background: linear-gradient(135deg, #0a0a3d, #4b0082, #ff6600); /* sfumatura blu/viola/arancione */
+  border-radius: 1vw;
+  box-sizing: border-box;
+
+  /* Animazione iniziale */
+  opacity: 0;
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 85;
+}
+
+/* Quando visibile */
+.work-process-rectangle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Riga dei blocchi */
+.work-process-row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  gap: 2vw;
+}
+
+/* Singolo blocco */
+.work-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(15vw, 18%, 25vw); /* larghezza relativa e scalabile */
+  padding: 2vh 2vw;
+  background-color: white;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover su blocco */
+.work-block:hover {
+  background-color: orange;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Icone */
+.work-block i {
+  font-size: clamp(1.5vw, 3vw, 4vw); /* responsivo */
+  margin-bottom: 1vh;
+}
+
+/* Titolo blocco */
+.work-block h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1vw, 2vw, 2.5vw);
+  margin: 0;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.work-block:hover h3 {
+  color: white;
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  .work-process-rectangle {
+    width: 90vw;
+    padding: 3vh 3vw;
+  }
+  .work-block {
+    width: clamp(25vw, 30%, 40vw);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .work-process-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .work-block {
+    width: 80vw;
+    margin-bottom: 2vh;
+  }
+}
+
+/* Solo dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .work-process-rectangle {
+    width: 90vw;
+    max-width: 95%;
+    margin: 90vh auto 5vh auto;
+    padding: 4vh 4vw;
+    border-radius: 2vw;
+    opacity: 0;
+    transform: translateY(0vh);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; /* ✅ i blocchi restano dentro */
+  }
+
+  .work-process-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5vh, 2.5vh, 3vh); /* ✅ distanza scalabile */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .work-block {
+    width: clamp(65vw, 75vw, 85vw); /* ✅ sempre dentro al rettangolo */
+    max-width: 90%;
+    padding: clamp(2vh, 3vh, 4vh) clamp(2vw, 3vw, 4vw);
+    margin: clamp(1vh, 1.5vh, 2vh) 0;
+    box-sizing: border-box;
+  }
+
+  .work-block i {
+    font-size: clamp(3vw, 5vw, 6vw);
+    margin-bottom: 2vh;
+  }
+
+  .work-block h3 {
+    font-size: clamp(2.5vw, 4vw, 5vw);
+  }
+}
+
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+.container-contatti {
+  position: relative; /* contesto per il rettangolo */
+}
+.work {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  color: rgb(8, 10, 110);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.2vw, 2.5rem);
+  margin-bottom: clamp(1vh, 3vh, 4vh);
+
+  /* Stato iniziale */
+  opacity: 0;
+  transform: translateX(-40vh);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Quando entra in vista */
+.work.visibile {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.work-process {
+  font-family: 'Segoe UI', sans-serif;
+  width: 80vw;
+  max-width: 90%;
+  margin: 0 auto;
+  line-height: clamp(1.3, 2vw, 1.8);
+  font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+  color: #000;
+  text-align: justify;
+
+  /* Stato iniziale */
+  opacity: 0;
+  transform: translateX(5vw); /* parte da destra */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.work-process.visibile {
+  opacity: 1;
+  transform: translateX(0); /* finisce nella posizione normale */
+}
+/* Dispositivi verticali (portrait) */
+@media (orientation: portrait) {
+  .work {
+    font-size: clamp(1.5rem, 4vw, 2rem); /* leggermente più grande */
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .work-process {
+    font-size: clamp(1rem, 3vw, 1.3rem); /* testo più leggibile */
+    line-height: 1.5;
+    width: 90vw;       /* occupa più spazio orizzontale */
+    margin: 2vh auto;  /* margine verticale compatto e centrato */
+    text-align: justify;
+  }
+}
+/* Stile per grassetti interni */
+.work-process b,
+.work-process strong {
+  font-weight: 700;
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+}
+.contenitore-presa {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh; /* distanza dal contenuto sopra */
+}
+
+.presa {
+  width: clamp(40vw, 60vw, 90vw);
+  height: auto;
+  border-radius: 2vw;
+  object-fit: cover;
+  opacity: 0;                   /* nascosta inizialmente */
+  transform: translateY(5vh);   /* parte dal basso */
+  transition: all 1s ease-out;  /* transizione dolce */
+}
+
+.presa.visibile {
+  opacity: 1;
+  transform: translateY(0);     /* torna nella posizione finale */
+}
+/* Pulsante base */
+.btn-sipario10 {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  color: #fff;
+  background-color: #007BFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 1.3rem);
+  padding: 1vh 3vw;
+  border-radius: 2vw;
+  text-decoration: none;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, color 0.4s ease;
+  top: -1vh;
+
+  /* stato iniziale */
+  opacity: 0;
+  transform: translateX(-5vw); /* parte da destra */
+}
+
+/* quando entra in vista */
+.btn-sipario10.visibile {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Effetto sipario (chiusura da sinistra verso destra) */
+.btn-sipario10::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #ff7b00;  /* colore sipario */
+  z-index: 0;
+  transition: left 0.5s ease;
+}
+
+/* Testo sopra lo sfondo */
+.btn-sipario10 span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover: sipario scorre da sinistra a destra */
+.btn-sipario10:hover::before {
+  left: 0;
+}
+
+/* Hover: cambia il colore del testo */
+.btn-sipario10:hover {
+  color: #fff;
+}
+@media (orientation: portrait) {
+  .btn-sipario10 {
+    position: absolute;
+    top: -67vh; /* più in alto nella pagina */
+    left: 30%;
+    transform: translateX(-50%); /* lo centra orizzontalmente */
+    padding: 2vh 8vw; /* un po' più grande per il tocco su mobile */
+  }
+}
+
+
+/*inizio servizi-ftt-cab*/
+/*titolo (Innovation that transforms ideas into powerful results)*/
+.sezione-ftt-cab {
+  width: 90vw;                                /* larghezza relativa alla viewport */
+  max-width: 95%;                             /* limite massimo relativo */
+  margin: 0 auto;                             /* centrata orizzontalmente */
+  padding: clamp(2vh, 3vw, 5vh) clamp(4vw, 6vw, 8vw); /* padding fluido verticale e orizzontale */
+  box-sizing: border-box;                     /* include padding nel calcolo larghezza */
+}
+
+
+/* Contenitore del titolo */
+.section-titolo {
+  position: relative;       /* contenitore di riferimento */
+  width: 100%;
+  height: clamp(15vh, 20vw, 20vh); /* altezza scalabile */
+}
+
+.titolo-centrale {
+  position: absolute;
+  top: clamp(-18vh, -8vw, -14vh);  /* altezza invariata */
+  left: clamp(1vw, 2%, 5vw);
+
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(255, 0, 0);
+
+  font-size: clamp(1.3rem, 3.2vw, 2.3rem);
+  margin: 0;
+  pointer-events: none;
+
+  opacity: 0;
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+
+
+
+/* Animazione fade-in da sinistra */
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-5vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Solo per dispositivi verticali */
+@media (orientation: portrait) {
+  .titolo-centrale {
+    margin-top: clamp(25vh, 30vw, 35vh); /* molto più in basso */
+    font-size: clamp(1.1rem, 5vw, 1.8rem); /* testo scalabile */
+  }
+}
+/*titolo (Perché accontentarsi di una connessione lenta quando la rete FTTCab <br> 
+    garantisce velocità e stabilità superiori?)*/
+    /* Titolo principale FTTCab */
+.accontentarsi {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: rgb(8, 10, 110);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+
+  opacity: 0;
+  transform: translateX(40%);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  margin-top: clamp(-18vh, -8vw, -6vh); /* ancora più in alto e scalabile */
+}
+
+.accontentarsi.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.descrzione-ftt-cab {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+  line-height: clamp(1.3, 2.5vw, 1.8);
+  max-width: 90%;
+  margin: clamp(-1vh, -5vw, -2vh) auto clamp(2vh, 3vw, 3vh) auto; /* più in alto */
+  
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.descrzione-ftt-cab.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Solo per dispositivi verticali */
+@media (orientation: portrait) {
+  .accontentarsi {
+    margin-top: clamp(15vh, 25vw, 30vh); /* abbassa il titolo molto più in basso */
+    font-size: clamp(1.5rem, 6vw, 2.2rem); /* mantiene scalabile */
+  }
+
+  .descrzione-ftt-cab {
+    margin: clamp(5vh, 10vw, 12vh) auto clamp(2vh, 3vw, 3vh) auto; /* testo sotto il titolo */
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+}
+/*rettangolo dei contatti, ma con classi diverse per ftt cab*/
+
+/* Desktop default */
+.rectangle-contatti {
+  width: 33vw;                  
+  max-width: 90vw;
+  background: linear-gradient(135deg, 
+    #0a0a3d 10%,     
+    #b22222 30%,     
+    #b59f3b 70%,     
+    #ff6600 100%     
+  );
+  border-radius: 1vw;
+  padding: 2vw;
+  
+  /* Centrato su desktop */
+  margin: 5vh auto;  /* margini verticali e centrato orizzontalmente */
+  box-sizing: border-box;
+
+  /* Rimuoviamo spostamenti specifici */
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* Scatola interna contatti */
+.variabile-contatti {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+/* Ogni oggetto contatto */
+.ovale-oggetto {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  background-color: white;
+  color: #222;
+  border-radius: 2vw;
+  padding: 1vh 2vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ovale-oggetto:hover {
+  background-color: #007BFF;
+  color: white;
+  transform: scale(1.03);
+}
+
+/* Icone contatto */
+.ovale-oggetto i {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  flex-shrink: 0;
+}
+
+/* Link contatto */
+.ovale-oggetto a {
+  color: inherit;
+  text-decoration: none;
+  flex-shrink: 1;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+}
+.link-contatti {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  color: #fff;
+  background-color: #007BFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 1.3rem);
+  padding: 1vh 3vw;
+  border-radius: 2vw;
+  text-decoration: none;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, color 0.4s ease;
+  top: -2vh;
+
+  /* stato iniziale */
+  opacity: 0;
+  transform: translateX(-5vw); /* parte da destra */
+}
+
+/* quando entra in vista */
+.link-contatti.visibile {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* Effetto sipario (chiusura da sinistra verso destra) */
+.link-contatti::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #ff7b00;  /* colore sipario */
+  z-index: 0;
+  transition: left 0.5s ease;
+}
+
+/* Testo sopra lo sfondo */
+.link-contatti span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover: sipario scorre da sinistra a destra */
+.link-contatti:hover::before {
+  left: 0;
+}
+
+/* Hover: cambia il colore del testo */
+.link-contatti:hover {
+  color: #fff;
+}
+@media (orientation: portrait) {
+  .link-contatti {
+      top: 2vh;
+  }
+}
+@media (max-width: 768px) {
+  .rectangle-contatti {
+    width: 50vw;
+    padding: 3vw;
+  }
+  .ovale-oggetto {
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
+    padding: 1vh 2.5vw;
+    gap: 0.8vw;
+  }
+  .ovale-oggetto i {
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  }
+  .ovale-oggetto a {
+    font-size: clamp(0.7rem, 1.8vw, 1rem);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .rectangle-contatti {
+    width: 70vw;
+    padding: 2vw;
+  }
+  .ovale-oggetto {
+    font-size: clamp(0.6rem, 2.2vw, 0.9rem);
+    padding: 1vh 1.5vw;
+    gap: 0.5vw;
+  }
+  .ovale-oggetto i {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  }
+  .ovale-oggetto a {
+    font-size: clamp(0.6rem, 2.2vw, 0.9rem);
+  }
+}
+/* Solo per dispositivi verticali */
+@media (orientation: portrait) {
+  .rectangle-contatti {
+    width: 80vw;             /* più largo per occupare buona parte dello schermo */
+    max-width: 90vw;
+    margin: 5vh auto;        /* centrato orizzontalmente e più in basso */
+    top: 0;                  /* rimuove lo spostamento verso l’alto */
+  }
+}
+/*fine rettangolo contatti ftt cab*/
+/*immagine rete globale*/
+.rete-globale {
+  position: relative;
+  top: clamp(-2vh, -1.5vw, -1vh);       /* scalabile in verticale */
+  width: clamp(80%, 90vw, 100%);         /* larghezza scalabile */
+  max-width: 100%;
+  border-radius: clamp(1vw, 2vw, 2.5vw); /* bordi scalabili */
+  box-shadow: 0 clamp(0.5vh, 1vw, 1vh) clamp(1vh, 2vw, 2vh) rgba(0,0,0,0.2); /* ombra scalabile */
+
+  opacity: 0;
+  transform: scale(0.95); /* parte leggermente più piccola */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Quando entra in vista */
+.rete-globale.visible {
+  opacity: 1;
+  transform: scale(1); /* scala a dimensione reale */
+}
+/*titolo e testo (perché scegliere abatel srl per ftt cab)*/
+.perchè-sceglierci {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra verticalmente */
+  align-items: center;     /* centra orizzontalmente */
+  width: clamp(80%, 90vw, 100%);
+  max-width: 100%;
+  height: 80vh;            /* altezza della sezione, scalabile con viewport */
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;       /* testo centrato */
+  color: #000;
+       
+  
+  top: -4vh;
+}
+
+/* Titolo H2 */
+.perchè-sceglierci h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  margin-bottom: clamp(1vh, 2vw, 2vh);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(-5vh); /* parte dall'alto */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  color: #0a0a3d;
+}
+.ideale {
+  color: red;
+}
+/* Testo */
+.perchè-sceglierci p {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  line-height: clamp(1.4, 2vw, 1.8);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(5vh); /* parte dal basso */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Grassetti interni */
+.perchè-sceglierci b,
+.perchè-sceglierci strong {
+  font-weight: 700;
+}
+
+/* Classi attivate quando entrano in viewport */
+.perchè-sceglierci h2.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.perchè-sceglierci p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 408px) {
+  /* Titolo spostato un po' più in basso */
+  .perchè-sceglierci h2 {
+    transform: translateY(-3vh); /* meno spostamento verso l'alto */
+    font-size: clamp(1.3rem, 4vw, 2rem); /* ridimensiona leggermente il titolo su mobile */
+  }
+
+  /* Testo spostato più in basso */
+  .perchè-sceglierci p {
+    transform: translateY(6vh); /* testo più giù */
+    font-size: clamp(0.75rem, 1.2vw, 1rem); /* testo leggermente più piccolo */
+    line-height: clamp(1.3, 2vw, 1.6);     /* line-height più compatto */
+  }
+}
+/*fine del perché sceglierci*/
+/*immagine server*/
+.server-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* centro orizzontalmente */
+}
+
+.server {
+  width: clamp(60%, 80vw, 90%);  /* larghezza scalabile */
+  height: auto;                  /* mantiene proporzioni */
+  border-radius: 2vw;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: clamp(2vh, 4vw, 5vh); /* sposta un po' più in basso */
+  display: block;
+  transition: all 0.4s ease-in-out;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateY(2vh); /* parte leggermente più in basso per animazione */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Classe per far comparire l’immagine con fade-in */
+.server.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Solo dispositivi verticali o telefoni */
+/* Solo dispositivi verticali o telefoni */
+@media (orientation: portrait), (max-width: 480px) {
+  .server-container {
+    justify-content: center; /* sempre centrata orizzontalmente */
+  }
+
+  .server {
+    width: clamp(85%, 90vw, 95%);   /* mantiene proporzioni perfette */
+    margin-top: clamp(-8vh, -2vw, -5vh); /* più in alto rispetto al default */
+    border-radius: 3vw;              /* curve più dolci */
+  }
+}
+/*fine immagine server*/
+/*titolo (work process)*/
+.svolgimento {
+  text-align: center; /* centrato */
+  margin: 0 auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem); /* testo scalabile */
+  margin-bottom: clamp(1vh, 2vw, 3vh);
+  margin-top: clamp(5vh, 8vw, 10vh);
+  opacity: 0;
+  transform: translateY(-5vh);   /* parte dall'alto */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.svolgimento.visibili {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.analisi {
+  position: relative;
+  text-align: center; /* centrato */
+  margin: 0 auto;
+  width: clamp(80%, 85vw, 90%);
+  max-width: 900px;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: clamp(1.4, 2vw, 1.8);
+  font-size: clamp(0.9rem, 2vw, 1.3rem); /* scalabile */
+  color: #333;
+  opacity: 0;
+  transform: translateY(5vh); /* parte dal basso */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.analisi.visibili {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.analisi strong {
+  font-weight: 600;
+}
+
+/* Responsive per smartphone verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .svolgimento {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    margin-top: clamp(4vh, 6vw, 8vh);
+  }
+
+  .analisi {
+    width: 90%;
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    line-height: 1.6;
+  }
+}
+/*fine servizi ftt cab*/
+/*inizio impianti ele.. civili*/
+/*sezione impianti elettrici*/
+.sezione-elettrici {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(40vh, 60vh, 100vh); /* altezza adattiva */
+  padding: clamp(1rem, 3vw, 5rem); /* padding fluido */
+  box-sizing: border-box;
+  display: flex; /* mantiene flessibilità per contenuti interni */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* utile per elementi posizionati dentro */
+  overflow: hidden; /* evita scroll indesiderati */
+}
+
+/* Ottimizzato per telefoni e schermi verticali */
+.titolO {
+  text-align: center;
+  font-size: clamp(1.1rem, 3vw, 2.2rem);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+
+  margin-top: clamp(2vh, 5vh, 8vh);
+  margin-bottom: clamp(1vh, 2vh, 4vh);
+
+  line-height: 1.2;
+  word-wrap: break-word;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+
+  opacity: 0;
+  transform: translateY(30px); /* parte dal basso */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.titolO.show {
+  opacity: 1;
+  transform: translateY(0); /* arriva nella posizione originale */
+}
+
+
+@media (orientation: portrait), (max-width: 480px) {
+  .titolO-container {
+    display: flex;
+    justify-content: flex-start; /* allinea a sinistra o verso destra con padding */
+    padding-left: 10%;           /* sposta il titolo verso destra */
+    width: 100%;
+  }
+
+  .titolO {
+    font-size: clamp(1rem, 4.5vw, 1.8rem);
+    margin: clamp(10vh, 12vw, 15vh) 0 0 0; /* più in alto */
+    text-align: left; /* ora il testo segue l’allineamento flex */
+  }
+}
+
+
+
+/*fine titolo*/
+/*inizio immagine sinistra*/
+.differenze {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;  /* immagine a sinistra su desktop */
+  align-items: center;
+  
+}
+
+.fili-ottica {
+  width: clamp(20%, 35vw, 45%);
+  height: auto;
+  border-radius: 2vw;
+  margin-left: clamp(3vw, 5%, 6vw);
+
+  transform: translateX(50px); /* parte a destra */
+  opacity: 0;
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fili-ottica.show {
+  opacity: 1;
+  transform: translateX(0); /* arriva nella posizione originale */
+}
+
+/* Animazione fade-in da destra */
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate(10vw, -4vh); /* mantiene anche il sollevamento */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -4vh);
+  }
+}
+
+@media (orientation: portrait), (max-width: 480px) {
+  .differenze {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: clamp(60vh, 70vw, 80vh); /* altezza scalabile */
+  }
+
+  .fili-ottica {
+    position: absolute;
+    width: clamp(85%, 90vw, 95%);
+    border-radius: 3vw;
+
+    /* top proporzionato all'altezza del contenitore */
+    top: 50%;   /* metà altezza del contenitore */
+    transform: translateY(20%); /* aggiusta leggermente verso il basso */
+  }
+}
+/*titolo (il nostro approccio al settore ele.. civile)*/
+/* Titolo "civile" */
+.civile {
+  position: relative;
+  text-align: center; /* centro orizzontalmente */
+  color: orange;
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: clamp(1.2rem, 4vw, 2rem); /* scalabile */
+  line-height: clamp(1.4, 2.5vw, 2);
+
+  margin: clamp(2vh, 3vw, 3vh) auto 0 auto; /* centrato e verticale */
+  
+  opacity: 0;
+  transform: translateX(-5vw); /* parte da sinistra */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Quando visibile */
+.civile.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Paragrafo "approccio" */
+.approccio {
+  color: black;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* scalabile */
+  line-height: clamp(1.3, 2.5vw, 1.8);
+  text-align: center; /* centrale */
+  max-width: 90%;
+  margin: clamp(1vh, 2vw, 2vh) auto; /* centrato orizzontalmente */
+  padding: clamp(1vh, 2vw, 2vh);
+
+  opacity: 0;
+  transform: translateX(5vw); /* parte da destra */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* eventuali <p> interni */
+.approccio p {
+  padding-left: clamp(5vw, 5%, 5vw); /* spostamento testo relativo */
+}
+
+/* eventuali strong interni */
+.approccio strong {
+  font-weight: normal; /* niente grassetto */
+}
+
+/* Quando visibile */
+.approccio.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.2s;
+}
+/*fine del nostro approccio*/
+/*inzio titolo (la nostra visione)*/
+.sezione-testuale {
+  width: 90%; /* occupa quasi tutta la larghezza del contenitore */
+  max-width: 100%;
+  margin: 0 auto; /* centra orizzontalmente */
+  text-align: center; /* centra il testo */
+  font-family: 'Montserrat', sans-serif;
+  line-height: clamp(1.2em, 2.5vw, 2em); /* interlinea fluida */
+  font-size: clamp(1rem, 2vw, 1rem); /* dimensione testo fluida */
+  color: #333;
+  opacity: 0; /* invisibile inizialmente per fade-in */
+  transform: scale(0.9); /* parte leggermente più piccola */
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  padding: clamp(1rem, 3vw, 3rem) 0;
+}
+.sezione-testuale h2 {
+  color: red;
+}
+/* Quando diventa visibile */
+.sezione-testuale.visible {
+  opacity: 1;
+  transform: scale(1); /* ingrandimento fino alla dimensione naturale */
+}
+
+/* Styling aggiuntivo per strong e div.diverso */
+.sezione-testuale strong {
+  display: block;
+  font-weight: 600;
+}
+
+.sezione-testuale .diverso {
+  display: inline-block;
+}
+
+@media (orientation: portrait), (max-width: 480px) {
+  .sezione-testuale {
+    margin-top: clamp(10vh, 15vw, 20vh); /* sposta la sezione più in basso in modo scalabile */
+    width: 95%;                          /* occupa quasi tutta la larghezza su piccoli schermi */
+    font-size: clamp(0.9rem, 3vw, 1.2rem); /* ridimensiona testo in verticale */
+    line-height: clamp(1.4, 3vw, 1.8);     /* interlinea scalabile */
+    padding: clamp(2rem, 4vw, 4rem) 0;     /* padding verticale adattivo */
+  }
+
+  .sezione-testuale h2 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem); /* titolo scalabile */
+  }
+}
+
+
+/*inizio immagine visione*/
+.osservazione {
+  width: clamp(40%, 60%, 80%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  border-radius: 4vh;
+
+  transform: translateX(-50px); /* parte a sinistra */
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.osservazione.show {
+  opacity: 1;
+  transform: translateX(0); /* arriva nella posizione originale */
+}
+
+@media (orientation: portrait), (max-width: 480px) {
+  .osservazione {
+    display: block;
+    transform: translateY(-50%);       /* centra orizzontalmente */
+    width: clamp(60%, 80%, 90%);  /* più larga sui piccoli schermi */
+    max-width: 100%;
+    height: auto;
+    border-radius: clamp(0.5rem, 2vw, 1rem);
+
+    position: relative;
+    top: 11vh;            /* rialza l’immagine */
+  }
+}
+/*fine immagine visione */
+/*inizio work rectangle con clasii diverse per imp elett*/
+.rectangle {
+  width: 80vw; /* larghezza relativa */
+  max-width: 90%; 
+  margin: 5vh auto; /* distanza verticale e centrato */
+  padding: 2vh 2vw;
+  background: linear-gradient(135deg, #0a0a3d, #4b0082, #ff6600); /* sfumatura blu/viola/arancione */
+  border-radius: 1vw;
+  box-sizing: border-box;
+
+  /* Animazione iniziale */
+  opacity: 0;
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 85;
+}
+
+/* Quando visibile */
+.rectangle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Riga dei blocchi */
+.row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  gap: 2vw;
+}
+
+/* Singolo blocco */
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(15vw, 18%, 25vw); /* larghezza relativa e scalabile */
+  padding: 2vh 2vw;
+  background-color: white;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover su blocco */
+.block:hover {
+  background-color: orange;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Icone */
+.block i {
+  font-size: clamp(1.5vw, 3vw, 4vw); /* responsivo */
+  margin-bottom: 1vh;
+}
+
+/* Titolo blocco */
+.block h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1vw, 2vw, 2.5vw);
+  margin: 0;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.block:hover h3 {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .rectangle {
+    width: 90vw;
+    padding: 3vh 3vw;
+  }
+  .block {
+    width: clamp(25vw, 30%, 40vw);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .block {
+    width: 80vw;
+    margin-bottom: 2vh;
+  }
+}
+
+/* Solo dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .rectangle {
+    width: 90vw;
+    max-width: 95%;
+    margin: 30vh auto 5vh auto;
+    padding: 4vh 4vw;
+    border-radius: 2vw;
+    opacity: 0;
+    transform: translateY(0vh);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; /* ✅ i blocchi restano dentro */
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5vh, 2.5vh, 3vh); /* ✅ distanza scalabile */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .block {
+    width: clamp(65vw, 75vw, 85vw); /* ✅ sempre dentro al rettangolo */
+    max-width: 90%;
+    padding: clamp(2vh, 3vh, 4vh) clamp(2vw, 3vw, 4vw);
+    margin: clamp(1vh, 1.5vh, 2vh) 0;
+    box-sizing: border-box;
+  }
+
+  .block i {
+    font-size: clamp(3vw, 5vw, 6vw);
+    margin-bottom: 2vh;
+  }
+
+  .block h3 {
+    font-size: clamp(2.5vw, 4vw, 5vw);
+  }
+}
+/*fine impianti elettrici civili*/
+/*inizio impianti elettrici industriali*/
+/*inizio sezione industriale*/
+.sezione-industriale {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(60vh, 80vh, 100vh); /* altezza fluida */
+  padding: clamp(2vh, 4vh, 6vh) clamp(3vw, 5vw, 8vw); /* padding fluido */
+  box-sizing: border-box; /* assicura che padding non alteri la larghezza */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra i contenuti verticalmente */
+  align-items: center; /* centra i contenuti orizzontalmente */
+  background-size: cover; /* adatta eventuale immagine di sfondo */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/*fine sezione
+/*inizio titolo (Where industrial strength meets electrical precision.)*/
+/* ✅ Stile base */
+/* ✅ Stile base */
+.TITOLO {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+
+  margin: clamp(2vh, 5vh, 8vh) auto clamp(1vh, 2vh, 4vh) auto;
+  margin-top: clamp(-5vh, -7vh, -10vh);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 📱 Ottimizzato per telefoni e dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .TITOLO {
+    font-size: clamp(1.2rem, 5vw, 2rem); /* dimensione fluida */
+    margin-top: clamp(8vh, 10vh, 12vh); /* 🔼 più in alto */
+    margin-bottom: clamp(2vh, 5vh, 8vh);
+    position: relative;
+    left: clamp(2vw, 4vw, 6vw); /* 👉 leggermente a destra */
+    text-align: center;
+    max-width: 95vw;
+  }
+}
+/*fine titolo*/
+/*inizio immagine impianto*/
+/* ✅ Immagine responsive di default (desktop e landscape) */
+.industria {
+  display: block;
+  width: clamp(50%, 70vw, 90%); /* larghezza fluida */
+  height: auto; /* mantiene le proporzioni */
+  margin: clamp(2vh, 5vh, 8vh) auto; /* centrata e con margini verticali fluidi */
+  border-radius: clamp(0.5rem, 2vw, 1rem); /* angoli arrotondati fluido */
+  max-width: 100%;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  opacity: 0;
+  transform: translateY(-50px); /* animazione iniziale */
+}
+
+/* ✅ Effetto fade-in + slide quando visibile */
+.industria.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 📱 Telefoni e dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .industria {
+    width: clamp(80%, 90vw, 95%); /* più grande su schermi piccoli */
+    margin-top: clamp(8vh, 10vh, 14vh); /* 🔽 un po’ più in basso */
+    border-radius: clamp(1rem, 3vw, 2rem); /* arrotondamento più morbido */
+  }
+}
+/*fine immagine*/
+/*inizio intestazione (titolo)*/
+/* ✅ Titolo */
+.contenitore-testo {
+  width: 90%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: clamp(1rem, 3vw, 4rem);
+  
+  transform: translateY(3vh);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* TITOLO */
+.contenitore-testo h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: red;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  margin-bottom: clamp(1rem, 2vw, 2rem);
+  opacity: 0;
+  transform: translateX(-5vw); /* entra da sinistra in modo fluido */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* TESTO */
+.contenitore-testo p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  color: #333;
+  line-height: clamp(1.4, 2.5vw, 1.8);
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: justify;
+  opacity: 0;
+  transform: translateX(5vw); /* entra da destra in modo fluido */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Prima lettera grande, fluida e vicina al testo */
+.contenitore-testo p::first-letter {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  float: left;
+  line-height: 1;
+  margin-right: 0.1em;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Quando entra in viewport */
+.contenitore-testo.visible h1 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contenitore-testo.visible p {
+  opacity: 1;
+  transform: translateX(0);
+}
+/*fine del testo*/
+/*inizio linea imp ele inf*/
+.linea-sezione {
+  width: clamp(40%, 60vw, 80%);
+  height: clamp(0.2rem, 0.4vw, 0.6rem);
+  margin: clamp(2rem, 5vh, 6rem) auto;
+  border-radius: 2vw;
+
+  opacity: 0;
+  transform: translateY(clamp(2vh, 5vh, 8vh));
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+  animation: rainbowShift 8s linear infinite;
+}
+
+/* Animazione colori */
+@keyframes rainbowShift {
+  0%   { background-color: #2600ff; }
+  16%  { background-color: #00c3ff; }
+  33%  { background-color: #00ff84; }
+  50%  { background-color: #f5ff00; }
+  66%  { background-color: #ff7b00; }
+  83%  { background-color: #ff006e; }
+  100% { background-color: #2600ff; }
+}
+
+
+/* Quando entra in viewport */
+.linea-sezione.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/*fine linea*/
+/*inizio immagine */
+/* ---- Contenitore ---- */
+/* ---- Contenitore ---- */
+.sezione-immagini {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* allineamento a sinistra */
+  gap: clamp(2vh, 3vw, 6vh);
+  margin-left: clamp(3vw, 6vw, 10vw);
+  width: clamp(60%, 70vw, 80%);
+}
+
+/* ---- Immagini ---- */
+.collegamento-cavi {
+  width: clamp(20%, 60vw, 50%);
+  height: auto;
+  border-radius: clamp(1rem, 2vw, 2.5rem);
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.mainframe {
+    width: clamp(20%, 60vw, 50%);
+  height: auto;
+  border-radius: clamp(1rem, 2vw, 2.5rem);
+  
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+/* ---- Effetto Zoom per la prima ---- */
+.collegamento-cavi {
+  margin-left: -12vw; /* spinge verso sinistra */
+  transform: scale(0.8);
+}
+.collegamento-cavi.visible {
+  opacity: 1;
+  transform: scale(0.95);
+}
+
+/* ---- Effetto Scroll da destra per la seconda ---- */
+.mainframe {
+  transform: translateX(clamp(4vw, 8vw, 12vw)) scale(0.8) translateY(-5vh); /* alzata di più */
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  
+}
+
+.mainframe.visible {
+  opacity: 1;
+  transform: translateX(0) scale(0.95) translateY(-5vh); /* mantiene l’altezza alzata */
+}
+/* Solo per dispositivi verticali e telefoni */
+@media (orientation: portrait), (max-width: 480px) {
+  .sezione-immagini {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra le immagini */
+    gap: clamp(2vh, 3vw, 6vh);
+    margin: 0 auto;      /* centrato orizzontalmente */
+    width: clamp(70%, 85vw, 95%);
+  }
+
+  /* ---- Collegamento cavi ---- */
+  .collegamento-cavi {
+    width: clamp(40%, 70vw, 85%); /* larghezza fluida */
+    height: auto;
+    border-radius: clamp(1rem, 2vw, 2.5rem);
+    margin: 0 auto;       /* centra orizzontalmente */
+    opacity: 0;
+    transform: scale(0.8) translateY(-3vh); /* leggermente più in alto */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .collegamento-cavi.visible {
+    opacity: 1;
+    transform: scale(0.95) translateY(-3vh); /* animazione di ingrandimento */
+  }
+}
+
+/*fine immagini*/
+/*inizio testo sicurezza*/
+.sicurezza {
+  position: relative;
+  width: clamp(35%, 40vw, 45%);  /* leggermente più piccolo */
+  text-align: left;
+  margin-left: auto;              /* spostata a destra */
+  margin-right: clamp(1vw, 4%, -2vw);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  opacity: 0;
+  top: -85vh;
+  transform: translateX(clamp(4vw, 6vw, 10vw)); /* parte più a destra */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Titolo */
+.sicurezza h1 {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem); /* più piccolo */
+  font-weight: 600;
+  margin-bottom: clamp(0.5vh, 1vw, 1.5vh);
+  color: rgb(13, 13, 107);
+}
+
+/* Paragrafo */
+.sicurezza p {
+  font-size: clamp(0.9rem, 1.8vw, 1.2rem); /* più piccolo */
+  line-height: clamp(1.3, 2vw, 1.6);
+}
+
+/* Classe visibile per JS */
+.sicurezza.visible {
+  opacity: 1;
+  transform: translateX(0); /* scroll da destra */
+}
+
+/* ===== Responsive verticale / telefoni ===== */
+@media (orientation: portrait), (max-width: 480px) {
+  .sicurezza {
+    width: clamp(75%, 85vw, 95%);
+    margin: clamp(2vh, 3vw, 4vh) auto 0 auto; /* centrato orizzontalmente e più in alto */
+    text-align: center;
+    transform: translateY(clamp(2vh, 4vw, 5vh)); /* parte più in alto */
+    top: 9vh;
+  }
+
+  .sicurezza h1 {
+    font-size: clamp(1rem, 3vw, 1.5rem); /* titolo più piccolo */
+  }
+
+  .sicurezza p {
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem); /* testo più piccolo */
+    line-height: clamp(1.2, 2vw, 1.5);
+  }
+}
+/*fine sicurezza*/
+/*inizio pulsanti*/
+/* Container generico per i pulsanti */
+.pulsanti-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* desktop: pulsante a sinistra e destra */
+  align-items: center;
+  pointer-events: none; /* non interferiscono con layout */
+  padding: 2vh 2vw;
+}
+
+/* Pulsanti generali */
+.pulsanti-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* desktop: uno a sinistra, uno a destra */
+  align-items: center;
+  pointer-events: none; /* non interferiscono con layout */
+  padding: 2vh 2vw;
+}
+
+/* Pulsanti generali */
+.pulsanti-container a {
+  pointer-events: all; /* permetti clic solo sui pulsanti */
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  padding: clamp(0.8vh, 1.5vw, 1.2vh) clamp(2vw, 3vw, 4vw);
+  border-radius: clamp(1rem, 2vw, 2rem);
+  overflow: hidden;
+  position: relative;
+  color: white;
+  opacity: 0; /* inizialmente invisibile per fade-in */
+  transition: all 0.5s ease;
+}
+
+/* WhatsApp: effetto sipario leggero */
+.pulsanti-container .whatsapp {
+  background-color: #25D366;
+}
+
+.pulsanti-container .whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+
+.pulsanti-container .whatsapp:hover::before {
+  left: 100%;
+}
+
+/* Home: effetto sipario arancione */
+.pulsanti-container .home {
+  background-color: #007BFF;
+  color: white;
+  top: 42vh;
+}
+
+.pulsanti-container .home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.pulsanti-container .home:hover::before {
+  left: 0;
+}
+
+.pulsanti-container .home span {
+  position: relative; /* sopra sipario */
+  z-index: 2;
+}
+
+/* Fade-in generale quando entra nello scroll */
+.pulsanti-container a.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile / dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .pulsanti-container {
+    flex-direction: column;
+    gap: clamp(1vh, 2vw, 3vh);
+    align-items: center;
+  }
+}
+/*work rectangle solo per imp ele indu*/
+.work-process- {
+  width: 80vw; /* larghezza relativa */
+  max-width: 90%; 
+  margin: 5vh auto; /* distanza verticale e centrato */
+  padding: 2vh 2vw;
+  background: linear-gradient(135deg, #0a0a3d, #4b0082, #ff6600); /* sfumatura blu/viola/arancione */
+  border-radius: 1vw;
+  box-sizing: border-box;
+opacity: 0;
+  /* Animazione iniziale */
+   margin: -30vh auto 5vh auto;
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 85;
+}
+
+/* Quando visibile */
+.work-process-.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Riga dei blocchi */
+.work-row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  gap: 2vw;
+}
+
+/* Singolo blocco */
+.workblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(15vw, 18%, 25vw); /* larghezza relativa e scalabile */
+  padding: 2vh 2vw;
+  background-color: white;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover su blocco */
+.workblock:hover {
+  background-color: orange;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Icone */
+.workblock i {
+  font-size: clamp(1.5vw, 3vw, 4vw); /* responsivo */
+  margin-bottom: 1vh;
+}
+
+/* Titolo blocco */
+.workblock h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1vw, 2vw, 2.5vw);
+  margin: 0;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.workblock:hover h3 {
+  color: white;
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  .work-process- {
+    width: 90vw;
+    padding: 3vh 3vw;
+  }
+  .workblock {
+    width: clamp(25vw, 30%, 40vw);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .work-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .work-block {
+    width: 80vw;
+    margin-bottom: 2vh;
+  }
+}
+
+/* Solo dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .work-process- {
+    width: 90vw;
+    max-width: 95%;
+    margin: 50vh auto 5vh auto;
+    padding: 4vh 4vw;
+    border-radius: 2vw;
+    opacity: 0;
+    transform: translateY(0vh);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; /* ✅ i blocchi restano dentro */
+  }
+
+  .work-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5vh, 2.5vh, 3vh); /* ✅ distanza scalabile */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .workblock {
+    width: clamp(65vw, 75vw, 85vw); /* ✅ sempre dentro al rettangolo */
+    max-width: 90%;
+    padding: clamp(2vh, 3vh, 4vh) clamp(2vw, 3vw, 4vw);
+    margin: clamp(1vh, 1.5vh, 2vh) 0;
+    box-sizing: border-box;
+  }
+
+  .workblock i {
+    font-size: clamp(3vw, 5vw, 6vw);
+    margin-bottom: 2vh;
+  }
+
+  .workblock h3 {
+    font-size: clamp(2.5vw, 4vw, 5vw);
+  }
+}
+
+
+
+
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+
+
+/* Delay opzionale per sequenze */
+.titolo.delay-3 { animation-delay: 0.2s; }
+
+
+
+
+
+
+
+/* Pulsante a sipario */
+
+
+/*Fine dei servizi*/
+/*Inizio contatti*/
+/* Blocco contatti */
+/* --- BLOCCO CONTATTI --- */
+.blocco-contatti {
+  width: clamp(40vw, 70vw, 90vw);
+  margin: clamp(4vh, 6vh, 8vh) auto;
+  padding: clamp(2vh, 3vw, 4vh);
+  background-color: #fff;
+  border-radius: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 0.8vh 2.5vh rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+/* Testo generale */
+.blocco-contatti p {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  margin-bottom: clamp(2vh, 3vw, 3.5vh);
+}
+
+/* Etichette del form */
+.blocco-contatti form label {
+  display: block;
+  margin: clamp(1.5vh, 2vw, 2.5vh) 0 clamp(0.5vh, 1vw, 1vh);
+  font-weight: 500;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+/* Campi input e textarea */
+.blocco-contatti form input,
+.blocco-contatti form textarea {
+  width: 100%;
+  padding: clamp(1vh, 2vw, 1.8vh) clamp(2vw, 3vw, 3vw);
+  border-radius: 5vh;
+  border: 0.15rem solid #ccc;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  box-sizing: border-box;
+  margin-bottom: clamp(1.5vh, 3vw, 2.5vh);
+  transition: all 0.3s ease;
+}
+
+/* Area testo */
+.blocco-contatti form textarea {
+  border-radius: 2vh;
+  resize: vertical;
+  min-height: clamp(15vh, 20vh, 25vh);
+}
+
+/* Pulsante */
+.blocco-contatti form button {
+  margin-top: clamp(2vh, 3vw, 3vh);
+  padding: clamp(1vh, 2vw, 1.5vh) clamp(2vw, 4vw, 3vw);
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 1.5vh;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Effetto animato del pulsante */
+.blocco-contatti form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: #1a237e;
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.blocco-contatti form button:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.blocco-contatti form button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Info contatto */
+.info-contatto {
+  margin-top: clamp(3vh, 5vw, 4vh);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+}
+
+.info-contatto p {
+  margin: clamp(0.5vh, 1vw, 1vh) 0;
+}
+
+/* Mappa */
+.mappa-interattiva {
+  width: clamp(60vw, 90vw, 100%);
+  margin: clamp(4vh, 6vw, 8vh) auto;
+  border-radius: clamp(1rem, 2vw, 1.5rem);
+  overflow: hidden;
+}
+
+.mappa-interattiva iframe {
+  width: 100%;
+  height: clamp(40vh, 55vh, 60vh);
+  border: 0;
+}
+
+/* --- MEDIA QUERY ORIENTAMENTO --- */
+@media (orientation: portrait) {
+  .blocco-contatti {
+    width: 90vw;
+    text-align: center;
+    margin: auto;
+  }
+
+  .blocco-contatti form label {
+    text-align: left;
+  }
+
+  .mappa-interattiva {
+    width: 90vw;
+  }
+}
+/*inizio immagine rete*/
+/* Stile immagine rete */
+.rete {
+  width: clamp(30vw, 40vw, 50vw); /* dimensione fluida: cresce con lo schermo */
+  border-radius: clamp(1rem, 2vw, 2rem); /* angoli arrotondati proporzionali */
+  display: block;
+  margin: clamp(2vh, 4vw, 5vh) auto; /* margine fluido sopra/sotto e centrato */
+  opacity: 0;
+  transform: translateX(clamp(3vw, 5vw, 6vw)); /* spostamento fluido */
+  transition: all 0.8s ease;
+}
+
+/* Quando entra in viewport */
+.rete.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Rettangolo */
+/* --- Contenitore principale --- */
+/* Contenitore principale */
+/* Contenitore principale */
+.rettangolo {
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  padding: 3vh 5vw;
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+  align-items: center;
+}
+
+/* Pulsante WhatsApp */
+.whatsapp-button {
+  align-self: flex-start;
+  background-color: #25D366;
+  color: white;
+  padding: 1vh 2vw;
+  border-radius: 0.8rem;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1DA851;
+}
+
+/* Vantaggi: icona a sinistra, testo a destra */
+.vantaggio {
+  display: flex;
+  align-items: center; /* icona e testo allineati verticalmente */
+  gap: 2vw;
+  width: 100%;
+  justify-content: center; /* centra tutto il blocco */
+}
+
+.vantaggio-text h4 {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.vantaggio-text p {
+  margin: 0.5vh 0 0 0;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+/* ------------------- ANTENNA ------------------- */
+.antenna-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 3vw;
+  height: 5vh;
+}
+
+.antenna {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.3vw;
+  height: 4vh;
+  background-color: #333;
+  border-radius: 0.2vw;
+}
+
+.signal {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  width: 0.2vw;
+  height: 0.2vw;
+  border: 2px solid #25D366;
+  border-radius: 50%;
+  transform: translateX(-50%) scale(0);
+  animation: pulse 2s infinite;
+}
+
+.signal1 { animation-delay: 0s; }
+.signal2 { animation-delay: 0.5s; }
+.signal3 { animation-delay: 1s; }
+
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(0); opacity: 1; }
+  50% { transform: translateX(-50%) scale(2); opacity: 0.6; }
+  100% { transform: translateX(-50%) scale(3); opacity: 0; }
+}
+
+/* ------------------- SATELLITE ------------------- */
+.satellite {
+  position: relative;
+  display: inline-block;
+  width: 4vw; /* satellite più piccolo */
+  height: 4vw;
+  transform: rotate(-20deg);
+  animation: satellite-move 3s ease-in-out infinite alternate;
+}
+
+.satellite-body {
+  width: 1.5vw;
+  height: 1.5vw;
+  background-color: #555;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.panel {
+  width: 1vw;
+  height: 0.4vw;
+  background-color: #3399ff; /* pannelli blu */
+  position: absolute;
+  top: 50%;
+}
+
+.panel.left { left: -1.5vw; }
+.panel.right { right: -1.5vw; }
+
+@keyframes satellite-move {
+  0% { transform: rotate(-20deg) translateY(0); }
+  50% { transform: rotate(-20deg) translateY(-1.5vh); }
+  100% { transform: rotate(-20deg) translateY(0); }
+}
+
+/* ------------------- TELEFONO ------------------- */
+.phone-wrapper {
+  display: inline-block;
+  font-size: clamp(1rem, 3.5vw, 1.8rem);
+  animation: phone-move 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes phone-move {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-1vh); }
+  100% { transform: translateY(0); }
+}
+.btn-sipario9 {
+  position: relative;
+  display: inline-block;
+  right: -1025px;
+  top: 155px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario9::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario9 span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario9:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+
+.diverso {
+  font-family: 'Segoe UI', sans-serif;
+  top: 27px;
+  position: relative;
+  right: 512px;
+  color: black;
+}
+
+.co {
+  position: relative; /* contesto per posizionare il rettangolo */
+  top: -908px;
+}
+
+.Rettangolo-link {
+  position: absolute;     /* libero di muoversi nel container */
+  left: 1570px;             /* spostato a sinistra */
+  top: 820px;              /* distanza dall’alto */
+  
+  background: #f5f5f5;  
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;              
+  font-family: 'Segoe UI', sans-serif;
+  width: 300px;           
+  min-height: 400px;      
+  z-index: 10;            /* resta sopra il testo */
+}
+
+.Rettangolo-link a {
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;           
+  margin: 10px auto;
+  padding: 15px 30px;
+  width: 220px;                  
+  border-radius: 50px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.Rettangolo-link a:hover {
+  background-color: orange;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+.oggetto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.oggetto i {
+  font-size: 18px;
+  color: orange;
+}
+
+.oggetto:hover {
+  background-color: orange;
+  color: white;
+}
+
+.oggetto:hover i {
+  color: white;
+}
+.oggetto a {
+  color: inherit;           /* mantiene il colore originale */
+  text-decoration: none;    /* rimuove sottolineatura */
+}
+
+.oggetto a:hover {
+  color: white;             /* cambia colore quando hover sul contatto */ 
+}
+.btn-sipario11 {
+  position: relative;
+  display: inline-block;
+  right: -1525px;
+  top: 290px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario11::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario11 span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario11:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+
+
+
+
+/*chi siamo*/
+.responsive {
+  width: 100%;           /* occupa tutta la larghezza */
+  max-width: 100%;       /* non limitare troppo su desktop */
+  margin: 0;             /* niente centratura forzata */
+  padding: 20px;         /* spazio interno base */
+  box-sizing: border-box;
+}
+
+/* Desktop grandi */
+@media (min-width: 1501px) {
+  .responsive {
+    padding: 40px;       /* più spazio interno su desktop grandi */
+  }
+}
+
+/* Desktop medi / laptop */
+@media (min-width: 1025px) and (max-width: 1500px) {
+  .responsive {
+    padding: 30px;       /* un po’ più di spazio rispetto al base */
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .responsive {
+    padding: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .responsive {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive {
+    padding: 10px;
+  }
+}
+.improve {
+  position: relative;
+  right: -1.8vw;                 /* prima -18px */
+  font-family: 'Montserrat', sans-serif;
+  color: blue;
+
+  font-size: clamp(1rem, 2vw, 2rem); /* dimensione fluida */
+  
+  opacity: 0;                     /* invisibile inizialmente */
+  transform: scale(0.8);          /* parte più piccola */
+  animation: fadeInGrow 1s ease forwards; /* animazione CSS */
+  animation-delay: 0.5s;          /* piccolo ritardo */
+}
+
+/* Animazione */
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+  .improve {
+    right: -1vw;
+    font-size: clamp(0.8rem, 4vw, 1.5rem);
+  }
+}
+
+/* Smartphone medi/grandi */
+@media (max-width: 480px) {
+  .improve {
+    right: -1.2vw;
+    font-size: clamp(0.9rem, 3vw, 1.7rem);
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .improve {
+    right: -1.5vw;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+  }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .improve {
+    right: -1.6vw;
+    font-size: clamp(1rem, 2vw, 2rem);
+  }
+}
+.abatel-description {
+  position: relative;
+  right: -2.8vw; /* prima -28px */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem); /* dimensione fluida */
+  line-height: 1.6;
+  color: #333;
+
+  opacity: 0;                     /* invisibile inizialmente */
+  transform: translateY(5vh);     /* parte dal basso in modo relativo */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.abatel-description.show {
+  opacity: 1;
+  transform: translateY(0);       /* posizione finale */
+}
+
+/* Dropcap */
+.abatel-description .dropcap {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  float: left;
+  font-size: clamp(3rem, 6vw, 4rem); /* dimensione fluida */
+  line-height: 1;
+  margin-right: 0.5vw;                /* margine relativo */
+  font-weight: bold;
+  color: black;
+}
+
+/* Media query per smartphone piccoli */
+@media (max-width: 360px) {
+  .abatel-description {
+    right: -1vw;
+    font-size: clamp(0.9rem, 4vw, 1rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+    margin-right: 2vw;
+  }
+}
+
+/* Smartphone medi/grandi */
+@media (max-width: 480px) {
+  .abatel-description {
+    right: -1.5vw;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+    margin-right: 1.5vw;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .abatel-description {
+    right: -2vw;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(3rem, 5vw, 3.5rem);
+    margin-right: 1vw;
+  }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .abatel-description {
+    right: -2.5vw;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(3rem, 4vw, 4rem);
+    margin-right: 0.8vw;
+  }
+}
+.sparti { 
+  position: relative;
+  top: 4vh;           /* altezza relativa al viewport */
+  left: 0; 
+  width: 100%;        /* sempre tutta la larghezza */
+  height: 0.2vh;      /* spessore relativo */
+  background-color: grey; 
+  z-index: 1; 
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .sparti {
+    top: 3vh;
+    height: 0.25vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .sparti {
+    top: 2.5vh;
+    height: 0.3vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .sparti {
+    top: 2vh;
+    height: 0.4vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .sparti {
+    top: 1.8vh;
+    height: 0.5vh;
+  }
+}
+.cinqueg {
+  width: clamp(10rem, 50vw, 26rem);
+  border-radius: 1.8rem;
+  position: relative;
+  top: -45vh;          /* più in alto rispetto al testo */
+  right: -65vw;        /* più a destra */
+  opacity: 0;
+  transform: translateX(-10%);
+  animation: fadeInLeft 1s ease forwards;
+  animation-delay: 0.5s;
+  z-index: 10;
+}
+
+/* ---------------- Dispositivi verticali ---------------- */
+@media (orientation: portrait) {
+  .cinqueg {
+    width: clamp(10rem, 50vw, 26rem);
+    border-radius: 1.8rem;
+    position: relative;
+    top: clamp(-25vh, -20%, -10vh); /* si adatta allo schermo */
+    right: clamp(-65vw, -30%, -15vw);
+    opacity: 0;
+    transform: translateX(-10%);
+    animation: fadeInLeft 1s ease forwards;
+    animation-delay: 0.5s;
+    z-index: 10;
+  }
+}
+
+/* Animazione */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (orientation: portrait) {
+  .falla-andare-in-basso > * {
+    transform: translateY(40vh); /* sposta tutti gli elementi verso il basso del 10% dell'altezza viewport */
+  }
+}
+/* Sposta gli elementi di .linea-bassa-verticale più in basso su dispositivi verticali */
+/* Sposta tutti gli elementi di .falla-andare-in-basso più in basso in verticale */
+@media (orientation: portrait) {
+  .falla-andare-in-basso > * {
+    position: relative;  /* assicura che il top funzioni */
+    top: 10vh;           /* sposta verso il basso del 10% dell'altezza viewport */
+  }
+
+  .linea-bassa-verticale > * {
+    position: relative;
+    top: 40vh;
+  }
+}
+.mano {
+  color: #FF8C00; /* Dark Orange */
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  top: -25vh;           /* più in alto */
+  right: -2vw;
+
+  opacity: 0;                    
+  transform: translateX(8vw);    
+  animation: slideRightFade 1s ease forwards;
+  animation-delay: 0.3s;
+  font-size: clamp(1rem, 2vw, 1.5rem); 
+  margin-bottom: 15vh;   /* spazio sotto per il testo successivo */
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .mano {
+    top: -17vh;
+    right: -1.5vw;
+    transform: translateX(6vw);
+    margin-bottom: 4vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .mano {
+    top: -15vh;
+    right: -1vw;
+    transform: translateX(5vw);
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    margin-bottom: 4vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .mano {
+    top: -12vh;
+    right: -0.5vw;
+    transform: translateX(4vw);
+    font-size: clamp(0.8rem, 4vw, 1rem);
+    margin-bottom: 3vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .mano {
+    top: -10vh;
+    right: 0;
+    transform: translateX(3vw);
+    font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+    margin-bottom: 3vh;
+  }
+}
+
+.invitiamo {
+  position: relative;
+  top: -35vh;           /* più alto rispetto a prima */
+  right: -0.3vw;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+
+  opacity: 0;                      
+  transform: translateY(-6vh);     /* parte ancora più dall’alto */
+  animation: slideTopFade 1s ease forwards;
+  animation-delay: 0.6s;          
+  margin-bottom: 4vh;              
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .invitiamo {
+    top: -22vh;
+    right: -0.2vw;
+    transform: translateY(-5vh);
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    margin-bottom: 3.5vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .invitiamo {
+    top: -20vh;
+    right: 0;
+    transform: translateY(-4.5vh);
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    margin-bottom: 3vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .invitiamo {
+    top: -16vh;
+    right: 0;
+    transform: translateY(-4vh);
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    margin-bottom: 2.5vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .invitiamo {
+    top: -14vh;
+    right: 0;
+    transform: translateY(-3.5vh);
+    font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+    margin-bottom: 2vh;
+  }
+}
+
+/* Animazione per .mano */
+@keyframes slideRightFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animazione per .invitiamo */
+@keyframes slideTopFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .informazioni .mano {
+    position: relative;
+    top: -29vh;  /* sposta verso l'alto del 5% dell'altezza viewport */
+  }
+
+  .informazioni .invitiamo {
+    position: relative;
+    top: -32vh;  /* leggermente meno per mantenere distanza tra titoli */
+  }
+}
+
+.pulsante-sipario {
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  right: -84vw;                 /* più a destra rispetto a prima */
+  top: -32vh;                     /* mantiene altezza */
+  display: inline-block;
+  padding: 1rem 2rem;            
+  background-color: blue;        
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;         
+  font-weight: bold;
+  overflow: hidden;
+opacity: 0;
+  /* Animazione iniziale */
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease, transform 0.8s ease, right 0.8s ease, top 0.8s ease;
+}
+
+/* Media query per dispositivi verticali / tablet / smartphone */
+/* Desktop / Tablet grandi (1025px - 1200px) */
+@media (max-width: 1200px) {
+  .pulsante-sipario {
+    right: -80vw;
+    top: -30vh;
+    padding: 0.9rem 1.8rem;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  }
+}
+
+/* Tablet medi (768px - 1024px) */
+@media (max-width: 1024px) {
+  .pulsante-sipario {
+    right: -75vw;
+    top: -28vh;
+    padding: 0.8rem 1.5rem;
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  }
+}
+
+/* Smartphone grandi (480px - 767px) */
+@media (max-width: 767px) {
+  .pulsante-sipario {
+    right: -70vw;
+    top: -25vh;
+    padding: 0.7rem 1.3rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+}
+
+/* Smartphone medi (360px - 479px) */
+@media (max-width: 479px) {
+  .pulsante-sipario {
+    right: -65vw;
+    top: -22vh;
+    padding: 0.6rem 1.1rem;
+    font-size: clamp(0.75rem, 3vw, 0.95rem);
+  }
+}
+
+/* Smartphone compatti / piccoli (<360px) */
+@media (max-width: 359px) {
+  .pulsante-sipario {
+    right: -60vw;
+    top: -20vh;
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+  }
+}
+/* Stato quando entra nello schermo */
+.pulsante-sipario.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pulsante-sipario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100%; /* Inizia fuori a destra */
+  width: 100%;
+  height: 100%;
+  background-color: red; /* Arancione */
+  transition: right 0.4s ease;
+  z-index: 0;
+}
+
+.pulsante-sipario:hover::before {
+  right: 0; /* Scorre verso sinistra */
+}
+
+.pulsante-sipario:hover {
+  color: white;
+}
+
+.pulsante-sipario span {
+  position: relative;
+  z-index: 1;
+}
+.icona {
+  position: relative;
+  top: -62vh;                  /* altezza relativa */
+  right: -87vw;                /* spostata a destra in unità relative */
+  font-size: clamp(3rem, 12vw, 8rem); /* dimensione fluida tra 3rem e 8rem */
+
+  opacity: 0;                 
+  transform: translateX(-5vw); /* parte spostata da sinistra in unità relative */
+  animation: slideFadeIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* Tablet medi/grandi */
+/* Tablet grandi / desktop */
+@media (max-width: 1200px) {
+  .icona {
+    top: -55vh;
+    right: -80vw;
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    transform: translateX(-4vw);
+  }
+}
+
+/* Tablet medi / schermi da 768px a 1024px */
+@media (max-width: 1024px) {
+  .icona {
+    top: -50vh;
+    right: -75vw;
+    font-size: clamp(2.2rem, 9vw, 6rem);
+    transform: translateX(-3.5vw);
+  }
+}
+
+/* Tablet piccoli / smartphone grandi (480px - 767px) */
+@media (max-width: 767px) {
+  .icona {
+    top: -42vh;
+    right: -70vw;
+    font-size: clamp(1.8rem, 8vw, 5rem);
+    transform: translateX(-3vw);
+  }
+}
+
+/* Smartphone medi (360px - 479px) */
+@media (max-width: 479px) {
+  .icona {
+    top: -35vh;
+    right: -65vw;
+    font-size: clamp(1.5rem, 7vw, 4rem);
+    transform: translateX(-2vw);
+  }
+}
+
+/* Smartphone compatti / piccoli (meno di 360px) */
+@media (max-width: 359px) {
+  .icona {
+    top: -30vh;
+    right: -60vw;
+    font-size: clamp(1.2rem, 6vw, 3.5rem);
+    transform: translateX(-1.5vw);
+  }
+}
+/* Definizione animazione */
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Dispositivi verticali */
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .servizi-chi-siamo {
+    position: relative;
+    top: 8vh;  /* sposta il pulsante verso il basso */
+    right: 15vh;
+  }
+
+  .icona {
+    position: relative;
+    top: 8vh;  /* sposta l'icona un po' più in basso rispetto al pulsante */
+    right: -34.5vh;
+  }
+}
+/*Chi siamo*/
+/* Immagine principale sopra */
+.immagine-principale {
+  width: 85%;              /* leggermente più piccola */
+  height: auto;
+  max-height: 45vh;        /* più bassa ma mantiene proporzioni */
+  object-fit: contain;     /* mantiene la forma naturale */
+  display: block;
+  margin: 0 auto;
+  border-radius: 1vw;
+  margin-top: -63vh;        /* la sposta un po' più in alto */
+  margin-bottom: 2vw;      /* spazio sotto */
+  transition: transform 0.4s ease;
+  border-radius: 2vw;
+}
+
+.immagine-principale:hover {
+  transform: scale(1.02);  /* leggero zoom al passaggio */
+}
+
+/* Contenitore immagini sotto */
+.servizi-containe {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(15vw, 20vw, 25vw), 1fr));
+  gap: 0.5vw;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  top: -6vh; /* leggermente più in alto rispetto a prima */
+}
+
+/* Tutte le immagini */
+.servizi-containe img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 1vw;
+  transition: transform 0.3s ease;
+}
+
+.servizi-containe img:hover {
+  transform: scale(1.03);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .immagine-principale {
+    width: 90%;
+    max-height: 40vh;
+    margin-top: -2vh;
+  }
+
+  .servizi-containe {
+    grid-template-columns: repeat(auto-fit, minmax(clamp(30vw, 40vw, 45vw), 1fr));
+    top: -3vh;
+  }
+}
+
+/* Smartphone */
+@media (max-width: 600px) {
+  .immagine-principale {
+    width: 95%;
+    max-height: 35vh;
+    margin-top: -2vh;
+  }
+
+  .servizi-containe {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vw;
+    top: -2vh;
+  }
+
+  .servizi-containe img {
+    border-radius: 2vw;
+  }
+}
+
+/* Schermi verticali / smartphone */
+@media (orientation: portrait) {
+  .immagine-principale {
+    width: 95%;
+    max-height: 35vh;
+    margin-top: -1vh;        /* ancora più in alto */
+    border-radius: 4vw;
+    transform: none !important;   /* 🔕 niente hover */
+    box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.15);
+  }
+
+  .immagine-principale:hover {
+    transform: none !important;   /* disattiva effetto zoom */
+    box-shadow: 0 0.8vw 2vw rgba(0, 0, 0, 0.15);
+  }
+
+  .servizi-containe {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vw;
+    top: -15vh;   /* più in alto */
+  }
+
+  .servizi-containe img {
+    border-radius: 3vw;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 2.5rem;        /* invece di 40px */
+  position: relative;
+  z-index: 1;
+  margin-top: -1.375rem;  /* invece di -22px */
+  flex-wrap: wrap;         /* permette di andare a capo se necessario */
+}
+
+.footer h3,
+.footer h2 {
+  margin-bottom: 0.9375rem; /* invece di 15px */
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer p {
+  max-width: 18.75rem; /* invece di 300px */
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer nav {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0.3125rem 0;  /* invece di 5px */
+  transition: color 0.3s ease;
+}
+
+.footer nav a:hover,
+.footer nav a:active {
+  color: orange;
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) {  /* 1024px */
+  .footer {
+    padding: 1.875rem;     /* invece di 30px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer p,
+  .footer nav {
+    margin-bottom: 1.25rem; /* invece di 20px */
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) {  /* 768px */
+  .footer {
+    padding: 1.25rem;      /* invece di 20px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer p,
+  .footer nav {
+    max-width: 100%;
+    margin-bottom: 0.9375rem; /* invece di 15px */
+  }
+  .footer h3,
+  .footer h2 {
+    font-size: 1.2rem;
+  }
+  .footer nav a {
+    font-size: 1rem;
+    margin: 0.1875rem 0; /* invece di 3px */
+  }
+}
+
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: #2c2c2c77; /* grigio scuro */
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;       /* centra titoli e testi */
+  max-width: 90vw;          /* larghezza massima ridotta in modo relativo */
+  width: 100%;              /* occupa tutta la larghezza disponibile */
+  margin: 27rem auto 1.25rem auto; /* margini top/bottom fluidi, centrato orizzontalmente */
+  position: relative;
+  z-index: 10;
+}
+
+/* Blocco logo blu */
+.logo-blocco {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;               /* meno largo rispetto agli altri blocchi */
+  padding: 1rem;            /* padding relativo */
+  border-radius: 0;
+}
+
+.logo-blocco img {
+  max-width: 10rem;        /* dimensione immagine relativa */
+  height: auto;
+}
+
+/* Altri blocchi */
+.info-blocco {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.info-blocco h5 {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  justify-content: center; /* centra icone + testo */
+}
+
+.info-blocco p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover sul blocco */
+.info-blocco:hover {
+  background: #3a3a3a;
+}
+
+/* Sezione finale */
+
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) { /* 1024px */
+  .info-box {
+    flex-direction: column; /* impila i blocchi */
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .logo-blocco,
+  .info-blocco {
+    flex: 1 1 100%;         /* ogni blocco prende tutta la larghezza */
+    margin-bottom: 1rem;
+  }
+
+  .logo-blocco img {
+    max-width: 8rem;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) { /* 768px */
+  .info-box {
+    padding: 1.5rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .logo-blocco img {
+    max-width: 6rem;
+  }
+
+  .info-blocco h5 {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .info-blocco p {
+    font-size: 0.8rem;
+  }
+}
+/*Team*/
+.il-nostro-team strong {
+  font-weight: normal;
+}
+.il-nostro-team h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* min 1.5rem, max 3rem, fluido in mezzo */
+  text-align: center;
+  line-height: 1.2;
+  margin: 1rem auto;
+  color: #000;
+
+  /* ANIMAZIONE FADE-IN DAL BASSO */
+  opacity: 0;
+  transform: translateY(40px);  /* parte leggermente più in basso */
+  animation: fadeUp 1.5s ease forwards;
+}
+
+/* Definizione dell’animazione */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.il-nostro-team p {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* dimensione fluida da smartphone a desktop */
+  line-height: 1.6;                        /* leggibilità */
+  text-align: center;                      /* centra il testo */
+  margin: 0 auto;                          /* centraggio orizzontale */
+  max-width: 90%;                          /* evita larghezze eccessive */
+
+  /* ANIMAZIONE FADE-IN + INGRANDIMENTO DAL BASSO */
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);  /* parte più in basso e leggermente ridotto */
+  animation: fadeUpZoom 1.5s ease forwards;
+}
+
+/* Definizione animazione */
+@keyframes fadeUpZoom {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logo-su-maglia {
+  position: relative;
+  top: -39vh;      /* ancora più in alto */
+  left: 1vw;       /* leggermente più a destra */
+  width: 16vw;
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE SLIDE DA SINISTRA */
+  opacity: 0;
+  transform: translateX(-60px);   /* parte spostato a sinistra */
+  animation: slideFromLeft 1.5s ease forwards;
+}
+
+.logo-su-maglia img {
+  width: 18vw;
+  max-width: 30vw;
+  min-width: 10vw;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .logo-su-maglia {
+    position: absolute;   /* sopra tutti gli altri elementi */
+    top: 51vh;             /* distanza dal bordo superiore */
+    left: 12%;            /* centro orizzontale */
+    transform: translateX(-50%); /* centra perfettamente */
+    width: 40vw;          /* larghezza più grande o adattabile */
+    max-width: 60vw;      /* non supera il 60% del viewport */
+    z-index: 120;          /* sopra tutti gli altri elementi */
+  }
+
+  .logo-su-maglia img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;         
+    object-fit: contain;
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .il-nostro-team {
+    position: relative;  /* necessario per usare top senza rompere layout */
+    top: 26vh;           /* sposta tutto il contenitore verso il basso del 10% dell'altezza viewport */
+  }
+}
+/*fine logo su maglia*/
+/*inizio logo mauro*/
+ .mauro { 
+  position: relative; 
+  top: -92vh;           /* altezza relativa */ 
+  right: -79vw;         /* distanza dal lato destro */
+  width: 16vw; 
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE FADE-IN + SLIDE DA DESTRA */
+  opacity: 0;
+  transform: translateX(60px); /* parte spostato a destra */
+  animation: slideFromRight 1.5s ease forwards;
+}
+
+.mauro img { 
+  width: 18vw;                     /* larghezza relativa al viewport width */ 
+  max-width: 30vw;                 /* non supera il 30% della larghezza viewport */ 
+  min-width: 10vw;                 /* non scende sotto il 10% della larghezza viewport */ 
+  height: auto;                    /* mantiene proporzioni */ 
+  object-fit: contain; 
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px); /* parte da destra */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);   /* arriva nella posizione normale */
+  }
+}/* Tablet */ 
+    @media (max-width: 1024px) { 
+      .mauro { 
+        top: 15vh; 
+        right: 5vw; 
+        width: 20vw; } 
+        .mauro img { 
+          width: 20vw; } 
+        } /* Dispositivi verticali */ 
+    @media (orientation: portrait) { 
+      .mauro { 
+        position: absolute; /* sopra gli altri elementi */ 
+        top: 51vh; /* più in alto sullo schermo verticale */ 
+        right: 5vw; /* più a destra */ 
+        width: 35vw; /* larghezza adattabile */ 
+        max-width: 40vw; /* non supera il 40% del viewport */ 
+        z-index: 120; /* sopra gli altri elementi */ } 
+      .mauro img {
+        width: 100%; /* occupa tutta la larghezza del contenitore */
+        height: auto;
+        object-fit: contain; /* mantiene proporzioni */ } }
+
+
+/*inizio immagine ftt cab abatel*/
+.ftt-cab-abatel {
+  position: relative;
+  width: 15%;
+  max-width: 60%;
+  min-width: 20%;
+  top: -92vh;
+  right: -1vw;
+  margin: 0 auto;
+              /* parte invisibile */
+  transform: translateY(50px); /* parte più in basso */
+  transition: all 1s ease-out;
+}
+
+.ftt-cab-abatel.show {
+  opacity: 1;
+  transform: translateY(0); /* posizione finale */
+}
+
+.ftt-cab-abatel img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+/* Quando entra in viewport */
+
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .ftt-cab-abatel {
+    position: relative;   /* mantiene il flusso */
+    top: 26vh;            /* sposta verso il basso del 10% dell'altezza viewport */
+    right: 0;             /* centrata rispetto al contenitore */
+    margin: 0 auto;       /* centrata orizzontalmente */
+    width: 50%;           /* opzionale: puoi adattarla più grande se vuoi */
+    max-width: 80%;       /* non supera il 80% del viewport */
+  }
+
+  .ftt-cab-abatel img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;
+    object-fit: contain;  
+  }
+}
+/*pulsante messaggi (whatsapp)*/
+/* Animazione e pulsante normali (desktop/orizzontale) */
+.animazione {
+  position: relative;
+  top: -160vh;
+  left: 22vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
+
+.pulsante-messaggi {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 1vh 2vw;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pulsante-messaggi:hover {
+  transform: scale(1.05);
+  background-color: #1ebe5d;
+}
+
+/* --- Solo dispositivi verticali (smartphone/tablet in portrait) --- */
+@media (orientation: portrait) {
+  .animazione {
+    top: -10vh;    /* più in basso rispetto al -160vh desktop */
+    left: 5vw;    /* leggermente più centrato */
+    transform: rotate(-20deg); /* meno inclinato per stare meglio su schermi stretti */
+  }
+
+  .pulsante-messaggi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+  }
+}
+
+@keyframes fadeRotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+/* Responsive per smartphone */
+
+/*pulsante i nostri servizi (team)*/
+.animazione-servizi {
+  position: relative;
+  top: -162vh;
+  left: 68vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
+
+/* ANIMAZIONE */
+@keyframes fadeRotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.pulsante-servizi {
+  display: inline-block;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);  /* testo fluido */
+  padding: 1.5vh 3vw;                     /* padding fluido */
+  border-radius: 1.5rem;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0f4983 0%, #bd16ff 100%); /* blu-viola */
+  color: white;
+  transition: all 0.5s ease;
+  width: auto;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Hover: cambia in verde/arancione */
+.pulsante-servizi:hover {
+  background: linear-gradient(45deg, #FF8C00, #25D366);
+  transform: scale(1.05);
+}
+
+/* Responsive per smartphone e tablet verticali */
+@media (orientation: portrait) {
+  .animazione-servizi {
+    top: -11vh; /* sposta più in basso su smartphone */
+    left: 75vw; /* più centrato */
+  }
+
+  .pulsante-servizi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+    max-width: 80%;
+  }
+}
+
+
+.parte-finale {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 2.5rem;        /* invece di 40px */
+  position: relative;
+  z-index: 1;
+  margin-top: -40.9rem;  /* invece di -22px */
+  flex-wrap: wrap;         /* permette di andare a capo se necessario */
+}
+
+.parte-finale h3,
+.parte-finale h2 {
+  margin-bottom: 0.9375rem; /* invece di 15px */
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale p {
+  max-width: 18.75rem; /* invece di 300px */
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale nav {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0.3125rem 0;  /* invece di 5px */
+  transition: color 0.3s ease;
+}
+
+.parte-finale nav a:hover,
+.parte-finale nav a:active {
+  color: orange;
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) {  /* 1024px */
+  .parte-finale {
+    padding: 1.875rem;     /* invece di 30px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .parte-finale p,
+  .parte-finale nav {
+    margin-bottom: 1.25rem; /* invece di 20px */
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) {  /* 768px */
+  .parte-finale {
+    padding: 1.25rem;      /* invece di 20px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .parte-finale p,
+  .parte-finale nav {
+    max-width: 100%;
+    margin-bottom: 0.9375rem; /* invece di 15px */
+  }
+  .parte-finale h3,
+  .parte-finale h2 {
+    font-size: 1.2rem;
+  }
+  .parte-finale nav a {
+    font-size: 1rem;
+    margin: 0.1875rem 0; /* invece di 3px */
+  }
+}
+
+
+.scatola-informazioni {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: #2c2c2c77;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  max-width: 90vw;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  top: -40.9rem; /* alza il blocco senza modificare il flusso */
+  left: 4.5vw;    /* sposta il blocco verso destra */
+}
+
+
+/* Blocco logo blu */
+.parte-logo {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;               /* meno largo rispetto agli altri blocchi */
+  padding: 1rem;            /* padding relativo */
+  border-radius: 0;
+}
+
+.parte-logo img {
+  max-width: 10rem;        /* dimensione immagine relativa */
+  height: auto;
+}
+
+/* Altri blocchi */
+.descrizione-blocco {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.descrizione-blocco h5 {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  justify-content: center; /* centra icone + testo */
+}
+
+.descrizione-blocco p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover sul blocco */
+.descrizione-blocco:hover {
+  background: #3a3a3a;
+}
+
+@media (max-width: 64rem) { /* 1024px */
+  .scatola-informazioni {
+    flex-direction: column; /* impila i blocchi */
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .parte-logo,
+  .descrizione-blocco {
+    flex: 1 1 100%;         /* ogni blocco prende tutta la larghezza */
+    margin-bottom: 1rem;
+  }
+
+  .parte-logo img {
+    max-width: 8rem;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) { /* 768px */
+  .scatola-informazioni {
+    padding: 1.5rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .parte-logo  img {
+    max-width: 6rem;
+  }
+
+  .descrizione-blocco h5 {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .descrizione-blocco p {
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
+/* Dispositivi verticali (smartphone/tablet portrait) */
+@media (orientation: portrait) {
+
+  /* Abbassiamo la parte finale */
+  .parte-finale {
+    top: 90vh;       /* sposta verso il basso del 10% dell'altezza viewport */
+    position: relative; /* mantiene il flusso relativo */
+  }
+
+  /* Abbassiamo la scatola informazioni */
+  .scatola-informazioni {
+    top: 44vh;      /* più bassa rispetto a desktop, ma relativa */
+    left: 0;         /* eventualmente centrata orizzontalmente */
+    position: relative;
+    margin: 2rem auto 1rem auto; /* margini adattati per mobile */
+  }
+}
+
+.settima {
+  background-color: #000;
+}
+
+.settima p {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@media (orientation: portrait) {
+  .settima {
+    position: relative;  /* mantiene il flusso */
+    top: 90vh;           /* sposta verso il basso del 10% dell'altezza del viewport */
+  }
+}
+/*lavora con noi in index.html*/
+/* Sezione principale */
+.lavora-con-noi {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Immagine full width e responsive */
+.lavora-con-noi .processore {
+  width: 100%;
+  height: clamp(40vh, 55vh, 70vh);
+  object-fit: cover;
+  filter: brightness(0.45);
+  display: block;
+}
+
+/* Contenuto centrato perfettamente */
+.lavora-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centro perfetto */
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 900px;
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.lavora-content.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+/* Titoli centrati */
+.lavora-content h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 0.8rem;
+}
+
+.lavora-content h2 {
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+/* Bottone con effetto sipario */
+.btn-lavora {
+  display: inline-block;
+  position: relative;
+  padding: clamp(0.6em, 2vw, 1.2em) clamp(1em, 4vw, 2em);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(135deg, #3a8dde, #7b2ff7);
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: color 0.4s ease;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(100px);
+  z-index: 1;
+}
+
+/* Sipario da sinistra */
+.btn-lavora::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2ecc71, #f39c12);
+  transition: left 0.8s ease;
+  z-index: -1;
+}
+
+.btn-lavora:hover::before {
+  left: 0;
+}
+
+.btn-lavora:hover {
+  color: white;
+}
+
+/* Attivazione animazione */
+.btn-lavora.animate {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.corpo {
+  background-color: #0f1724;
+}
+/* Container principale */
+.lavora-container {
+  max-width: 800px;
+  width: 90%;
+  margin: 5vh auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 1rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Titolo e descrizione */
+.lavora-container h1 {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.lavora-container p {
+  text-align: center;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Etichette form */
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #333;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Input e textarea */
+form input, form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin-top: 0.3rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  box-sizing: border-box;
+}
+
+/* Pulsante invio */
+.btn-noi {
+  display: inline-block;
+  margin-top: 1.5rem;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #007bff, #7f00ff);
+  color: white;
+  padding: 0.9rem;
+  border-radius: 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: none;
+}
+
+.btn-noi:hover {
+  background: linear-gradient(135deg, #00c851, #ff8800);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .lavora-container {
+    padding: 1rem;
+  }
+  form label, form input, form textarea {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+  }
+  .btn-noi {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+}
+
+#btn-torna-su {
+  position: fixed;
+  bottom: clamp(20px, 5vh, 40px);
+  right: clamp(20px, 5vw, 40px);
+  background: linear-gradient(135deg, #007bff, #7f00ff);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: clamp(40px, 6vw, 60px);
+  height: clamp(40px, 6vw, 60px);
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  cursor: pointer;
+  display: flex; /* per centrare l’icona */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s ease, opacity 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none; /* nascosto inizialmente */
+  z-index: 10002;
+}
+
+#btn-torna-su.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#btn-torna-su:hover {
+  background: linear-gradient(135deg, #00c851, #ff8800);
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

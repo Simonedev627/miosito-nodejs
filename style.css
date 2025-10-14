@@ -1,0 +1,5149 @@
+
+
+/* ================= Header Bar ================= */
+.header-bar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center; /* centra verticalmente tutti gli elementi */
+  justify-content: flex-start;
+  background-color: #fff;
+  height: 17vh;          /* prima era 170px */
+  margin: 2vh auto;      /* prima 20px */
+  padding: 0 4vw;        /* prima 40px */
+  max-width: 108vw;      /* prima 1080px */
+  box-sizing: border-box;
+  border: 0.1vh solid #ccc; /* prima 1px */
+  border-radius: 0.8vh;      /* prima 8px */
+}
+
+/* Logo */
+.header-bar img {
+  height: 14vh;           /* prima 140px */
+  object-fit: contain;
+  margin-right: 5vw;      /* prima 50px */
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center; /* centra verticalmente tutti i link */
+  gap: 2.5vw;          /* prima 25px */
+  position: relative;
+  margin-left: -5vw;    /* prima -50px */
+}
+
+.nav-links a,
+.nav-links .dropdown > a,
+.nav-links .dropdown-content .submenu > a {
+  display: flex;
+  align-items: center;
+  height: 4vh;         /* prima 40px */
+  padding: 0 1.5vw;    /* prima 0 15px */
+  font-size: 1.6vh;    /* prima 16px */
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 500;
+  color: #000;
+  border-radius: 0.6vh; /* prima 6px */
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .dropdown > a:hover,
+.nav-links .dropdown-content .submenu > a:hover {
+  color: #186ec5;
+  background-color: #f0f0f0;
+}
+
+/* ================= Dropdown ================= */
+.nav-links .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-links .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 20vw;          /* prima 200px */
+  border-radius: 0.6vh;     /* prima 6px */
+  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.15); /* prima 0 4px 8px */
+  z-index: 200;
+}
+
+/* Mostra dropdown principale al passaggio */
+.nav-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Link dentro dropdown */
+.nav-links .dropdown-content a {
+  display: block;
+  padding: 1vh 1.5vw;     /* prima 10px 15px */
+  font-size: 1.5vh;       /* prima 15px */
+  color: #000;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.nav-links .dropdown-content a:hover {
+  background-color: #f2f2f2;
+  color: #186ec5;
+}
+
+/* Sottomenù */
+.nav-links .dropdown-content .submenu {
+  position: relative;
+}
+
+.nav-links .dropdown-content .submenu-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%; /* appare a destra del link */
+  background-color: #fff;
+  min-width: 18vw;          /* prima 180px */
+  border-radius: 0.6vh;
+  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.1);
+}
+
+.nav-links .dropdown-content .submenu:hover .submenu-content {
+  display: block;
+}
+
+/* Frecce per indicare dropdown e sottomenù */
+.nav-links .dropdown > a::after {
+  content: ' ▾';
+  font-size: 1.2vh;   /* prima 12px */
+  margin-left: 0.5vw; /* prima 5px */
+}
+
+.nav-links .dropdown-content .submenu > a::after {
+  content: ' ▸';
+  font-size: 1.2vh;   /* prima 12px */
+  margin-left: 0.5vw; /* prima 5px */
+}
+
+/* ================= Responsive ================= */
+@media screen and (max-width: 900px) {
+  .header-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 2vh 4vw;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1vh;
+  }
+
+  .nav-links .dropdown-content, 
+  .nav-links .dropdown-content .submenu-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    box-shadow: none;
+    min-width: 90%; /* adattamento mobile */
+  }
+}
+
+/*Titolo index.html*/
+/*Finche non scrivo fine index.html, tutto questo css è appunto per l'index.html*/
+
+/* Contenitore per il blocco descrizione */
+.descrizione {
+  margin-left: 40px; /* sposta leggermente a destra */
+  margin-top: 30px;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Titolo piccolo in arancione */
+/* Animazione fade + slide da sinistra */
+@keyframes fadeSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Applicazione all'h4 e p */
+.descrizione h4,
+.descrizione p {
+  opacity: 0;                /* parte invisibile */
+  animation: fadeSlideLeft 1s ease-out forwards;
+}
+
+/* Delay sequenziale */
+.descrizione h4 {
+  color: #ff6600;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  transform: translateX(20px);
+  animation-delay: 0.5s;  /* parte dopo mezzo secondo */
+}
+
+/* Paragrafo più grande e nero */
+.descrizione p {
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  animation-delay: 1s;   /* parte dopo 1 secondo */
+}
+/* Contenitore dei bottoni */
+.link-bottoni {
+  margin-left: 40px;
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.nav-links .prenotazioni {
+  position: relative;
+  left: -10px; /* prende tutto lo spazio disponibile a sinistra */
+}
+/* Bottone WhatsApp */
+/* Animazione di comparsa dal basso per bottoni */
+@keyframes fadeInUpButton {
+  0% {
+    opacity: 0;
+    transform: translateY(40px); /* parte un po' più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* posizione finale */
+  }
+}
+
+/* Classe animata */
+.fade-up-button {
+  opacity: 0; /* parte invisibile */
+  animation: fadeInUpButton 0.8s ease-out forwards;
+}
+
+/* Delay sequenziale */
+.fade-up-button.delay-1 { animation-delay: 1.2s; }
+.fade-up-button.delay-2 { animation-delay: 1.3s; }
+.whatsapp-button {
+  background-color: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #1DA851;
+}
+.contatti-button {
+  position: relative;
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-family:  'Barlow Semi Condensed', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.contatti-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #ff6600;
+  z-index: -1;
+  transition: width 0.4s ease;
+}
+
+.contatti-button:hover::before {
+  width: 100%;
+}
+.link-bottoni {
+  margin-top: 30px; /* aumenta la distanza dalla scritta sopra */
+  margin-bottom: 7px;
+}
+body {
+  background-color: #f2f2f2; /* grigio chiaro */
+}
+
+.immagine-installazione {
+  position: absolute;
+  right: 0;               /* allineata a destra */
+  top: 20px;              /* distanza dal bordo superiore della pagina */
+  width: 605px;           
+  height: auto;
+  z-index: 1;
+  clip-path: polygon(0 0, 10% 0, 0 55%, 0 100%, 100% 100%, 100% 0);
+}
+/* Animazione dal basso solo per la linea */
+@keyframes fadeInUpLine {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* parte leggermente più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* posizione finale */
+  }
+}
+
+/* Classe animata solo per la linea */
+.linea-fade-up {
+  opacity: 0;
+  animation: fadeInUpLine 0.8s ease-out forwards;
+}
+.linea-orizzontale { 
+  position: absolute; 
+  left: 0; 
+  width: 100vw; 
+  height: 2px;
+  background-color: grey; 
+  z-index: 1; 
+}
+
+
+/* Delay opzionale */
+.fade-up.delay-1 { animation-delay: 0.2s; }
+
+
+.seconda-sezione {
+  background-color: #750e0e04; /* nuovo sfondo */
+  min-height: 100vh;          /* riempie tutta l’altezza visibile */
+  padding: 50px 40px;
+  box-sizing: border-box;
+}
+/* Cerchio in alto a sinistra, inclinato e che batte */
+/* Cerchio in alto a sinistra, inclinato e che batte */
+/* Cerchio in alto a sinistra che batte */
+.cerchio-superiore {
+  position: absolute;
+  top: -200px;       /* metà fuori dal viewport */
+  left: -200px;      /* metà fuori dal viewport */
+  width: 450px;
+  height: 450px;
+  background-color: rgba(173, 216, 230, 0.4); /* blu chiaro trasparente */
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: battito 2s ease-in-out infinite;
+  z-index: 0;
+}
+
+
+/* Keyframes con rotate fisso + scale per battito */
+@keyframes battito {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }  /* cresce */
+  100% { transform: scale(1); }
+}
+
+
+/* Cerchio in basso a destra che galleggia */
+.cerchio-inferiore {
+  position: absolute;
+  bottom: 10%;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(173, 216, 230, 0.5);
+  border-radius: 50%;
+  transform-origin: center center;
+  animation: float 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Keyframes con rotate fisso + translateY per galleggiamento */
+@keyframes float {
+  0%   { transform: rotate(15deg) translateY(0px); }
+  50%  { transform: rotate(15deg) translateY(20px); }
+  100% { transform: rotate(15deg) translateY(0px); }
+}
+/* Contenitore servizi */
+.servizi-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 50px auto 40px auto;
+  max-width: 1200px;
+}
+
+/* Ogni box servizio */
+/* Contenitore dei box servizi in fila orizzontale */
+.servizi-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 50px auto 40px auto;
+  max-width: 1200px;
+}
+
+/* Animazione fade + slide da destra */
+@keyframes fadeSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Wrapper interno per animazione */
+.servizi-wrapper {
+  opacity: 0;  /* parte invisibile */
+  animation: fadeSlideRight 1s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Delay sequenziale */
+.servizi-container .servizi-wrapper:nth-child(1) {
+  animation-delay: 1.7s;
+}
+.servizi-container .servizi-wrapper:nth-child(2) {
+  animation-delay: 1.8s;
+}
+.servizi-container .servizi-wrapper:nth-child(3) {
+  animation-delay: 1.9s;
+}
+
+/* Box vero e proprio */
+.servizi {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+  min-height: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover che alza il box */
+.servizi-wrapper:hover .servizi {
+  transform: translateY(-15px);
+  box-shadow: 0px 15px 30px rgba(0,0,0,0.2);
+}
+
+.servizi img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.servizi h2 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+}
+
+.servizi p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+
+/* Pulsante con effetto sipario */
+.Scopri {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #007bff; /* blu */
+  color: #fff;
+  border-radius: 8px;
+  margin-top: 90px;  /* più grande per spostarlo verso il basso */
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.Scopri::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: orange;
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.Scopri:hover::before {
+  left: 0;
+}
+
+.Scopri span {
+  position: relative;
+  z-index: 1;
+}
+.b {
+  color: #ff6600;
+}
+.c {
+  color: #ff6600;
+}
+.d {
+  color: #ff6600;
+}
+/*animazioni di comparsa titoli */
+/* Animazione di comparsa dal basso */
+.fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  text-align: center;        /* centra il testo */
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  margin: 10px 0;            /* distanza verticale */
+}
+
+.fade-up.delay-1 { animation-delay: 1.4s; color: #ff6600; font-size: 20px; }
+.fade-up.delay-2 { animation-delay: 1.6s; color: black; font-size: 28px; }
+.fade-up.delay-3 { animation-delay: 1.7s; color: black; font-size: 35px; }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px); /* parte un po' più in basso */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);   /* torna al suo punto naturale */
+  }
+}
+/* Animazione di comparsa dal basso */
+.Titolo {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  margin: 30px auto 10px auto;
+  
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+
+
+/* Delay opzionale per sequenze */
+.Titolo.delay-1 { animation-delay: 0.2s; }
+
+.terza-sezione {
+  background-color: white; /* nuovo sfondo */
+            /* riempie tutta l’altezza visibile */
+  padding: 50px 40px;
+  box-sizing: border-box;
+}
+.abatel {
+  color: #ff6600;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.titolo-vantaggi{
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.rettangolo {
+  position: relative;   /* serve come riferimento */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #ccc; /* bordi grigi */
+  border-radius: 0;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 50px auto;
+  overflow: visible;     /* evita che il pulsante venga tagliato */
+}
+
+.vantaggio {
+  text-align: center;
+  padding: 20px;
+}
+
+
+.veloci {
+  font-size: 16px;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+  transform: translateX(9px); /* sposta l’icona verso sinistra */
+}
+.moderne {
+  font-size: 16px;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.dedicata {
+  font-size: 16px;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+/* Pulsante WhatsApp */
+.whatsapp-button-destra {
+  position: absolute;
+  top: -120px;      /* lo sposta sopra il bordo del rettangolo */
+  right: -20px;     /* lo sposta un po’ verso sinistra */
+  background-color: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.whatsapp-button-destra:hover {
+  transform: translateY(-3px);
+  background-color: #1DA851;
+}
+
+.vantaggio h4 {
+  display: flex;
+  align-items: center; /* allinea testo e antenna */
+  font-size: 18px;
+  color: #ff6600;
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 10px;
+ 
+  
+  
+}
+.vantaggio .antenna {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 50%; 
+  background-color: #ff6600;
+  transform: translateX(-28px); /* sposta l’icona verso sinistra */
+}
+
+/* Onde del segnale */
+.vantaggio .antenna::after,
+.vantaggio .antenna::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ff6600;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  animation: onde 1s infinite;
+}
+
+.vantaggio .antenna::before {
+  width: 24px;
+  height: 24px;
+  animation-delay: 0.3s;
+}
+
+@keyframes onde {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.6;
+  }
+}
+.phone-wrapper {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: -23px;
+  transform: translateX(-28px); /* sposta l’icona verso sinistra */
+}
+
+.phone {
+  font-size: 24px;
+  color: orange;
+  animation: bounce 1s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.hidden {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s ease-out;
+  position: relative; /* evita che influisca sul layout */
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Satellite icona */
+.satellite-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transform: rotate(-25deg); /* obliquo */
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+/* Corpo centrale */
+.satellite-icon .body {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  background: #ccc;
+  border: 2px solid #888;
+  border-radius: 4px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  
+}
+
+/* Pannelli solari */
+.satellite-icon .panel {
+  position: absolute;
+  width: 15px;
+  height: 30px;
+  background: #1e90ff;
+  border: 2px solid #0d3d66;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.satellite-icon .panel.left { left: -25px; border-radius: 2px; }
+.satellite-icon .panel.right { right: -25px; border-radius: 2px; }
+
+/* Antenna */
+.satellite-icon .antenna {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: #888;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+  z-index: 3;
+}
+
+/* Connettori */
+.satellite-icon .connector {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: #888;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.satellite-icon .connector.left {
+  left: 10px;
+  transform: translateY(-50%) rotate(-92deg);
+}
+
+.satellite-icon .connector.right { 
+  right: 10px;
+  transform: translateY(-50%) rotate(-92deg);
+} 
+
+/* Animazione fluttuante */
+@keyframes float {
+  0% { transform: rotate(-25deg) translateY(0); }
+  100% { transform: rotate(-25deg) translateY(-5px); }
+}
+
+.satellite-vantaggio {
+  display: flex;
+  align-items: center;
+  /* niente gap, gestiamo a mano */
+}
+
+.satellite-vantaggio .satellite-icon {
+  top: 9px;
+  width: 40px;
+  height: 40px;
+  transform: rotate(-25deg);
+  margin-right: 25px;   /* spazio dal testo */
+  position: relative;
+  left: -18px;           /* sposta SOLO l’icona a sinistra */
+}
+
+.satellite-vantaggio .text {
+  flex-shrink: 0;  /* il testo non si muove anche se sposti l'icona */
+}
+.quarta-sezione {
+  background-color: rgba(128, 128, 128, 0.1); /* grigio trasparente */
+  min-height: 40vh;
+  padding: 50px 40px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.esitare {
+  color: orange;
+  font-family: 'Segoe UI', sans-serif;
+ 
+}
+.esigenti {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 30px;
+  margin-bottom: 5px; /* avvicina a "sicure" */
+}
+
+.sicure {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 30px;
+  margin-top: 5px; /* invece di 15px */
+}
+
+.esitare,
+.esigenti,
+.sicure {
+  margin-left: 150px; /* sposta tutto più a destra */
+}
+/* Layout flessibile */
+.contenitore {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.testo {
+  flex: 1;
+}
+
+.link {
+  display: flex;
+  flex-direction: row; /* disposizione orizzontale */
+  gap: 15px;            /* spazio tra i pulsanti */
+}
+
+/* Stile base dei pulsanti */
+.pulsante {
+  position: relative;
+  font-family:'Segoe UI', sans-serif; 
+  padding: 12px 24px;
+  background-color: #000; /* Nero profondo */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+/* Effetto sipario */
+.pulsante::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: orange;
+  transition: left 0.5s ease;
+  z-index: 0;
+  border-radius: 30px;
+}
+
+/* Hover: sipario arancione + testo bianco */
+.pulsante:hover::before {
+  left: 0;
+}
+
+.pulsante:hover {
+  color: white; /* Testo bianco durante l’hover */
+}
+
+/* Assicura che il testo sia sopra il sipario */
+.pulsante span {
+  position: relative;
+  z-index: 100000;
+}
+section {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.pulsanti {
+  position: relative;
+  font-family:'Segoe UI', sans-serif; 
+  padding: 12px 24px;
+  background: orange; /* blu */ /* Nero profondo */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+/* Effetto sipario */
+.pulsanti::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #007bff;
+  transition: left 0.5s ease;
+  z-index: 0;
+  border-radius: 30px;
+}
+
+/* Hover: sipario arancione + testo bianco */
+.pulsanti:hover::before {
+  left: 0;
+}
+
+.pulsanti:hover {
+  color: white; /* Testo bianco durante l’hover */
+}
+
+/* Assicura che il testo sia sopra il sipario */
+.pulsanti span {
+  position: relative;
+  z-index: 100000;
+}
+.immagini-sovrapposte {
+  margin-top: -99px;
+  position: relative;
+  width: 768px;
+  height: 487px;
+  /* RIMUOVI overflow: hidden per permettere l’uscita */
+}
+
+.base {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sovrapposta {
+  position: absolute;
+  bottom: -60px;   /* spinge l’immagine fuori dal contenitore */
+  right: -80px;    /* spinge verso destra fuori dal contenitore */
+  width: 500px;    /* dimensione maggiore */
+  opacity: 0.85;
+  pointer-events: none;
+  
+}
+.contenitore {
+  position: relative; /* Necessario per posizionare elementi figli assolutamente */
+  height: 100px; /* o l'altezza che vuoi */
+  width: 100%;        
+}
+
+.contenitore .solutions {
+  position: absolute;
+  top: 0;
+  right: 300px;
+  margin: 10px; /* Spazio dai bordi se vuoi */
+  color: orange;
+  font-family: 'Segoe UI', sans-serif;
+}
+.futuro {
+  position: absolute;
+  top: 35px;
+  right: 260px;
+  margin: 10px; /* Spazio dai bordi se vuoi */
+  font-size: 30px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.stabile {
+  position: absolute;
+  top: 90px;
+  right: 89px;
+  margin: 10px; /* Spazio dai bordi se vuoi */
+  font-family: 'Segoe UI', sans-serif;   /* elimina margini indesiderati */
+  max-width: 600px; /* il testo va a capo dopo 600px */
+  line-height: 1.5; /* rende il testo leggibile */
+  font-size: 22px;
+}
+.hidden {
+  opacity: 0;
+  transform: translateX(-50px); /* parte spostata a sinistra */
+  transition: all 0.8s ease-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0); /* posizione finale */
+}
+.fibra-box {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 800px;
+  opacity: 0;                  /* invisibile all'inizio */
+  transform: translateY(60px); /* parte più in basso */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  margin: 50px auto;
+  margin-left: auto;   /* spinge a destra */
+  margin-right: 50px;
+  margin-top: -70px;
+}
+
+.fibra-box.show {
+  opacity: 1;
+  transform: translateY(0);    /* torna in posizione */
+}
+
+.blocco {
+  flex: 1;
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.blocco i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.blocco:hover {
+  background: orange;
+  color: white;
+}
+.sesta-sezione {
+  color: grey
+}
+
+
+.settima-sezione p {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+/*fine index.html*/
+/*inizio di servizi.html*/
+.mondo-fibra {
+  margin: 0;          /* niente margine sopra */
+  width: 100%;
+  height: auto;
+  max-height: 980px; 
+  margin-top: -120px;
+  display: block;
+  
+}
+.immagine-container {
+  margin-top: -70px;
+  position: relative;
+  width: 100%;
+  max-height: 658px;  /* altezza massima */
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3); /* velo bianco */
+}
+.sovrapposizione {
+  position: relative;
+  top: -390px;            /* verticale al centro */
+  left: 20px;           /* orizzontale al centro */
+  transform: translate(-50%, -101%); /* centra perfettamente */
+  text-align: center;
+  color: black;         /* colore testo */
+   /* Animazione fade-in */
+  opacity: 0;                  /* parte invisibile */
+  animation: fadeIn 2s forwards; /* 2 secondi */
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.srl {
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  
+  color: black; 
+}
+
+.sotto {
+  font-size: 48px;
+  margin: 0;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+
+  color: black; 
+}
+.container {
+  position: relative; /* contesto per posizionare il rettangolo */
+}
+
+.rettangoloo-link {
+  position: absolute;     /* libero di muoversi nel container */
+  left: 1520px;             /* spostato a sinistra */
+  top: 820px;              /* distanza dall’alto */
+  
+  background: #f5f5f5;  
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;              
+  font-family: 'Segoe UI', sans-serif;
+  width: 300px;           
+  min-height: 400px;      
+  z-index: 10;            /* resta sopra il testo */
+}
+
+.rettangoloo-link a {
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;           
+  margin: 10px auto;
+  padding: 15px 30px;
+  width: 220px;                  
+  border-radius: 50px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.rettangoloo-link a:hover {
+  background-color: orange;
+  color: white;
+}
+
+/* Testo a destra che non copre i link */
+.descrzione-fibra-ottica {
+  top: -15px;
+  position: relative;
+  left: -270px;
+  margin-left: 340px; /* lascia spazio al rettangolo a sinistra */
+  line-height: 1.6;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  opacity: 0;                 /* invisibile all’inizio */
+  transform: translateX(-50px); /* spostata a sinistra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-left: 340px;          /* spazio per il rettangolo dei link */
+  line-height: 1.6;
+  color: #333;
+
+}
+/* Classe attiva: testo visibile e nella posizione corretta */
+.descrzione-fibra-ottica.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.titolo {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+  margin: 30px auto 10px auto;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+
+
+/* Delay opzionale per sequenze */
+.titolo.delay-1 { animation-delay: 0.2s; }
+
+
+/* Delay opzionale per sequenze */
+.TItolo.delay-2 { animation-delay: 0.4s; }
+
+
+.grassetto {
+  color: orange;
+}
+.TItolo {
+  position: relative;
+  text-align: left;
+  left: 65px;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: black;
+  margin: 30px auto 10px auto;
+  top: -19px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+.container-contatti {
+  position: relative; /* contesto per il rettangolo */
+}
+
+.rettangoloo-contatti {
+  position: absolute;
+  right: 85px; /* puoi mettere left: 20px se vuoi a sinistra */
+  top: 190px;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  z-index: 10;
+}
+
+.contatto-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.contatto-item i {
+  font-size: 18px;
+  color: orange;
+}
+
+.contatto-item:hover {
+  background-color: orange;
+  color: white;
+}
+
+.contatto-item:hover i {
+  color: white;
+}
+.contatto-item a {
+  color: inherit;           /* mantiene il colore originale */
+  text-decoration: none;    /* rimuove sottolineatura */
+}
+
+.contatto-item a:hover {
+  color: white;             /* cambia colore quando hover sul contatto */ 
+}
+
+.sinistra {
+  position: relative;
+  margin-top: 25px;
+  float: left;               /* immagine a sinistra */
+  margin-left: 28px;        /* spazio a destra per il testo */
+  width: 40%;                /* riduce la dimensione dell’immagine */
+  max-width: 500px;          /* dimensione massima */
+  opacity: 0;                /* invisibile inizialmente */
+  transform: translateX(-50px); /* spostata a sinistra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 20px;
+}
+
+.sinistra.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fili-ottica {
+  position: relative;
+  top: -95px;
+  width: 100%;               /* occupa tutto lo spazio del contenitore */
+  border-radius: 10px;       /* arrotonda leggermente i bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ombra leggera */
+}
+.descrizione-sceglierci h2 {
+position: relative;
+text-align: right;
+margin-right: -205px;
+top: -35px;
+color: orange;
+}
+/* Testo dei benefici */
+.descrizione-sceglierci {
+  position: relative;
+  margin-left: 480px;        /* distanza dalla sinistra (immagine) */
+  margin-right: 20px;        /* distanza dai rettangoli a destra */
+  padding: 0;                /* togli padding del box */
+  max-width: 800px;
+  line-height: 2;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: #333;
+  border-radius: 0;          /* togli bordi arrotondati */
+  box-shadow: none;          /* niente ombra */
+  opacity: 0;
+  margin-top: -18px;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  
+}
+.descrizione-sceglierci p {
+  position: relative;
+  padding-left: 80px; /* sposta solo il testo a destra */
+}
+
+.descrizione-sceglierci strong {
+  font-weight: normal;       /* niente grassetto */
+}
+/* Animazione scroll */
+.descrizione-sceglierci.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.work {
+  position: relative;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  left: -499px;
+  top: 15px;
+   opacity: 0;                        /* parte invisibile */
+  transform: translateY(50px);       /* spostato in basso */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  
+}
+.work.visibili {
+  opacity: 1;
+  transform: translateY(0);          /* torna in posizione */
+}
+
+.work-process {
+    position: relative;
+  margin-left: 63px;        /* distanza dalla sinistra (immagine) */
+  margin-right: 20px;        /* distanza dai rettangoli a destra */
+  padding: 0;                /* togli padding del box */
+  max-width: 800px;
+  line-height: 2;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  color: #333;
+  border-radius: 0;          /* togli bordi arrotondati */
+  box-shadow: none;          /* niente ombra */
+  top: 30px;
+ text-align: left;
+ opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.work-process strong {
+  font-weight: normal;       /* niente grassetto */
+}
+.work-process.visibili {
+    opacity: 1;
+  transform: translateY(0);
+}
+.work-process-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 1200px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  margin-top: 59px;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0;
+  margin-left: 100px;   /* 👈 sposta tutto verso destra */
+  margin-right: auto;  /* 👈 mantiene il resto fluido */
+}
+
+.work-process-container.visibili {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.work-process-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.work-block {
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 20px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.work-block i {
+  font-size: 32px;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.work-block h3 {
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+.work-block:hover {
+  background: orange;
+  color: white;
+  transform: translateY(-8px);
+}
+
+.work-block:hover i {
+  color: white;
+}
+.destra {
+  position: relative;
+  margin-top: -605.5px;
+  float: right;               /* immagine a sinistra */
+  margin-right: 420px;        /* spazio a destra per il testo */
+  width: 40%;                /* riduce la dimensione dell’immagine */
+  max-width: 500px;          /* dimensione massima */
+  opacity: 0;               /* invisibile inizialmente */
+  transform: translateX(-50px); /* spostata a sinistra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 20px;
+}
+
+.destra.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.processo-di-lavoro {
+  text-align: left;             /* titolo a sinistra */
+  margin-left: 20px;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.processo {
+  position: relative;
+  text-align: left;            
+  margin-left: 41px;           
+  margin-right: auto;          
+  max-width: 800px;            
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #333;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.processo strong {
+  font-weight: normal;         
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.destra1 {
+  position: relative;
+  margin-top: -665px;
+  float: right;               /* immagine a sinistra */
+  margin-right: 420px;        /* spazio a destra per il testo */
+  width: 40%;                /* riduce la dimensione dell’immagine */
+  max-width: 500px;          /* dimensione massima */
+  opacity: 0;               /* invisibile inizialmente */
+  transform: translateX(-50px); /* spostata a sinistra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 20px;
+}
+.destra1.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.titolO {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+  margin: 30px auto 10px auto;
+  margin-top: 50px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px); /* unisce Y e X */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px); /* mantiene X alla fine */
+  }
+}
+
+
+/* Delay opzionale per sequenze */
+.titolo.delay-3 { animation-delay: 0.2s; }
+
+.civile {
+position: relative;
+text-align: right;
+margin-right: 410px;
+margin-top: -27px;
+color: orange;
+top: -18px;
+font-family: 'Montserrat', sans-serif;
+ opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+.civile.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.approccio{
+    color: black;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 19px;
+  padding: 15px;
+  position: relative;
+  left: 45px;
+  line-height: 30px;
+   opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+.approccio p {
+  position: relative;
+  padding-left: 80px; /* sposta solo il testo a destra */
+}
+
+.approccio strong {
+  font-weight: normal;       /* niente grassetto */
+}
+/* Animazione scroll */
+
+
+.approccio.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.btn-sipario {
+  position: relative;
+  display: inline-block;
+  right: -1025px;
+  top: 155px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+
+.visione h2 {
+  position: relative;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  top: -50px;
+  left: -530px;
+  z-index: 1;
+}
+.p {
+  position: relative;
+  margin-top: -48px;
+}
+.visione{
+  color: black;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 19px;
+  padding: 15px;
+  position: relative;
+  left: 45px;
+  line-height: 30px;
+  z-index: 1;
+ top: 39px;
+  transition: all 0.8s ease;
+  pointer-events: none;
+   transform: translateX(50px);
+  opacity: 0;          /* inizialmente nascosto */
+  transition: all 0.8s ease;
+  z-index: 10;
+}
+.visione.visible {
+  transform: translateX(0);
+  opacity: 1;           /* compare quando visibile */
+}
+.visione strong {
+  font-weight: normal;
+}
+.destra2 {
+  position: relative;
+  margin-top: -305px;
+  float: right;               /* immagine a sinistra */
+  margin-right: 430px;        /* spazio a destra per il testo */
+  width: 40%;                /* riduce la dimensione dell’immagine */
+  max-width: 500px;          /* dimensione massima */
+  opacity: 0;               /* invisibile inizialmente */
+  transform: translateX(-50px); /* spostata a sinistra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-bottom: 20px;
+}
+.destra2.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.impianti {
+  background-color: lightgray;
+}
+/*fine impianti elettrici civili*/
+/*Inizio impianti elettrici industriali*/
+.industria {
+  position: relative;
+  left: -405px;
+  float: right;           /* manda l’immagine a destra */
+  border-radius: 15px;    /* bordi arrotondati */
+  max-width: 450px;       /* opzionale: limita la larghezza */
+  margin: 15px;
+  opacity: 0;                  /* invisibile all’inizio */
+  transform: translateX(80px); /* spostata a destra */
+  transition: all 0.8s ease;           /* spazio attorno all’immagine */
+}
+.industria.visible {
+  opacity: 1;                  /* compare */
+  transform: translateX(0);    /* torna in posizione */
+}
+
+.articolo::first-letter {
+  font-size: 3em;      /* grandezza iniziale */
+  font-weight: bold;   /* grassetto */
+  float: left;         /* la fa scorrere col testo */
+  line-height: 1;      /* allineamento verticale */
+  margin-right: 8px;   /* spazio dal resto del testo */
+  color: #333;         /* colore lettera */
+  font-family: 'Georgia', serif; /* stile elegante */
+}
+.articolo {
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  line-height: 30px;
+  right: -40px;
+  top: -10px;
+   opacity: 0;                  /* invisibile all’inizio */
+  transform: translateX(80px); /* spostata a destra */
+  transition: all 0.8s ease; 
+}
+.articolo.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cotainer {
+  position: relative; /* contesto per posizionare il rettangolo */
+  top: -810px;
+}
+
+.rettangolo-link {
+  position: absolute;     /* libero di muoversi nel container */
+  left: 1570px;             /* spostato a sinistra */
+  top: 820px;              /* distanza dall’alto */
+  
+  background: #f5f5f5;  
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;              
+  font-family: 'Segoe UI', sans-serif;
+  width: 300px;           
+  min-height: 400px;      
+  z-index: 10;            /* resta sopra il testo */
+}
+
+.rettangolo-link a {
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;           
+  margin: 10px auto;
+  padding: 15px 30px;
+  width: 220px;                  
+  border-radius: 50px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.rettangolo-link a:hover {
+  background-color: orange;
+  color: white;
+}
+
+
+.non {
+  position: relative;
+  right: -15px;
+  color: orange;
+  font-family: 'Segoe UI', sans-serif;
+}
+.avanguardia {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 30px;
+  margin-bottom: 5px; /* avvicina a "sicure" */
+}
+.prestazioni {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 30px;
+  margin-top: 5px; /* invece di 15px */
+}
+.non, .avanguardia, .prestazioni {
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;                  /* invisibile all’inizio */
+  transform: translateX(-50px); /* parte spostato a sinistra */
+  transition: all 0.8s ease;
+}
+
+.non.visible, .avanguardia.visible, .prestazioni.visible {
+  opacity: 1;                   /* diventa visibile */
+  transform: translateX(0);     /* slide in da sinistra */
+}
+.un-altra-sezione{
+  background-color: white;
+}
+.impegno {
+  top: -50px;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  text-align: right;
+  right: 18px;
+  color: black;
+}
+.sicurezza strong{
+  font-weight: normal;
+}
+.sicurezza p{
+  top: -32px;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 28px;
+  right: -1000px;
+}
+.sicurezza p::first-letter {
+    font-size: 3em;      /* grandezza iniziale */
+  font-weight: bold;   /* grassetto */
+  float: left;         /* la fa scorrere col testo */
+  line-height: 1;      /* allineamento verticale */
+  margin-right: 8px;   /* spazio dal resto del testo */
+  color: #333;         /* colore lettera */
+  font-family: 'Georgia', serif; /* stile elegante */
+}
+.sicurezza {
+  position: relative;
+  top: 85px;
+  background-color: white;
+    opacity: 0;
+  transform: translateX(-50px); /* slide da sinistra */
+  transition: all 0.8s ease;
+}
+.sicurezza.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.impianto-elettrico-industriale {
+  position: relative;
+  top: -35px;
+  float: left;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 15px;
+  height: auto;
+  right: -290px;
+  opacity: 0;                  /* invisibile all’inizio */
+  transform: translateX(80px); /* parte spostata a destra */
+  transition: all 0.8s ease;
+  z-index: 10;
+}
+
+.impianto-elettrico-industriale.visible {
+  opacity: 1;                  /* diventa visibile */
+  transform: translateX(0);    /* slide in da destra */
+}
+.whatsapp {
+  right: -75px;
+  top: -305px;
+  display: inline-block;
+  background-color: #25D366; /* verde WhatsApp */
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 10px;      /* bordi arrotondati */
+  text-decoration: none;     /* niente sottolineatura */
+  transition: all 0.3s ease; /* animazione hover */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* ombra leggera */
+  position: relative;
+    opacity: 0;
+  transform: translateX(-50px); /* slide da sinistra */
+}
+
+.whatsapp:hover {
+  transform: translateY(-10px); /* alza il bottone */
+  box-shadow: 0 8px 12px rgba(0,0,0,0.5858); /* ombra più evidente */
+}
+.whatsapp.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.home {
+  position: relative;
+  display: inline-block;
+  padding: 12px 45px;
+  right: 155px;
+  top: -85px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #1a237e;
+  border-radius: 10px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.5s ease; /* animazione sia per fade che slide */
+  min-width: 185px;
+
+  opacity: 0;                  /* invisibile inizialmente */
+  transform: translateX(80px); /* parte spostato a destra */
+  z-index: 1;
+}
+
+.home.visible {
+  opacity: 1;
+  transform: translateX(0);    /* entra da destra */
+}
+
+/* Sipario */
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: orange;
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.home:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+/* Testo sopra il sipario */
+.home span {
+  position: relative;
+  z-index: 1;
+}
+.work-process-cotainer {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 40px auto;
+  max-width: 1200px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  margin-top: 59px;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0;
+  margin-left: 100px;   /* 👈 sposta tutto verso destra */
+  margin-right: auto;  /* 👈 mantiene il resto fluido */
+  margin-top: 1855px;
+  
+}
+
+.work-process-cotainer.visibili {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.work-process- {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.workblock {
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 20px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.workblock i {
+  font-size: 32px;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.workblock h3 {
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+.workblock:hover {
+  background: orange;
+  color: white;
+  transform: translateY(-8px);
+}
+
+.workblock:hover i {
+  color: white;
+}
+.e {
+  height: 550px;
+  width: 750px;
+}
+.impianto-elettrico-industrial {
+  position: relative;
+  top: -365px;
+  float: left;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 15px;
+  height: auto;
+  margin-left: -490px;
+  opacity: 0;                  /* invisibile all’inizio */
+  transform: translateX(80px); /* parte spostata a destra */
+  transition: all 0.8s ease;
+  z-index: 1;
+}
+
+.impianto-elettrico-industrial.visible {
+  opacity: 1;                  /* diventa visibile */
+  transform: translateX(0);    /* slide in da destra */
+}
+.container-blocchi {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 blocchi per riga */
+  gap: 40px ;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+
+.img-blocco {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  z-index: 1;
+}
+
+/* Pulsante a sipario */
+.btn-sipario {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  overflow: hidden;
+  right: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: blue;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  padding: 15px 40px;
+  transition: color 0.4s ease;
+}
+
+.btn-sipario span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-sipario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: red; /* blu finale */
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.btn-sipario:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.btn-sipario:hover span {
+  color: white;
+}
+
+/* ================== Animazione scroll ================== */
+.fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+
+.fade-left {
+  transform: translateX(-50px);
+}
+
+.fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.8s ease;
+}
+/*sipario 2*/
+.btn-sipario2 {
+  display: inline-block;
+  position: relative;
+  top: 75px;
+  overflow: hidden;
+  right: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: blue;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  padding: 15px 40px;
+  transition: color 0.4s ease;
+}
+
+.btn-sipario2 span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-sipario2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: red; /* blu finale */
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.btn-sipario2:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.btn-sipario2:hover span {
+  color: white;
+}
+/* sipario 3*/
+.btn-sipario3 {
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  overflow: hidden;
+  right: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: blue;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  padding: 15px 40px;
+  transition: color 0.4s ease;
+}
+
+.btn-sipario3 span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-sipario3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: red; /* blu finale */
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.btn-sipario3:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.btn-sipario3:hover span {
+  color: white;
+}
+/*sipario 4*/
+.btn-sipario4 {
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  overflow: hidden;
+  right: 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: blue;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  padding: 15px 40px;
+  transition: color 0.4s ease;
+}
+
+.btn-sipario4 span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-sipario4::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: red; /* blu finale */
+  z-index: 0;
+  transition: all 0.5s ease;
+}
+
+.btn-sipario4:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.btn-sipario4:hover span {
+  color: white;
+}
+.blocco1 {
+  position: relative;
+  left: -125px;
+   background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;                /* invisibile inizialmente per animazione */
+  transform: translateX(50px); /* slide da destra iniziale */
+}
+.blocco1:hover {
+  background-color: orange;   /* sfondo diventa arancione */
+  color: #fff;                /* testo diventa bianco */
+  transform: translateY(-5px); /* effetto sollevamento */
+}
+
+.blocco1 p,
+.blocco1 h2,
+.blocco1 a {
+  transition: color 0.5s ease; /* anche i testi cambiano gradualmente */
+}
+
+.blocco1:hover p,
+.blocco1:hover h2,
+.blocco1:hover a {
+  color: #fff;
+}
+
+.blocco2 {
+  position: relative;
+  left: 125px;
+   background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;                /* invisibile inizialmente per animazione */
+  transform: translateX(50px); /* slide da destra iniziale */
+}
+.blocco2:hover {
+  background-color: orange;   /* sfondo diventa arancione */
+  color: #fff;                /* testo diventa bianco */
+  transform: translateY(-5px); /* effetto sollevamento */
+}
+
+.blocco2 p,
+.blocco2 h2,
+.blocco2 a {
+  transition: color 0.5s ease; /* anche i testi cambiano gradualmente */
+}
+
+.blocco2:hover p,
+.blocco2:hover h2,
+.blocco2:hover a {
+  color: #fff;
+}
+
+
+.blocco3 {
+  position: relative;
+  left: -125px;
+   background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;                /* invisibile inizialmente per animazione */
+  transform: translateX(50px); /* slide da destra iniziale */
+}
+.blocco3:hover {
+  background-color: orange;   /* sfondo diventa arancione */
+  color: #fff;                /* testo diventa bianco */
+  transform: translateY(-5px); /* effetto sollevamento */
+}
+
+.blocco3 p,
+.blocco3 h2,
+.blocco3 a {
+  transition: color 0.5s ease; /* anche i testi cambiano gradualmente */
+}
+
+.blocco3:hover p,
+.blocco3:hover h2,
+.blocco3:hover a {
+  color: #fff;
+}
+
+
+.blocco4 {
+  position: relative;
+  left: 125px;
+   background-color: #fff;
+  border-radius: 15px;
+  color: #000;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  opacity: 0;                /* invisibile inizialmente per animazione */
+  transform: translateX(50px); /* slide da destra iniziale */
+}
+.blocco4:hover {
+  background-color: orange;   /* sfondo diventa arancione */
+                 /* testo diventa bianco */
+  transform: translateY(-5px); /* effetto sollevamento */
+}
+
+.blocco4:hover, 
+.blocco4:hover * {
+  color: #000 !important;        /* tutto il testo diventa nero */
+  transition: color 0.3s ease;   /* transizione colore */
+}
+
+.blocco4 p,
+.blocco4 h2,
+.blocco4 a {
+  transition: color 0.5s ease; /* anche i testi cambiano gradualmente */
+}
+
+
+
+
+
+/* Quando hoveri il blocco, anche il titolo si muove */
+
+
+.blocco1:hover .sovrapposto {
+  transform: translateX(-50%) translateY(-8px); /* il titolo si alza */
+   /* testo diventa bianco */
+}
+.sovrapposto {
+  position: relative;
+  left: 50%;
+  top: 190px;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  z-index: 10;
+  transition: transform 0.3s ease; /* per l’effetto sollevamento */
+}
+
+.blocco1:hover,
+.blocco2:hover,
+.blocco3:hover,
+.blocco4:hover {
+  background-color: orange;
+  transform: translateY(-5px);
+}
+
+.blocco1:hover *,
+.blocco2:hover *,
+.blocco3:hover *,
+.blocco4:hover * {
+  color: #000 !important; /* testi neri */
+  transition: color 0.3s ease;
+}
+/*Fine dei servizi*/
+/*Inizio contatti*/
+/* Blocco contatti */
+.blocco-contatti {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  margin-right: 35px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+}
+
+.blocco-contatti p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.blocco-contatti form label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 500;
+}
+
+.blocco-contatti form input,
+.blocco-contatti form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.blocco-contatti form button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.blocco-contatti form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background-color: #1a237e; /* blu finale */
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.blocco-contatti form button:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.blocco-contatti form button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Info contatto */
+.info-contatto {
+  margin-top: 25px;
+  font-size: 16px;
+}
+
+.info-contatto p {
+  margin: 5px 0;
+}
+
+/* Mappa */
+.mappa-interattiva {
+  max-width: 1000px;
+  margin: 50px auto;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.mappa-interattiva iframe {
+  right: 18px;
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+.blocco-contatti form input,
+.blocco-contatti form textarea {
+  width: 100%;
+  padding: 12px 20px;      /* più spazio interno per effetto ovale */
+  border-radius: 50px;     /* bordi ovali orizzontali */
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: 15px;     /* spazio tra le righe */
+}
+.abatel1 {
+  position: relative;
+  color: #ff6600;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+  right: -25px;
+    opacity: 0;                 /* parte invisibile */
+  animation: fadeIn 1s ease forwards; /* animazione */
+}
+.titolo-vantaggi1{
+  position: relative;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+  right: -15px;
+    opacity: 0;                 
+  animation: fadeIn 1s ease forwards 0.3s; /* parte dopo 0.3s */
+}
+/* Animazione fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.telfonica {
+  position: relative;
+  margin-top: -590px;
+  float: left;              /* posiziona l’immagine a sinistra */
+  left: 150px;
+  max-width: 900px;         /* dimensione massima, ridimensionabile */
+  height: 500px;             /* mantiene proporzioni */
+  border-radius: 15px;      /* bordi arrotondati */
+  margin-right: -1000px;       /* spazio tra immagine e testo */
+  margin-bottom: 15px;      /* margine sotto per separazione dai contenuti sottostanti */
+  display: block;
+    opacity: 0;         /* invisibile inizialmente */
+  transform: translateY(50px); /* leggero spostamento dal basso */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+.telfonica.visible {
+  opacity: 1;
+  transform: translateY(0); /* torna alla posizione normale */
+}
+/* Titoli */
+.titolo-sezione {
+  position: relative;
+  right: -28px;
+  color: #ff6600;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.titolo-vantaggi {
+  position: relative;
+  right: -15px;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+/* Rettangolo */
+.rettangolo {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 0;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 50px auto;
+  overflow: visible;
+}
+.vantaggio {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Testi */
+.testo-veloci, .testo-moderne, .testo-dedicata {
+  font-size: 16px;
+  color: #000;
+  font-family:'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.testo-veloci { transform: translateX(9px); }
+
+/* Pulsante WhatsApp */
+.whatsapp-button-destra {
+  position: absolute;
+  top: -120px;
+  right: -20px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+.whatsapp-button-destra:hover {
+  transform: translateY(-3px);
+  background-color: #1DA851;
+}
+
+/* Vantaggi H4 */
+.vantaggio h4 {
+  position: relative;
+  
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #ff6600;
+  font-family: 'Segoe UI', sans-serif;
+  margin-bottom: 10px;
+}
+
+/* Antenna */
+.vantaggio .antenna {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  position: relative;
+  border-radius: 50%;
+  background-color: #ff6600;
+  transform: translateX(-28px);
+}
+.vantaggio .antenna::after,
+.vantaggio .antenna::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ff6600;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  animation: onde 1s infinite;
+}
+.vantaggio .antenna::before {
+  width: 24px;
+  height: 24px;
+  animation-delay: 0.3s;
+}
+@keyframes onde {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.6; }
+}
+
+/* Telefono */
+.phone-icon-wrapper {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: -23px;
+  transform: translateX(-28px);
+}
+.phone {
+  font-size: 24px;
+  color: orange;
+  animation: bounce 1s infinite ease-in-out;
+  display: inline-block;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Satellite icona */
+.satellite-feature-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transform: rotate(-25deg);
+  animation: float 2s ease-in-out infinite alternate;
+}
+.satellite-feature-body {
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  background: #ccc;
+  border: 2px solid #888;
+  border-radius: 4px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.satellite-feature-panel {
+  position: absolute;
+  width: 15px;
+  height: 30px;
+  background: #1e90ff;
+  border: 2px solid #0d3d66;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.satellite-feature-panel.left { left: -25px; border-radius: 2px; }
+.satellite-feature-panel.right { right: -25px; border-radius: 2px; }
+.satellite-feature-antenna {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: #888;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+  z-index: 3;
+}
+.satellite-feature-connector {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background: #888;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.satellite-feature-connector.left { left: 10px; transform: translateY(-50%) rotate(-92deg); }
+.satellite-feature-connector.right { right: 10px; transform: translateY(-50%) rotate(-92deg); }
+.satellite-feature {
+  display: flex;
+  align-items: center;
+}
+.satellite-feature .satellite-feature-icon {
+  top: 9px;
+  width: 40px;
+  height: 40px;
+  margin-right: 25px;
+  position: relative;
+  left: -18px;
+}
+.satellite-feature .satellite-feature-text {
+  flex-shrink: 0;
+}
+@keyframes float {
+  0% { transform: rotate(-25deg) translateY(0); }
+  100% { transform: rotate(-25deg) translateY(-5px); }
+}
+
+/* Fade-in animazione */
+.fade-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards;
+}
+.fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+.fade-in > *:nth-child(2) { animation-delay: 0.3s; }
+.fade-in > *:nth-child(3) { animation-delay: 0.5s; }
+.fade-in > *:nth-child(4) { animation-delay: 0.7s; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+h4 .abatel {
+  color: #ff6600 !important;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+.ciao {
+  font-size: 18px;
+}
+.btn-sipario9 {
+  position: relative;
+  display: inline-block;
+  right: -1025px;
+  top: 155px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario9::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario9 span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario9:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+.titolO {
+  position: relative;
+  top: -80px;
+} 
+.diverso {
+  font-family: 'Segoe UI', sans-serif;
+  top: 27px;
+  position: relative;
+  right: 512px;
+  color: black;
+}
+.TITOLO {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+  margin: 30px auto 10px auto;
+  margin-top: -70px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.co {
+  position: relative; /* contesto per posizionare il rettangolo */
+  top: -908px;
+}
+
+.Rettangolo-link {
+  position: absolute;     /* libero di muoversi nel container */
+  left: 1570px;             /* spostato a sinistra */
+  top: 820px;              /* distanza dall’alto */
+  
+  background: #f5f5f5;  
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;              
+  font-family: 'Segoe UI', sans-serif;
+  width: 300px;           
+  min-height: 400px;      
+  z-index: 10;            /* resta sopra il testo */
+}
+
+.Rettangolo-link a {
+  display: flex;                 
+  justify-content: space-between;
+  align-items: center;           
+  margin: 10px auto;
+  padding: 15px 30px;
+  width: 220px;                  
+  border-radius: 50px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.Rettangolo-link a:hover {
+  background-color: orange;
+  color: white;
+}
+.capo-lista {
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+  margin: 30px auto 10px auto;
+  margin-top: -60px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+.fili {
+  position: relative;
+  top: 10px;
+  width: 100%;               /* occupa tutto lo spazio del contenitore */
+  border-radius: 10px;       /* arrotonda leggermente i bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ombra leggera */
+}
+.presa {
+  
+  position: relative;
+  top: -10px;
+  width: 100%;               /* occupa tutto lo spazio del contenitore */
+  border-radius: 10px;       /* arrotonda leggermente i bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ombra leggera */
+}
+
+
+.barattolo-contatti{
+  position: relative; /* contesto per il rettangolo */
+  top: 180px;
+}
+
+.scatola-contatti {
+  position: absolute;
+  right: 85px; /* puoi mettere left: 20px se vuoi a sinistra */
+  top: 190px;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  z-index: 10;
+}
+
+.contatto-oggetto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.contatto-oggetto i {
+  font-size: 18px;
+  color: orange;
+}
+
+.contatto-oggetto:hover {
+  background-color: orange;
+  color: white;
+}
+
+.contatto-oggetto:hover i {
+  color: white;
+}
+.contatto-oggetto a {
+  color: inherit;           /* mantiene il colore originale */
+  text-decoration: none;    /* rimuove sottolineatura */
+}
+
+.contatto-oggetto a:hover {
+  color: white;             /* cambia colore quando hover sul contatto */ 
+}
+.btn-sipario10 {
+  position: relative;
+  display: inline-block;
+  right: -1600px;
+  top: 290px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario10::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario10 span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario10:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+
+.titolo-centrale {
+  text-align: center;   
+  font-size: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: rgb(38, 0, 255);
+  margin: 30px auto 10px auto;
+  margin-top: -86px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.rete-globale {
+  position: relative;
+  top: -30px;
+  width: 100%;               /* occupa tutto lo spazio del contenitore */
+  border-radius: 10px;       /* arrotonda leggermente i bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ombra leggera */
+}
+.server {  
+  position: relative;
+  top: -10px;
+  width: 100%;               /* occupa tutto lo spazio del contenitore */
+  border-radius: 10px;       /* arrotonda leggermente i bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* ombra leggera */
+}
+
+.raccolta-contatti {
+  position: relative; /* contesto per il rettangolo */
+  top: 178px;
+}
+
+.forma-rettangolo {
+  position: absolute;
+  right: 85px; /* puoi mettere left: 20px se vuoi a sinistra */
+  top: 190px;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  z-index: 10;
+}
+
+.oggetto {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-family: 'Segoe UI', sans-serif;
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+.oggetto i {
+  font-size: 18px;
+  color: orange;
+}
+
+.oggetto:hover {
+  background-color: orange;
+  color: white;
+}
+
+.oggetto:hover i {
+  color: white;
+}
+.oggetto a {
+  color: inherit;           /* mantiene il colore originale */
+  text-decoration: none;    /* rimuove sottolineatura */
+}
+
+.oggetto a:hover {
+  color: white;             /* cambia colore quando hover sul contatto */ 
+}
+.btn-sipario11 {
+  position: relative;
+  display: inline-block;
+  right: -1525px;
+  top: 290px;
+  padding: 12px 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;       /* bordi arrotondati */
+  background-color: rgb(206, 139, 16); /* blu chiaro iniziale */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.btn-sipario11::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #1a3d7c; /* blu scuro */
+  transition: all 0.5s ease;
+  z-index: 0; /* sta **sotto** il testo */
+}
+
+.btn-sipario11 span {
+  position: relative;
+  z-index: 1; /* testo sopra l’overlay */
+  transition: color 0.3s ease;
+}
+
+.btn-sipario11:hover::before {
+  left: 0; /* l’overlay scorre sopra il bottone ma sotto il testo */
+}
+
+.partner {
+  position: relative;
+  top: -18px;
+  color: black;
+}
+.svolgimento {
+  text-align: left;             /* titolo a sinistra */
+  margin-left: 20px;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  opacity: 0;
+  transform: translateX(50px);   /* parte da destra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.svolgimento.visibili {
+  opacity: 1;
+  transform: translateX(0);      /* torna in posizione */
+}
+
+.analisi {
+  position: relative;
+  text-align: left;            
+  margin-left: 41px;           
+  margin-right: auto;          
+  max-width: 800px;            
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #333;
+  opacity: 0;
+  transform: translateX(50px);   /* parte da destra */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.analisi.visibili {
+  opacity: 1;
+  transform: translateX(0);      /* torna in posizione */
+}
+
+.analisi strong {
+  font-weight: normal;         
+}
+/* Stile immagine rete */
+.rete {
+  width: 250px;
+  border-radius: 15px;
+  display: block;
+  margin: 20px auto;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease;
+}
+
+/* Classe visibile quando scroll */
+.rete.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+/*chi siamo*/
+.responsive {
+  width: 100%;           /* occupa tutta la larghezza */
+  max-width: 100%;       /* non limitare troppo su desktop */
+  margin: 0;             /* niente centratura forzata */
+  padding: 20px;         /* spazio interno base */
+  box-sizing: border-box;
+}
+
+/* Desktop grandi */
+@media (min-width: 1501px) {
+  .responsive {
+    padding: 40px;       /* più spazio interno su desktop grandi */
+  }
+}
+
+/* Desktop medi / laptop */
+@media (min-width: 1025px) and (max-width: 1500px) {
+  .responsive {
+    padding: 30px;       /* un po’ più di spazio rispetto al base */
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .responsive {
+    padding: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .responsive {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive {
+    padding: 10px;
+  }
+}
+.improve {
+  position: relative;
+  right: -1.8vw;                 /* prima -18px */
+  font-family: 'Montserrat', sans-serif;
+  color: blue;
+
+  font-size: clamp(1rem, 2vw, 2rem); /* dimensione fluida */
+  
+  opacity: 0;                     /* invisibile inizialmente */
+  transform: scale(0.8);          /* parte più piccola */
+  animation: fadeInGrow 1s ease forwards; /* animazione CSS */
+  animation-delay: 0.5s;          /* piccolo ritardo */
+}
+
+/* Animazione */
+@keyframes fadeInGrow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+  .improve {
+    right: -1vw;
+    font-size: clamp(0.8rem, 4vw, 1.5rem);
+  }
+}
+
+/* Smartphone medi/grandi */
+@media (max-width: 480px) {
+  .improve {
+    right: -1.2vw;
+    font-size: clamp(0.9rem, 3vw, 1.7rem);
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .improve {
+    right: -1.5vw;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+  }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .improve {
+    right: -1.6vw;
+    font-size: clamp(1rem, 2vw, 2rem);
+  }
+}
+.abatel-description {
+  position: relative;
+  right: -2.8vw; /* prima -28px */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem); /* dimensione fluida */
+  line-height: 1.6;
+  color: #333;
+
+  opacity: 0;                     /* invisibile inizialmente */
+  transform: translateY(5vh);     /* parte dal basso in modo relativo */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.abatel-description.show {
+  opacity: 1;
+  transform: translateY(0);       /* posizione finale */
+}
+
+/* Dropcap */
+.abatel-description .dropcap {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  float: left;
+  font-size: clamp(3rem, 6vw, 4rem); /* dimensione fluida */
+  line-height: 1;
+  margin-right: 0.5vw;                /* margine relativo */
+  font-weight: bold;
+  color: black;
+}
+
+/* Media query per smartphone piccoli */
+@media (max-width: 360px) {
+  .abatel-description {
+    right: -1vw;
+    font-size: clamp(0.9rem, 4vw, 1rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+    margin-right: 2vw;
+  }
+}
+
+/* Smartphone medi/grandi */
+@media (max-width: 480px) {
+  .abatel-description {
+    right: -1.5vw;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+    margin-right: 1.5vw;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .abatel-description {
+    right: -2vw;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(3rem, 5vw, 3.5rem);
+    margin-right: 1vw;
+  }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .abatel-description {
+    right: -2.5vw;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+  .abatel-description .dropcap {
+    font-size: clamp(3rem, 4vw, 4rem);
+    margin-right: 0.8vw;
+  }
+}
+.sparti { 
+  position: relative;
+  top: 4vh;           /* altezza relativa al viewport */
+  left: 0; 
+  width: 100%;        /* sempre tutta la larghezza */
+  height: 0.2vh;      /* spessore relativo */
+  background-color: grey; 
+  z-index: 1; 
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .sparti {
+    top: 3vh;
+    height: 0.25vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .sparti {
+    top: 2.5vh;
+    height: 0.3vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .sparti {
+    top: 2vh;
+    height: 0.4vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .sparti {
+    top: 1.8vh;
+    height: 0.5vh;
+  }
+}
+.cinqueg {
+  position: relative;
+  width: clamp(10rem, 50vw, 26rem);   /* larghezza fluida */
+  border-radius: 1.8rem;
+
+  top: -45vh;                          /* posizione verticale relativa */
+  right: -65vw;                        /* più a sinistra */
+  
+  opacity: 0;                          
+  transform: translateX(-10%);         /* parte leggermente da sinistra */
+
+  animation: fadeInLeft 1s ease forwards; 
+  animation-delay: 0.5s;               
+}
+
+/* Animazione */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+  .cinqueg {
+    width: clamp(15rem, 70vw, 20rem);
+    top: -25vh;
+    right: -30vw;
+    transform: translateX(-15%);
+  }
+}
+
+/* Smartphone medi/grandi */
+@media (max-width: 480px) {
+  .cinqueg {
+    width: clamp(18rem, 60vw, 25rem);
+    top: -28vh;
+    right: -32vw;
+    transform: translateX(-12%);
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .cinqueg {
+    width: clamp(20rem, 50vw, 30rem);
+    top: -32vh;
+    right: -35vw;
+    transform: translateX(-10%);
+  }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .cinqueg {
+    width: clamp(22rem, 50vw, 33rem);
+    top: -35vh;
+    right: -38vw;
+    transform: translateX(-10%);
+  }
+}
+/* Dispositivi verticali (portrait) */
+/* Dispositivi verticali (portrait) */
+@media (orientation: portrait) {
+  .cinqueg {
+    top: -40vh;        /* sopra il testo */
+    right: -15vh;          
+    transform: translateX(0); 
+    z-index: 10;       
+  }
+ 
+  .improve {
+    top: 25vh;
+  }
+  .abatel-description {
+    top: 25vh;         /* sposta il testo più in basso per non essere coperto */
+  }
+}
+@media (orientation: portrait) {
+  .falla-andare-in-basso > * {
+    transform: translateY(40vh); /* sposta tutti gli elementi verso il basso del 10% dell'altezza viewport */
+  }
+}
+/* Sposta gli elementi di .linea-bassa-verticale più in basso su dispositivi verticali */
+/* Sposta tutti gli elementi di .falla-andare-in-basso più in basso in verticale */
+@media (orientation: portrait) {
+  .falla-andare-in-basso > * {
+    position: relative;  /* assicura che il top funzioni */
+    top: 10vh;           /* sposta verso il basso del 10% dell'altezza viewport */
+  }
+
+  .linea-bassa-verticale > * {
+    position: relative;
+    top: 40vh;
+  }
+}
+.mano {
+  color: #FF8C00; /* Dark Orange */
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  top: -25vh;           /* più in alto */
+  right: -2vw;
+
+  opacity: 0;                    
+  transform: translateX(8vw);    
+  animation: slideRightFade 1s ease forwards;
+  animation-delay: 0.3s;
+  font-size: clamp(1rem, 2vw, 1.5rem); 
+  margin-bottom: 15vh;   /* spazio sotto per il testo successivo */
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .mano {
+    top: -17vh;
+    right: -1.5vw;
+    transform: translateX(6vw);
+    margin-bottom: 4vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .mano {
+    top: -15vh;
+    right: -1vw;
+    transform: translateX(5vw);
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    margin-bottom: 4vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .mano {
+    top: -12vh;
+    right: -0.5vw;
+    transform: translateX(4vw);
+    font-size: clamp(0.8rem, 4vw, 1rem);
+    margin-bottom: 3vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .mano {
+    top: -10vh;
+    right: 0;
+    transform: translateX(3vw);
+    font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+    margin-bottom: 3vh;
+  }
+}
+
+.invitiamo {
+  position: relative;
+  top: -35vh;           /* più alto rispetto a prima */
+  right: -0.3vw;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+
+  opacity: 0;                      
+  transform: translateY(-6vh);     /* parte ancora più dall’alto */
+  animation: slideTopFade 1s ease forwards;
+  animation-delay: 0.6s;          
+  margin-bottom: 4vh;              
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+  .invitiamo {
+    top: -22vh;
+    right: -0.2vw;
+    transform: translateY(-5vh);
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    margin-bottom: 3.5vh;
+  }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+  .invitiamo {
+    top: -20vh;
+    right: 0;
+    transform: translateY(-4.5vh);
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
+    margin-bottom: 3vh;
+  }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+  .invitiamo {
+    top: -16vh;
+    right: 0;
+    transform: translateY(-4vh);
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    margin-bottom: 2.5vh;
+  }
+}
+
+/* Smartphone piccoli */
+@media (max-width: 360px) {
+  .invitiamo {
+    top: -14vh;
+    right: 0;
+    transform: translateY(-3.5vh);
+    font-size: clamp(0.7rem, 4.5vw, 0.9rem);
+    margin-bottom: 2vh;
+  }
+}
+
+/* Animazione per .mano */
+@keyframes slideRightFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animazione per .invitiamo */
+@keyframes slideTopFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .informazioni .mano {
+    position: relative;
+    top: -29vh;  /* sposta verso l'alto del 5% dell'altezza viewport */
+  }
+
+  .informazioni .invitiamo {
+    position: relative;
+    top: -32vh;  /* leggermente meno per mantenere distanza tra titoli */
+  }
+}
+
+.pulsante-sipario {
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  right: -85vw;                 /* più a destra rispetto a prima */
+  top: -32vh;                     /* mantiene altezza */
+  display: inline-block;
+  padding: 1rem 2rem;            
+  background-color: blue;        
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;         
+  font-weight: bold;
+  overflow: hidden;
+opacity: 0;
+  /* Animazione iniziale */
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease, transform 0.8s ease, right 0.8s ease, top 0.8s ease;
+}
+
+/* Media query per dispositivi verticali / tablet / smartphone */
+/* Desktop / Tablet grandi (1025px - 1200px) */
+@media (max-width: 1200px) {
+  .pulsante-sipario {
+    right: -80vw;
+    top: -30vh;
+    padding: 0.9rem 1.8rem;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+  }
+}
+
+/* Tablet medi (768px - 1024px) */
+@media (max-width: 1024px) {
+  .pulsante-sipario {
+    right: -75vw;
+    top: -28vh;
+    padding: 0.8rem 1.5rem;
+    font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  }
+}
+
+/* Smartphone grandi (480px - 767px) */
+@media (max-width: 767px) {
+  .pulsante-sipario {
+    right: -70vw;
+    top: -25vh;
+    padding: 0.7rem 1.3rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+}
+
+/* Smartphone medi (360px - 479px) */
+@media (max-width: 479px) {
+  .pulsante-sipario {
+    right: -65vw;
+    top: -22vh;
+    padding: 0.6rem 1.1rem;
+    font-size: clamp(0.75rem, 3vw, 0.95rem);
+  }
+}
+
+/* Smartphone compatti / piccoli (<360px) */
+@media (max-width: 359px) {
+  .pulsante-sipario {
+    right: -60vw;
+    top: -20vh;
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+  }
+}
+/* Stato quando entra nello schermo */
+.pulsante-sipario.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pulsante-sipario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100%; /* Inizia fuori a destra */
+  width: 100%;
+  height: 100%;
+  background-color: red; /* Arancione */
+  transition: right 0.4s ease;
+  z-index: 0;
+}
+
+.pulsante-sipario:hover::before {
+  right: 0; /* Scorre verso sinistra */
+}
+
+.pulsante-sipario:hover {
+  color: white;
+}
+
+.pulsante-sipario span {
+  position: relative;
+  z-index: 1;
+}
+.icona {
+  position: relative;
+  top: -62vh;                  /* altezza relativa */
+  right: -87vw;                /* spostata a destra in unità relative */
+  font-size: clamp(3rem, 12vw, 8rem); /* dimensione fluida tra 3rem e 8rem */
+
+  opacity: 0;                 
+  transform: translateX(-5vw); /* parte spostata da sinistra in unità relative */
+  animation: slideFadeIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* Tablet medi/grandi */
+/* Tablet grandi / desktop */
+@media (max-width: 1200px) {
+  .icona {
+    top: -55vh;
+    right: -80vw;
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    transform: translateX(-4vw);
+  }
+}
+
+/* Tablet medi / schermi da 768px a 1024px */
+@media (max-width: 1024px) {
+  .icona {
+    top: -50vh;
+    right: -75vw;
+    font-size: clamp(2.2rem, 9vw, 6rem);
+    transform: translateX(-3.5vw);
+  }
+}
+
+/* Tablet piccoli / smartphone grandi (480px - 767px) */
+@media (max-width: 767px) {
+  .icona {
+    top: -42vh;
+    right: -70vw;
+    font-size: clamp(1.8rem, 8vw, 5rem);
+    transform: translateX(-3vw);
+  }
+}
+
+/* Smartphone medi (360px - 479px) */
+@media (max-width: 479px) {
+  .icona {
+    top: -35vh;
+    right: -65vw;
+    font-size: clamp(1.5rem, 7vw, 4rem);
+    transform: translateX(-2vw);
+  }
+}
+
+/* Smartphone compatti / piccoli (meno di 360px) */
+@media (max-width: 359px) {
+  .icona {
+    top: -30vh;
+    right: -60vw;
+    font-size: clamp(1.2rem, 6vw, 3.5rem);
+    transform: translateX(-1.5vw);
+  }
+}
+/* Definizione animazione */
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Dispositivi verticali */
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .servizi-chi-siamo {
+    position: relative;
+    top: 8vh;  /* sposta il pulsante verso il basso */
+    right: 15vh;
+  }
+
+  .icona {
+    position: relative;
+    top: 8vh;  /* sposta l'icona un po' più in basso rispetto al pulsante */
+    right: -34.5vh;
+  }
+}
+/*Chi siamo*/
+
+.ethernet {
+   width: clamp(200px, 40vw, 600px); /* immagine più grande e fluida */
+  max-width: 100%;
+  height: auto;
+  border-radius: 18px;
+  display: block;
+  position: relative;
+  top: -490px; /* la spinge in alto */
+  left: 40px;
+    /* inizialmente nascosta e spostata a destra */
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1s ease-out;
+}
+
+/* classe che attiva animazione */
+.ethernet.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+/*Prima immagine chi siamo*/
+
+
+/* ==========================
+   PRIMO LOGO 
+========================== */
+
+
+
+/* Media query per smartphone */
+.primo-logo {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* allinea a sinistra */
+    align-items: center;
+    padding-left: 2vw; /* margine fluido dal bordo sinistro */
+}
+
+.primo-logo .ethernet {
+    width: auto;
+    height: clamp(20vh, 35vh, 40vh); /* altezza fluida tra 20vh e 40vh */
+    max-width: 95%;
+    object-fit: contain;
+}
+/* ---prima immagine chi siamo---*/
+.container-primo {
+    position: relative;
+    width: 100%;
+    height: 120vh; /* container più alto per dare spazio all'immagine */
+}
+
+.container-primo .primo-servizio {
+    position: absolute;
+    top: 0;
+    left: 20vw;
+    width: auto;
+    height: 40vh;
+    max-width: 95%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-150%) scale(1); /* translateY per la posizione, scale iniziale 1 */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0; /* inizialmente invisibile */
+}
+
+.container-primo .primo-servizio.animate-zoom {
+    transform: translateY(-150%); /* manteniamo translateY, aggiungiamo solo zoom */
+    opacity: 1;
+}
+/* Overlay scritta sopra immagine */
+
+.primo-servizio-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-159%, -1730%);
+    color: white;
+    font-size: clamp(1rem, 2vw, 2rem);
+    text-align: center;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    pointer-events: none;
+    z-index: 25;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .primo-servizio-overlay {
+        font-size: clamp(0.8rem, 4vw, 1.5rem);
+    }
+}
+
+
+/* Smartphone piccolissimi */
+@media (max-width: 360px) {
+    .container-primo .primo-servizio {
+        top: 0;
+        left: 5vw;
+        height: 25vh;
+        transform: translateY(-100%);
+    }
+}
+
+/* Smartphone medi */
+@media (max-width: 414px) {
+    .container-primo .primo-servizio {
+        top: 0;
+        left: 6vw;
+        height: 28vh;
+        transform: translateY(-120%);
+    }
+}
+
+/* Smartphone grandi */
+@media (max-width: 480px) {
+    .container-primo .primo-servizio {
+        top: 0;
+        left: 7vw;
+        height: 30vh;
+        transform: translateY(-130%);
+    }
+}
+
+/* Tablet piccoli */
+@media (max-width: 768px) {
+    .container-primo .primo-servizio {
+        top: 0;
+        left: 8vw;
+        height: 32vh;
+        transform: translateY(-140%);
+    }
+}
+
+/* Tablet medi/grandi */
+@media (max-width: 1024px) {
+    .container-primo .primo-servizio {
+        top: 5%;
+        left: 9vw;
+        height: 33vh;
+        transform: translateY(-150%);
+    }
+}
+/*----Seconda immagine chi siamo----*/
+.container-secondo {
+    position: relative;
+    width: 100%;
+    height: 160vh; /* container alto per dare spazio all'immagine */
+}
+
+/* Stato iniziale invisibile e ferma */
+.container-secondo .secondo-servizio {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-10%, -540%);
+    width: auto;
+    height: clamp(30vh, 38vh, 42vh);
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    opacity: 0;                    /* inizialmente invisibile */
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+/* Quando aggiungi la classe animate-slide */
+.container-secondo .secondo-servizio.animate-slide {
+    transform: translate(5%, -540%);  /* slide leggero verso destra */
+    opacity: 1;                        /* diventa visibile */
+}
+/* Tablet medi/grandi (10–12") */
+@media (max-width: 1024px) {
+    .container-secondo .secondo-servizio {
+        transform: translate(-10%, -500%);
+        height: clamp(28vh, 36vh, 40vh);
+    }
+}
+
+/* Tablet piccoli (7–8") */
+@media (max-width: 768px) {
+    .container-secondo .secondo-servizio {
+        transform: translate(-10%, -460%);
+        height: clamp(25vh, 32vh, 38vh);
+    }
+}
+
+/* Smartphone grandi (iPhone 12–15, Galaxy S21–23) */
+@media (max-width: 480px) {
+    .container-secondo .secondo-servizio {
+        transform: translate(-10%, -400%);
+        height: clamp(20vh, 30vh, 35vh);
+    }
+}
+
+/* Smartphone compatti (S23 compatti, dispositivi stretti) */
+@media (max-width: 360px) {
+    .container-secondo .secondo-servizio {
+        transform: translate(-10%, -350%);
+        height: clamp(18vh, 25vh, 32vh);
+    }
+}
+/*---Terza immagine chi siamo ----*/
+.container-terzo {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* altezza del container */
+}
+
+/* Stato iniziale invisibile e in alto */
+.container-terzo .terzo-servizio {
+    position: absolute;
+    top: 0;
+    left: 10vw; 
+    width: auto;
+    height: clamp(30vh, 40vh, 50vh);
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-755%);  /* inizialmente molto in alto */
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+/* Quando aggiungi la classe animate-drop */
+.container-terzo .terzo-servizio.animate-drop {
+    transform: translateY(-750%);  /* scende di un po’ verso il basso */
+    opacity: 1;
+}
+/* Desktop / tablet grandi */
+.container-terzo .terzo-servizio {
+    transform: translateY(-755%);
+}
+
+/* Smartphone medi/grandi (iPhone 12/13/14/15, S23) */
+@media (max-width: 480px) {
+    .container-terzo .terzo-servizio {
+        transform: translateY(-600%); /* meno estrema per restare visibile */
+    }
+}
+
+/* Smartphone stretti / compatti */
+@media (max-width: 360px) {
+    .container-terzo .terzo-servizio {
+        transform: translateY(-500%); /* ancora più contenuta */
+    }
+}
+/*----Quarta immagine chi siamo----*/
+.container-quarto {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+}
+
+/* Stato iniziale invisibile e più in basso */
+.container-quarto .quarto-servizio {
+    position: absolute;
+    top: 0;
+    left: 46vw;
+    width: auto;
+    height: clamp(30vh, 40vh, 50vh);
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-870%); /* più basso dell'originale */
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+
+
+
+/* Tablet e desktop */
+@media (min-width: 769px) {
+    .container-quarto .quarto-servizio {
+        transform: translateY(-930%);
+        left: 48vw;
+    }
+}
+
+/* Smartphone medi/grandi (S23, iPhone 12–15) */
+@media (max-width: 480px) {
+    .container-quarto .quarto-servizio {
+        transform: translateY(-760%);
+        left: 43vw;
+    }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+    .container-quarto .quarto-servizio {
+        transform: translateY(-650%);
+        left: 40vw;
+    }
+}
+/*----quinta immagine chi siamo----*/
+.container-quinto {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+}
+
+.container-quinto .quinto-servizio {
+    position: absolute;
+    top: 0;                         
+    left: 55vw;
+    width: auto;
+    height: clamp(25vh, 35vh, 45vh);
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-1120%); /* leggero aumento rispetto a prima */
+}
+
+/* Desktop / tablet grandi */
+@media (min-width: 769px) {
+    .container-quinto .quinto-servizio {
+        transform: translateY(-1140%); /* +10% rispetto a prima */
+        left: 55vw;
+    }
+}
+
+/* Smartphone medi/grandi (S23, iPhone 12–15) */
+@media (max-width: 480px) {
+    .container-quinto .quinto-servizio {
+        transform: translateY(-860%);
+        left: 45vw;
+        height: clamp(20vh, 30vh, 35vh);
+    }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+    .container-quinto .quinto-servizio {
+        transform: translateY(-710%);
+        left: 40vw;
+        height: clamp(18vh, 25vh, 30vh);
+    }
+}
+/*----sesta immagine chi siamo----*/
+.container-sesto {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* altezza base del container */
+}
+
+.container-sesto .sesto-servizio {
+    position: absolute;
+    top: 0;
+    left: 5vw;
+    width: auto;
+    height: clamp(30vh, 40vh, 50vh);
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-1110%); /* leggermente più in basso */
+}
+
+/* Smartphone medi/grandi (S23, iPhone 12–15) */
+@media (max-width: 480px) {
+    .container-sesto .sesto-servizio {
+        transform: translateY(-820%);
+        height: clamp(25vh, 35vh, 40vh);
+        left: 5vw;
+    }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+    .container-sesto .sesto-servizio {
+        transform: translateY(-670%);
+        height: clamp(20vh, 30vh, 35vh);
+        left: 4vw;
+    }
+}
+/*----settima immagine chi siamo----*/
+.container-settimo {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* altezza del container */
+}
+
+.container-settimo .settimo-servizio {
+    position: absolute;
+    top: 0;
+    left: 48vw;                 /* ancora più a sinistra */
+    width: auto;
+    height: clamp(25vh, 35vh, 45vh); /* altezza fluida e responsive */
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-1400%); /* sale ancora più in alto */
+}
+
+/* Smartphone medi/grandi (S23, iPhone 12–15) */
+@media (max-width: 480px) {
+    .container-settimo .settimo-servizio {
+        transform: translateY(-1000%);
+        left: 40vw;
+        height: clamp(20vh, 30vh, 35vh);
+    }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+    .container-settimo .settimo-servizio {
+        transform: translateY(-780%);
+        left: 36vw;
+        height: clamp(18vh, 25vh, 30vh);
+    }
+}
+/*----ottava immagine chi siamo----*/
+.container-ottavo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: -470vh; /* spazio sopra il footer */
+    overflow: visible;
+}
+
+/* Immagine/servizio */
+.container-ottavo .ottavo-servizio {
+    position: absolute;
+    top: 0;
+    left: 15vw;                 /* posizionata a sinistra */
+    width: auto;
+    height: clamp(25vh, 35vh, 45vh); /* altezza responsive */
+    max-width: 45%;
+    object-fit: contain;
+    border-radius: 18px;
+    z-index: 10;
+    transform: translateY(-15%);  /* posizione iniziale per animazione */
+    opacity: 0;                     /* invisibile inizialmente */
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+/* Smartphone medi/grandi (S23, iPhone 12–15) */
+@media (max-width: 480px) {
+    .container-ottavo .ottavo-servizio {
+        transform: translateY(-1050%);
+        left: 12vw;
+        height: clamp(20vh, 30vh, 35vh);
+    }
+}
+
+/* Smartphone compatti */
+@media (max-width: 360px) {
+    .container-ottavo .ottavo-servizio {
+        transform: translateY(-850%);
+        left: 8vw;
+        height: clamp(18vh, 25vh, 30vh);
+    }
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 2.5rem;        /* invece di 40px */
+  position: relative;
+  z-index: 1;
+  margin-top: -1.375rem;  /* invece di -22px */
+  flex-wrap: wrap;         /* permette di andare a capo se necessario */
+}
+
+.footer h3,
+.footer h2 {
+  margin-bottom: 0.9375rem; /* invece di 15px */
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer p {
+  max-width: 18.75rem; /* invece di 300px */
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer nav {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0.3125rem 0;  /* invece di 5px */
+  transition: color 0.3s ease;
+}
+
+.footer nav a:hover,
+.footer nav a:active {
+  color: orange;
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) {  /* 1024px */
+  .footer {
+    padding: 1.875rem;     /* invece di 30px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer p,
+  .footer nav {
+    margin-bottom: 1.25rem; /* invece di 20px */
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) {  /* 768px */
+  .footer {
+    padding: 1.25rem;      /* invece di 20px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer p,
+  .footer nav {
+    max-width: 100%;
+    margin-bottom: 0.9375rem; /* invece di 15px */
+  }
+  .footer h3,
+  .footer h2 {
+    font-size: 1.2rem;
+  }
+  .footer nav a {
+    font-size: 1rem;
+    margin: 0.1875rem 0; /* invece di 3px */
+  }
+}
+
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: #2c2c2c77; /* grigio scuro */
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;       /* centra titoli e testi */
+  max-width: 90vw;          /* larghezza massima ridotta in modo relativo */
+  width: 100%;              /* occupa tutta la larghezza disponibile */
+  margin: 27rem auto 1.25rem auto; /* margini top/bottom fluidi, centrato orizzontalmente */
+  position: relative;
+  z-index: 10;
+}
+
+/* Blocco logo blu */
+.logo-blocco {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;               /* meno largo rispetto agli altri blocchi */
+  padding: 1rem;            /* padding relativo */
+  border-radius: 0;
+}
+
+.logo-blocco img {
+  max-width: 10rem;        /* dimensione immagine relativa */
+  height: auto;
+}
+
+/* Altri blocchi */
+.info-blocco {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.info-blocco h5 {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  justify-content: center; /* centra icone + testo */
+}
+
+.info-blocco p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover sul blocco */
+.info-blocco:hover {
+  background: #3a3a3a;
+}
+
+/* Sezione finale */
+
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) { /* 1024px */
+  .info-box {
+    flex-direction: column; /* impila i blocchi */
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .logo-blocco,
+  .info-blocco {
+    flex: 1 1 100%;         /* ogni blocco prende tutta la larghezza */
+    margin-bottom: 1rem;
+  }
+
+  .logo-blocco img {
+    max-width: 8rem;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) { /* 768px */
+  .info-box {
+    padding: 1.5rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .logo-blocco img {
+    max-width: 6rem;
+  }
+
+  .info-blocco h5 {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .info-blocco p {
+    font-size: 0.8rem;
+  }
+}
+/*Team*/
+.il-nostro-team strong {
+  font-weight: normal;
+}
+.il-nostro-team h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* min 1.5rem, max 3rem, fluido in mezzo */
+  text-align: center;
+  line-height: 1.2;
+  margin: 1rem auto;
+  color: #000;
+
+  /* ANIMAZIONE FADE-IN DAL BASSO */
+  opacity: 0;
+  transform: translateY(40px);  /* parte leggermente più in basso */
+  animation: fadeUp 1.5s ease forwards;
+}
+
+/* Definizione dell’animazione */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.il-nostro-team p {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* dimensione fluida da smartphone a desktop */
+  line-height: 1.6;                        /* leggibilità */
+  text-align: center;                      /* centra il testo */
+  margin: 0 auto;                          /* centraggio orizzontale */
+  max-width: 90%;                          /* evita larghezze eccessive */
+
+  /* ANIMAZIONE FADE-IN + INGRANDIMENTO DAL BASSO */
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);  /* parte più in basso e leggermente ridotto */
+  animation: fadeUpZoom 1.5s ease forwards;
+}
+
+/* Definizione animazione */
+@keyframes fadeUpZoom {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logo-su-maglia {
+  position: relative;
+  top: -39vh;      /* ancora più in alto */
+  left: 1vw;       /* leggermente più a destra */
+  width: 16vw;
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE SLIDE DA SINISTRA */
+  opacity: 0;
+  transform: translateX(-60px);   /* parte spostato a sinistra */
+  animation: slideFromLeft 1.5s ease forwards;
+}
+
+.logo-su-maglia img {
+  width: 18vw;
+  max-width: 30vw;
+  min-width: 10vw;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .logo-su-maglia {
+    position: absolute;   /* sopra tutti gli altri elementi */
+    top: 51vh;             /* distanza dal bordo superiore */
+    left: 12%;            /* centro orizzontale */
+    transform: translateX(-50%); /* centra perfettamente */
+    width: 40vw;          /* larghezza più grande o adattabile */
+    max-width: 60vw;      /* non supera il 60% del viewport */
+    z-index: 120;          /* sopra tutti gli altri elementi */
+  }
+
+  .logo-su-maglia img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;         
+    object-fit: contain;
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .il-nostro-team {
+    position: relative;  /* necessario per usare top senza rompere layout */
+    top: 26vh;           /* sposta tutto il contenitore verso il basso del 10% dell'altezza viewport */
+  }
+}
+/*fine logo su maglia*/
+/*inizio logo mauro*/
+ .mauro { 
+  position: relative; 
+  top: -92vh;           /* altezza relativa */ 
+  right: -79vw;         /* distanza dal lato destro */
+  width: 16vw; 
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE FADE-IN + SLIDE DA DESTRA */
+  opacity: 0;
+  transform: translateX(60px); /* parte spostato a destra */
+  animation: slideFromRight 1.5s ease forwards;
+}
+
+.mauro img { 
+  width: 18vw;                     /* larghezza relativa al viewport width */ 
+  max-width: 30vw;                 /* non supera il 30% della larghezza viewport */ 
+  min-width: 10vw;                 /* non scende sotto il 10% della larghezza viewport */ 
+  height: auto;                    /* mantiene proporzioni */ 
+  object-fit: contain; 
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px); /* parte da destra */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);   /* arriva nella posizione normale */
+  }
+}/* Tablet */ 
+    @media (max-width: 1024px) { 
+      .mauro { 
+        top: 15vh; 
+        right: 5vw; 
+        width: 20vw; } 
+        .mauro img { 
+          width: 20vw; } 
+        } /* Dispositivi verticali */ 
+    @media (orientation: portrait) { 
+      .mauro { 
+        position: absolute; /* sopra gli altri elementi */ 
+        top: 51vh; /* più in alto sullo schermo verticale */ 
+        right: 5vw; /* più a destra */ 
+        width: 35vw; /* larghezza adattabile */ 
+        max-width: 40vw; /* non supera il 40% del viewport */ 
+        z-index: 120; /* sopra gli altri elementi */ } 
+      .mauro img {
+        width: 100%; /* occupa tutta la larghezza del contenitore */
+        height: auto;
+        object-fit: contain; /* mantiene proporzioni */ } }
+
+
+/*inizio immagine ftt cab abatel*/
+.ftt-cab-abatel {
+  position: relative;
+  width: 15%;
+  max-width: 60%;
+  min-width: 20%;
+  top: -92vh;
+  right: -1vw;
+  margin: 0 auto;
+  opacity: 0;             /* parte invisibile */
+  transform: translateY(50px); /* parte più in basso */
+  transition: all 1s ease-out;
+}
+
+.ftt-cab-abatel.show {
+  opacity: 1;
+  transform: translateY(0); /* posizione finale */
+}
+
+.ftt-cab-abatel img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+/* Quando entra in viewport */
+
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .ftt-cab-abatel {
+    position: relative;   /* mantiene il flusso */
+    top: 26vh;            /* sposta verso il basso del 10% dell'altezza viewport */
+    right: 0;             /* centrata rispetto al contenitore */
+    margin: 0 auto;       /* centrata orizzontalmente */
+    width: 50%;           /* opzionale: puoi adattarla più grande se vuoi */
+    max-width: 80%;       /* non supera il 80% del viewport */
+  }
+
+  .ftt-cab-abatel img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;
+    object-fit: contain;  
+  }
+}
+/*pulsante messaggi (whatsapp)*/
+/* Animazione e pulsante normali (desktop/orizzontale) */
+.animazione {
+  position: relative;
+  top: -160vh;
+  left: 22vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
+
+.pulsante-messaggi {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 1vh 2vw;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pulsante-messaggi:hover {
+  transform: scale(1.05);
+  background-color: #1ebe5d;
+}
+
+/* --- Solo dispositivi verticali (smartphone/tablet in portrait) --- */
+@media (orientation: portrait) {
+  .animazione {
+    top: -10vh;    /* più in basso rispetto al -160vh desktop */
+    left: 5vw;    /* leggermente più centrato */
+    transform: rotate(-20deg); /* meno inclinato per stare meglio su schermi stretti */
+  }
+
+  .pulsante-messaggi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+  }
+}
+
+@keyframes fadeRotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+/* Responsive per smartphone */
+
+/*pulsante i nostri servizi (team)*/
+.animazione-servizi {
+  position: relative;
+  top: -162vh;
+  left: 68vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
+
+/* ANIMAZIONE */
+@keyframes fadeRotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.pulsante-servizi {
+  display: inline-block;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);  /* testo fluido */
+  padding: 1.5vh 3vw;                     /* padding fluido */
+  border-radius: 1.5rem;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0f4983 0%, #bd16ff 100%); /* blu-viola */
+  color: white;
+  transition: all 0.5s ease;
+  width: auto;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Hover: cambia in verde/arancione */
+.pulsante-servizi:hover {
+  background: linear-gradient(45deg, #FF8C00, #25D366);
+  transform: scale(1.05);
+}
+
+/* Responsive per smartphone e tablet verticali */
+@media (orientation: portrait) {
+  .animazione-servizi {
+    top: -11vh; /* sposta più in basso su smartphone */
+    left: 75vw; /* più centrato */
+  }
+
+  .pulsante-servizi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+    max-width: 80%;
+  }
+}
+
+
+.parte-finale {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 2.5rem;        /* invece di 40px */
+  position: relative;
+  z-index: 1;
+  margin-top: -40.9rem;  /* invece di -22px */
+  flex-wrap: wrap;         /* permette di andare a capo se necessario */
+}
+
+.parte-finale h3,
+.parte-finale h2 {
+  margin-bottom: 0.9375rem; /* invece di 15px */
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale p {
+  max-width: 18.75rem; /* invece di 300px */
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale nav {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.parte-finale nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0.3125rem 0;  /* invece di 5px */
+  transition: color 0.3s ease;
+}
+
+.parte-finale nav a:hover,
+.parte-finale nav a:active {
+  color: orange;
+}
+
+/* MEDIA QUERY tablet */
+@media (max-width: 64rem) {  /* 1024px */
+  .parte-finale {
+    padding: 1.875rem;     /* invece di 30px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .parte-finale p,
+  .parte-finale nav {
+    margin-bottom: 1.25rem; /* invece di 20px */
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) {  /* 768px */
+  .parte-finale {
+    padding: 1.25rem;      /* invece di 20px */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .parte-finale p,
+  .parte-finale nav {
+    max-width: 100%;
+    margin-bottom: 0.9375rem; /* invece di 15px */
+  }
+  .parte-finale h3,
+  .parte-finale h2 {
+    font-size: 1.2rem;
+  }
+  .parte-finale nav a {
+    font-size: 1rem;
+    margin: 0.1875rem 0; /* invece di 3px */
+  }
+}
+
+
+.scatola-informazioni {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: #2c2c2c77;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  max-width: 90vw;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  top: -40.9rem; /* alza il blocco senza modificare il flusso */
+  left: 4.5vw;    /* sposta il blocco verso destra */
+}
+
+
+/* Blocco logo blu */
+.parte-logo {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;               /* meno largo rispetto agli altri blocchi */
+  padding: 1rem;            /* padding relativo */
+  border-radius: 0;
+}
+
+.parte-logo img {
+  max-width: 10rem;        /* dimensione immagine relativa */
+  height: auto;
+}
+
+/* Altri blocchi */
+.descrizione-blocco {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.descrizione-blocco h5 {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  justify-content: center; /* centra icone + testo */
+}
+
+.descrizione-blocco p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover sul blocco */
+.descrizione-blocco:hover {
+  background: #3a3a3a;
+}
+
+@media (max-width: 64rem) { /* 1024px */
+  .scatola-informazioni {
+    flex-direction: column; /* impila i blocchi */
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .parte-logo,
+  .descrizione-blocco {
+    flex: 1 1 100%;         /* ogni blocco prende tutta la larghezza */
+    margin-bottom: 1rem;
+  }
+
+  .parte-logo img {
+    max-width: 8rem;
+  }
+}
+
+/* MEDIA QUERY mobile */
+@media (max-width: 48rem) { /* 768px */
+  .scatola-informazioni {
+    padding: 1.5rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .parte-logo  img {
+    max-width: 6rem;
+  }
+
+  .descrizione-blocco h5 {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .descrizione-blocco p {
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
+/* Dispositivi verticali (smartphone/tablet portrait) */
+@media (orientation: portrait) {
+
+  /* Abbassiamo la parte finale */
+  .parte-finale {
+    top: 90vh;       /* sposta verso il basso del 10% dell'altezza viewport */
+    position: relative; /* mantiene il flusso relativo */
+  }
+
+  /* Abbassiamo la scatola informazioni */
+  .scatola-informazioni {
+    top: 44vh;      /* più bassa rispetto a desktop, ma relativa */
+    left: 0;         /* eventualmente centrata orizzontalmente */
+    position: relative;
+    margin: 2rem auto 1rem auto; /* margini adattati per mobile */
+  }
+}
+
+.settima {
+  background-color: #000;
+}
+
+.settima p {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@media (orientation: portrait) {
+  .settima {
+    position: relative;  /* mantiene il flusso */
+    top: 90vh;           /* sposta verso il basso del 10% dell'altezza del viewport */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
