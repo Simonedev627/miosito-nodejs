@@ -338,8 +338,8 @@ saveBtn.addEventListener('click', async ()=>{
     return;
   }
 
-const data = { date: activeDate, name, time };
-const res = await fetch('/api/bookings',{
+// CAMBIA QUESTA RIGA
+const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings', {
   method:'POST',
   headers:{'Content-Type':'application/json'},
   body: JSON.stringify(data)
@@ -380,25 +380,29 @@ document.getElementById('nextYear').addEventListener('click', ()=>{ currentYear+
 
 // --- Refresh bookings in real-time ---
 async function refreshBookings(){
-  try{
-    const res = await fetch('/api/bookings');
+  try {
+    const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings');
     const newBookings = await res.json();
     bookings = newBookings;
-    document.querySelectorAll('.day').forEach(el=>{
+    document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
-      if(bookings[date]){
+      if (bookings[date]) {
         updateDayElement(el, bookings[date]);
       } else {
-        el.classList.remove('booked'); el.classList.add('free'); el.title='';
+        el.classList.remove('booked');
+        el.classList.add('free');
+        el.title = '';
       }
     });
-  }catch(e){ console.error(e); }
+  } catch (e) {
+    console.error('Errore durante il refresh:', e);
+  }
 }
-setInterval(refreshBookings, 3000); // ogni 3 secondi
 
-// --- Init ---
+setInterval(refreshBookings, 3000); // ogni 3 secondi
 renderYear(currentYear);
 refreshBookings();
+
 
   /* utility */
 
