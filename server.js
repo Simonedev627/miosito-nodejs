@@ -6,7 +6,8 @@ const path = require("path");
 const multer = require("multer");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+console.log("✅ Server avviato, cartella public:", path.join(__dirname, "public"));
 
 
 // Percorso file prenotazioni
@@ -161,6 +162,5 @@ Nuova candidatura ricevuta!
 });
 
 // Avvia server
-app.listen(PORT, () => {
-  console.log(`Server avviato su http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => console.log(`✅ Server online sulla porta ${PORT}`));

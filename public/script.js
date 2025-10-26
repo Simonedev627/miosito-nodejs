@@ -795,3 +795,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(elemento);
 });
+
+
+      document.addEventListener("DOMContentLoaded", function() {
+  const element = document.querySelector('.ftt-cab-abatel');
+
+  // Funzione che controlla se l'elemento è visibile nello viewport
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
+
+  function handleScroll() {
+    if (isInViewport(element)) {
+      element.classList.add('show'); // aggiunge la classe per l'animazione
+    } else {
+      element.classList.remove('show'); // opzionale: torna invisibile se esce dallo schermo
+    }
+  }
+
+  // Controlla subito e ad ogni scroll
+  handleScroll();
+  window.addEventListener('scroll', handleScroll);
+});

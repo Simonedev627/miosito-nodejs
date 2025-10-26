@@ -145,5 +145,23 @@
 
     </main>
     <button id="btn-torna-su" class="button">&#x3C;↑&#x3E;</button>
+    <script>
+
+
+function aggiornaOffset(px) {
+  document.documentElement.style.setProperty('--offset-top', px + 'px');
+}
+
+// esempio: quando si apre un popup sopra
+const popup = document.querySelector('.popup');
+popup.addEventListener('show', () => {
+  aggiornaOffset(80); // sposta le immagini di 80px verso il basso
+});
+
+popup.addEventListener('hide', () => {
+  aggiornaOffset(0);  // torna alla posizione normale
+});
+
+    </script>
 </body>
 </html>
