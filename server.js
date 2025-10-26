@@ -9,18 +9,16 @@ const app = express();
 
 console.log("✅ Server avviato, cartella public:", path.join(__dirname, "public"));
 
-
-// Percorso file prenotazioni
+// --- Percorso file prenotazioni ---
 const bookingsFile = path.join(__dirname, 'bookings.json');
 
-// Middleware
+// --- Middleware ---
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // CV
 
-// Carica prenotazioni da file
+// --- Carica prenotazioni da file ---
 let bookings = {};
 try {
   bookings = JSON.parse(fs.readFileSync(bookingsFile, 'utf8') || '{}');
@@ -28,7 +26,7 @@ try {
   bookings = {};
 }
 
-// Funzione per salvare prenotazioni su file
+// --- Funzione per salvare prenotazioni ---
 function saveBookingsToFile() {
   fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
 }
@@ -44,14 +42,14 @@ app.post("/send", async (req, res) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "esposito.francesco1890@gmail.com",
-      pass: "pincgzvcdihuemjo"
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     },
   });
 
   let mailOptions = {
     from: email,
-    to: "esposito.francesco1890@gmail.com",
+    to: process.env.EMAIL_USER,
     subject: `Nuovo messaggio da ${nome}`,
     text: messaggio,
   };
@@ -66,35 +64,35 @@ app.post("/send", async (req, res) => {
 });
 
 // --- API PRENOTAZIONI ---
-app.get("/api/bookings", (req,res)=>{
+app.get("/api/bookings", (req, res) => {
   res.json(bookings);
 });
 
-app.post("/api/bookings", (req,res)=>{
+app.post("/api/bookings", (req, res) => {
   const { date, name, time } = req.body;
-  if(!date) return res.json({success:false,error:"Data mancante"});
-  bookings[date] = { name:name||null, time:time||null, ts:Date.now() };
+  if (!date) return res.json({ success: false, error: "Data mancante" });
+  bookings[date] = { name: name || null, time: time || null, ts: Date.now() };
   saveBookingsToFile();
   console.log(`📅 Nuova prenotazione: ${date} alle ${time} - ${name}`);
-  res.json({success:true, bookings});
+  res.json({ success: true, bookings });
 });
 
-app.delete("/api/bookings/:date",(req,res)=>{
+app.delete("/api/bookings/:date", (req, res) => {
   const date = req.params.date;
-  if(bookings[date]){
+  if (bookings[date]) {
     delete bookings[date];
     saveBookingsToFile();
     console.log(`❌ Prenotazione eliminata: ${date}`);
   }
-  res.json({success:true, bookings});
+  res.json({ success: true, bookings });
 });
 
-// --- Pulisci prenotazioni passate ogni giorno ---
+// --- Pulizia prenotazioni passate ---
 function cleanupBookings() {
   const today = new Date();
-  for(const date in bookings){
+  for (const date in bookings) {
     const bDate = new Date(date + 'T00:00:00');
-    if(bDate < today){
+    if (bDate < today) {
       console.log(`🗑 Prenotazione scaduta eliminata: ${date}`);
       delete bookings[date];
     }
@@ -117,27 +115,25 @@ const upload = multer({
   })
 });
 
-// Mostra modulo Lavora con noi
-app.get("/lavora-con-noi", (req,res)=>{
+app.get("/lavora-con-noi", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "lavora-con-noi.html"));
 });
 
-// Gestione invio candidatura
-app.post("/lavora", upload.single("cv"), async (req,res)=>{
+app.post("/lavora", upload.single("cv"), async (req, res) => {
   const { nome, email, esperienze, motivazione, ruolo } = req.body;
   const file = req.file ? path.join(__dirname, req.file.path) : null;
 
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "esposito.francesco1890@gmail.com",
-      pass: "pincgzvcdihuemjo"
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
   });
 
   let mailOptions = {
     from: email,
-    to: "esposito.francesco1890@gmail.com",
+    to: process.env.EMAIL_USER,
     subject: `💼 Nuova candidatura da ${nome}`,
     text: `
 Nuova candidatura ricevuta!
@@ -161,6 +157,6 @@ Nuova candidatura ricevuta!
   }
 });
 
-// Avvia server
+// --- Avvio server ---
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`✅ Server online sulla porta ${PORT}`));
