@@ -64,27 +64,38 @@ app.post("/send", async (req, res) => {
 });
 
 // --- API PRENOTAZIONI ---
-app.get("/api/bookings", (req, res) => {
-  res.json(bookings);
-});
-
-app.post("/api/bookings", (req, res) => {
+app.post("/api/bookings", async (req,res)=>{
   const { date, name, time } = req.body;
-  if (!date) return res.json({ success: false, error: "Data mancante" });
-  bookings[date] = { name: name || null, time: time || null, ts: Date.now() };
+  if(!date) return res.json({success:false,error:"Data mancante"});
+
+  bookings[date] = { name:name||null, time:time||null, ts:Date.now() };
   saveBookingsToFile();
   console.log(`📅 Nuova prenotazione: ${date} alle ${time} - ${name}`);
-  res.json({ success: true, bookings });
-});
 
-app.delete("/api/bookings/:date", (req, res) => {
-  const date = req.params.date;
-  if (bookings[date]) {
-    delete bookings[date];
-    saveBookingsToFile();
-    console.log(`❌ Prenotazione eliminata: ${date}`);
+  // --- Invia email ---
+  try {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    let mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER, // qui metti la mail del cliente
+      subject: `Nuova prenotazione: ${date}`,
+      text: `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log("📧 Email inviata al cliente!");
+  } catch(err) {
+    console.error("❌ Errore invio email:", err);
   }
-  res.json({ success: true, bookings });
+
+  res.json({success:true, bookings});
 });
 
 // --- Pulizia prenotazioni passate ---
