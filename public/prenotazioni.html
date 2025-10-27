@@ -236,6 +236,12 @@
   /* --- Config --- */
 const LO_KEY = 'bookings'; // rimane per eventuale backup locale
 let bookings = {}; // memorizza le prenotazioni
+// ID univoco utente per identificare chi ha prenotato
+let userId = localStorage.getItem('userId');
+if (!userId) {
+  userId = 'user-' + Math.random().toString(36).substring(2, 10);
+  localStorage.setItem('userId', userId);
+}
 const monthsGrid = document.getElementById('monthsGrid');
 const currentYearSpan = document.getElementById('currentYear');
 let currentYear = new Date().getFullYear();
@@ -291,7 +297,7 @@ function createMonthCard(year,monthIndex){
   if(startWeekOnMonday) startDay = (startDay===0)?6:startDay-1;
 
   for(let i=0;i<startDay;i++){
-    const blank = document.createElement('div'); blank.className='day out'; days.appendChild(blank);
+    const blank = document.createElement('div'); blank.className='day out'; days.appendChild(blank); blank.disabled = true;
   }
 
   for(let d=1; d<= lastOfMonth.getDate(); d++){
@@ -314,6 +320,11 @@ function createMonthCard(year,monthIndex){
 
 // --- Modal ---
 function openModal(iso, elem){
+  // Se il giorno è prenotato da un altro utente → blocca
+if (bookings[iso] && bookings[iso].userId !== userId) {
+  alert("Questo giorno è già prenotato da un altro utente.");
+  return;
+}
   activeDate = iso; activeElem = elem;
   const d = new Date(iso);
   modalTitle.textContent = 'Dettagli: '+d.toLocaleDateString(locale, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
@@ -323,6 +334,7 @@ function openModal(iso, elem){
   modal.classList.add('show');
 }
 function closeModal(){ modal.classList.remove('show'); activeDate=null; activeElem=null }
+
 
 saveBtn.addEventListener('click', async ()=>{
   if(!activeDate) return;
@@ -339,29 +351,41 @@ saveBtn.addEventListener('click', async ()=>{
   }
 
 // CAMBIA QUESTA RIGA
+const data = { date: activeDate, name, time, userId };
 const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings', {
   method:'POST',
   headers:{'Content-Type':'application/json'},
   body: JSON.stringify(data)
 });
   const json = await res.json();
-  if(json.success){
-    bookings[activeDate] = {name, time, ts: Date.now()};
-    updateDayElement(activeElem, bookings[activeDate]);
-    closeModal();
-  }
+ if(json.success){
+  bookings[activeDate] = {name, time, userId, ts: Date.now()};
+  updateDayElement(activeElem, bookings[activeDate]);
+  closeModal();
+}
+
 });
 
-deleteBtn.addEventListener('click', async ()=>{
-  if(!activeDate) return;
-  await fetch(`/api/bookings/${activeDate}`, { method:'DELETE' });
-  delete bookings[activeDate];
-  document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el=>{
-    el.classList.remove('booked'); el.classList.add('free'); el.title='';
+
+deleteBtn.addEventListener('click', async () => {
+  if (!activeDate) return;
+
+  await fetch(`https://miosito-nodejs.onrender.com/api/bookings/${activeDate}`, { 
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId })
   });
+
+  await refreshBookings(); // aggiorna i dati reali dal server
+
+  document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => {
+    el.classList.remove('booked');
+    el.classList.add('free');
+    el.title = '';
+  });
+alert("Prenotazione salvata con successo!");
   closeModal();
 });
-
 closeBtn.addEventListener('click', closeModal);
 modal.addEventListener('click',(e)=>{if(e.target===modal) closeModal();});
 
@@ -372,6 +396,8 @@ function updateDayElement(el, booking){
     el.classList.add('booked');
     el.title = booking.name ? `Prenotato: ${booking.name} (${booking.time})` : 'Prenotato';
   }
+  if (booking.userId && booking.userId !== userId) el.style.cursor = "not-allowed";
+else el.style.cursor = "pointer";
 }
 
 // --- Year controls ---
@@ -383,7 +409,8 @@ async function refreshBookings(){
   try {
     const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings');
     const newBookings = await res.json();
-    bookings = newBookings;
+    bookings = newBookings.bookings || newBookings;
+
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
       if (bookings[date]) {

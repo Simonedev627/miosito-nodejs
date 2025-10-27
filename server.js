@@ -81,21 +81,63 @@ ${messaggio}
 
 
 // --- API PRENOTAZIONI ---
-app.post("/api/bookings", async (req,res)=>{
-  const { date, name, time } = req.body;
-  if(!date) return res.json({success:false,error:"Data mancante"});
-
-  bookings[date] = { name:name||null, time:time||null, ts:Date.now() };
-  saveBookingsToFile();
-  console.log(`📅 Nuova prenotazione: ${date} alle ${time} - ${name}`);
-
-  await sendEmail("info@abatel.org", `Nuova prenotazione: ${date}`, 
-    `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
-  );
-
-  res.json({success:true, bookings});
+// --- API PRENOTAZIONI ---
+// Ottieni tutte le prenotazioni
+app.get("/api/bookings", (req, res) => {
+  res.json(bookings);
 });
 
+// Crea o aggiorna prenotazione
+app.post("/api/bookings", async (req, res) => {
+  const { date, name, time, userId } = req.body;
+  if (!date || !name || !time || !userId) {
+    return res.json({ success: false, error: "Dati mancanti" });
+  }
+
+  // Se la data è già prenotata e non è dello stesso utente → blocca
+  if (bookings[date] && bookings[date].userId !== userId) {
+    return res.json({ success: false, error: "Questa data è già prenotata da un altro utente" });
+  }
+
+  // Salva prenotazione
+  bookings[date] = { name, time, userId, ts: Date.now() };
+  saveBookingsToFile();
+  console.log(`📅 Prenotazione: ${date} alle ${time} - ${name}`);
+
+  // Invia email di notifica
+ const formattedDate = new Date(date).toLocaleDateString('it-IT', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+await sendEmail(
+  "info@abatel.org",
+  `📅 Nuova prenotazione: ${formattedDate}`,
+  `Hai ricevuto una nuova prenotazione!\n\n👤 Nome: ${name}\n📧 Email: ${userId}\n📅 Data: ${formattedDate}\n⏰ Orario: ${time}`
+);
+
+  res.json({ success: true, bookings });
+});
+
+// Elimina prenotazione (solo chi l’ha creata)
+app.delete("/api/bookings/:date", (req, res) => {
+  const { date } = req.params;
+  const { userId } = req.body;
+
+  if (!bookings[date]) {
+    return res.json({ success: false, error: "Prenotazione non trovata" });
+  }
+
+  if (bookings[date].userId !== userId) {
+    return res.json({ success: false, error: "Non hai i permessi per eliminare questa prenotazione" });
+  }
+
+  delete bookings[date];
+  saveBookingsToFile();
+  res.json({ success: true, bookings });
+});
 // --- Pulizia prenotazioni passate ---
 function cleanupBookings() {
   const today = new Date();
