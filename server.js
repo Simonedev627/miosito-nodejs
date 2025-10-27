@@ -1,13 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const sgMail = require('@sendgrid/mail'); // sendgrid
 
 const app = express();
 
 console.log("✅ Server avviato, cartella public:", path.join(__dirname, "public"));
+
+// --- Set SendGrid API Key ---
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // --- Percorso file prenotazioni ---
 const bookingsFile = path.join(__dirname, 'bookings.json');
@@ -31,16 +34,22 @@ function saveBookingsToFile() {
   fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
 }
 
-// --- Nodemailer con SendGrid ---
-function createSendGridTransporter() {
-  return nodemailer.createTransport({
-    host: "smtp.sendgrid.net",
-    port: 587,
-    auth: {
-      user: "apikey", // fisso "apikey" per SendGrid
-      pass: process.env.SENDGRID_API_KEY
-    }
-  });
+// --- Funzione invio email SendGrid ---
+async function sendEmail(to, subject, text, attachments=[]) {
+  const msg = {
+    to,
+    from: "esposito.francesco1890@gmail.com", // la tua email verificata su SendGrid
+    subject,
+    text,
+    attachments
+  };
+
+  try {
+    await sgMail.send(msg);
+    console.log("📧 Email inviata!");
+  } catch (err) {
+    console.error("❌ Errore invio email:", err);
+  }
 }
 
 // --- EMAIL FORM ---
@@ -51,24 +60,9 @@ app.get("/", (req, res) => {
 app.post("/send", async (req, res) => {
   const { nome, email, messaggio } = req.body;
 
-  let transporter = createSendGridTransporter();
+  await sendEmail("esposito.francesco1890@gmail.com", `Nuovo messaggio da ${nome}`, messaggio);
 
-  let mailOptions = {
-    from: email,
-    to: process.env.EMAIL_USER, // es. tuo@abatel.org
-    subject: `Nuovo messaggio da ${nome}`,
-    text: messaggio,
-  };
-
-  try {
-    console.log("📨 Invio email in corso...");
-    await transporter.sendMail(mailOptions);
-    console.log("✅ Email inviata!");
-    res.send("✅ Messaggio inviato con successo!");
-  } catch (error) {
-    console.error(error);
-    res.send("❌ Errore nell'invio del messaggio.");
-  }
+  res.send("✅ Messaggio inviato con successo!");
 });
 
 // --- API PRENOTAZIONI ---
@@ -80,22 +74,9 @@ app.post("/api/bookings", async (req,res)=>{
   saveBookingsToFile();
   console.log(`📅 Nuova prenotazione: ${date} alle ${time} - ${name}`);
 
-  // --- Invia email ---
-  try {
-    let transporter = createSendGridTransporter();
-
-    let mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // email tua
-      subject: `Nuova prenotazione: ${date}`,
-      text: `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log("📧 Email inviata!");
-  } catch(err) {
-    console.error("❌ Errore invio email:", err);
-  }
+  await sendEmail("esposito.francesco1890@gmail.com", `Nuova prenotazione: ${date}`, 
+    `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
+  );
 
   res.json({success:true, bookings});
 });
@@ -134,34 +115,19 @@ app.get("/lavora-con-noi", (req, res) => {
 
 app.post("/lavora", upload.single("cv"), async (req, res) => {
   const { nome, email, esperienze, motivazione, ruolo } = req.body;
-  const file = req.file ? path.join(__dirname, req.file.path) : null;
+  const file = req.file ? [{
+    content: fs.readFileSync(req.file.path).toString("base64"),
+    filename: req.file.originalname,
+    type: req.file.mimetype,
+    disposition: 'attachment'
+  }] : [];
 
-  let transporter = createSendGridTransporter();
+  await sendEmail("esposito.francesco1890@gmail.com", `💼 Nuova candidatura da ${nome}`,
+    `Nuova candidatura ricevuta!\n\n👤 Nome: ${nome}\n📧 Email: ${email}\n💼 Esperienze: ${esperienze}\n⭐ Perché scegliermi: ${motivazione}\n🎯 Ruolo desiderato: ${ruolo}`,
+    file
+  );
 
-  let mailOptions = {
-    from: email,
-    to: process.env.EMAIL_USER,
-    subject: `💼 Nuova candidatura da ${nome}`,
-    text: `
-Nuova candidatura ricevuta!
-
-👤 Nome: ${nome}
-📧 Email: ${email}
-💼 Esperienze: ${esperienze}
-⭐ Perché scegliermi: ${motivazione}
-🎯 Ruolo desiderato: ${ruolo}
-`,
-    attachments: file ? [{ path: file }] : [],
-  };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    res.send("✅ Candidatura inviata con successo!");
-    console.log(`📩 Nuova candidatura ricevuta da ${nome} (${email})`);
-  } catch (error) {
-    console.error(error);
-    res.send("❌ Errore durante l'invio della candidatura.");
-  }
+  res.send("✅ Candidatura inviata con successo!");
 });
 
 // --- Avvio server ---
