@@ -60,10 +60,25 @@ app.get("/", (req, res) => {
 app.post("/send", async (req, res) => {
   const { nome, email, messaggio } = req.body;
 
-  await sendEmail("info@abatel.org", `Nuovo messaggio da ${nome}`, messaggio);
+  const testoEmail = `
+Hai ricevuto un nuovo messaggio dal sito Abatel.org:
+
+👤 Nome: ${nome}
+📧 Email: ${email}
+
+💬 Messaggio:
+${messaggio}
+  `;
+
+  await sendEmail(
+    "info@abatel.org",
+    `📩 Nuovo messaggio da ${nome}`,
+    testoEmail
+  );
 
   res.send("✅ Messaggio inviato con successo!");
 });
+
 
 // --- API PRENOTAZIONI ---
 app.post("/api/bookings", async (req,res)=>{
