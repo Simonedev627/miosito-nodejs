@@ -31,6 +31,18 @@ function saveBookingsToFile() {
   fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
 }
 
+// --- Nodemailer con SendGrid ---
+function createSendGridTransporter() {
+  return nodemailer.createTransport({
+    host: "smtp.sendgrid.net",
+    port: 587,
+    auth: {
+      user: "apikey", // fisso "apikey" per SendGrid
+      pass: process.env.SENDGRID_API_KEY
+    }
+  });
+}
+
 // --- EMAIL FORM ---
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "contatti.html"));
@@ -39,17 +51,11 @@ app.get("/", (req, res) => {
 app.post("/send", async (req, res) => {
   const { nome, email, messaggio } = req.body;
 
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    },
-  });
+  let transporter = createSendGridTransporter();
 
   let mailOptions = {
     from: email,
-    to: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER, // es. tuo@abatel.org
     subject: `Nuovo messaggio da ${nome}`,
     text: messaggio,
   };
@@ -74,23 +80,17 @@ app.post("/api/bookings", async (req,res)=>{
 
   // --- Invia email ---
   try {
-    let transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    let transporter = createSendGridTransporter();
 
     let mailOptions = {
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // qui metti la mail del cliente
+      to: process.env.EMAIL_USER, // email tua
       subject: `Nuova prenotazione: ${date}`,
       text: `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
     };
 
     await transporter.sendMail(mailOptions);
-    console.log("📧 Email inviata al cliente!");
+    console.log("📧 Email inviata!");
   } catch(err) {
     console.error("❌ Errore invio email:", err);
   }
@@ -134,13 +134,7 @@ app.post("/lavora", upload.single("cv"), async (req, res) => {
   const { nome, email, esperienze, motivazione, ruolo } = req.body;
   const file = req.file ? path.join(__dirname, req.file.path) : null;
 
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+  let transporter = createSendGridTransporter();
 
   let mailOptions = {
     from: email,
