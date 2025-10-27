@@ -38,7 +38,7 @@ function saveBookingsToFile() {
 async function sendEmail(to, subject, text, attachments=[]) {
   const msg = {
     to,
-    from: "esposito.francesco1890@gmail.com", // la tua email verificata su SendGrid
+    from: "info@abatel.org", // la tua email verificata su SendGrid
     subject,
     text,
     attachments
@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 app.post("/send", async (req, res) => {
   const { nome, email, messaggio } = req.body;
 
-  await sendEmail("esposito.francesco1890@gmail.com", `Nuovo messaggio da ${nome}`, messaggio);
+  await sendEmail("info@abatel.org", `Nuovo messaggio da ${nome}`, messaggio);
 
   res.send("✅ Messaggio inviato con successo!");
 });
@@ -74,7 +74,7 @@ app.post("/api/bookings", async (req,res)=>{
   saveBookingsToFile();
   console.log(`📅 Nuova prenotazione: ${date} alle ${time} - ${name}`);
 
-  await sendEmail("esposito.francesco1890@gmail.com", `Nuova prenotazione: ${date}`, 
+  await sendEmail("info@abatel.org", `Nuova prenotazione: ${date}`, 
     `Hai ricevuto una nuova prenotazione!\n\nNome: ${name}\nData: ${date}\nOrario: ${time}`
   );
 
@@ -122,7 +122,7 @@ app.post("/lavora", upload.single("cv"), async (req, res) => {
     disposition: 'attachment'
   }] : [];
 
-  await sendEmail("esposito.francesco1890@gmail.com", `💼 Nuova candidatura da ${nome}`,
+  await sendEmail("info@abatel.org", `💼 Nuova candidatura da ${nome}`,
     `Nuova candidatura ricevuta!\n\n👤 Nome: ${nome}\n📧 Email: ${email}\n💼 Esperienze: ${esperienze}\n⭐ Perché scegliermi: ${motivazione}\n🎯 Ruolo desiderato: ${ruolo}`,
     file
   );
