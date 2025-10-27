@@ -11,6 +11,15 @@ console.log("✅ Server avviato, cartella public:", path.join(__dirname, "public
 
 // --- Set SendGrid API Key ---
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const cors = require('cors');
+
+// Permetti richieste dal tuo frontend
+app.use(cors({
+  origin: 'https://abatel.org', // o '*' per permettere tutti i domini
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
+
 
 // --- Percorso file prenotazioni ---
 const bookingsFile = path.join(__dirname, 'bookings.json');

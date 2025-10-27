@@ -257,6 +257,7 @@ const timeInput = document.getElementById('timeInput');
 const saveBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const closeBtn = document.getElementById('closeBtn');
+const API_URL = 'https://miosito-nodejs.onrender.com/api/bookings';
 let activeDate = null;
 let activeElem = null;
 
@@ -352,7 +353,7 @@ saveBtn.addEventListener('click', async ()=>{
 
 // CAMBIA QUESTA RIGA
 const data = { date: activeDate, name, time, userId };
-const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings', {
+const res = await fetch(API_URL, {
   method:'POST',
   headers:{'Content-Type':'application/json'},
   body: JSON.stringify(data)
@@ -370,7 +371,7 @@ const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings', {
 deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
-  await fetch(`https://miosito-nodejs.onrender.com/api/bookings/${activeDate}`, { 
+  await fetch(API_URL, { 
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userId })
@@ -407,7 +408,7 @@ document.getElementById('nextYear').addEventListener('click', ()=>{ currentYear+
 // --- Refresh bookings in real-time ---
 async function refreshBookings(){
   try {
-    const res = await fetch('https://miosito-nodejs.onrender.com/api/bookings');
+    const res = await fetch(API_URL);
     const newBookings = await res.json();
     bookings = newBookings.bookings || newBookings;
 
