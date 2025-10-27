@@ -61,7 +61,9 @@ app.post("/send", async (req, res) => {
   };
 
   try {
+    console.log("📨 Invio email in corso...");
     await transporter.sendMail(mailOptions);
+    console.log("✅ Email inviata!");
     res.send("✅ Messaggio inviato con successo!");
   } catch (error) {
     console.error(error);
