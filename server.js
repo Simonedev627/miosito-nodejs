@@ -170,6 +170,7 @@ app.delete("/api/bookings/:date", async (req, res) => {
 // --- Pulizia prenotazioni passate ---
 function cleanupBookings() {
   const today = new Date();
+  today.setHours(0,0,0,0); // azzera orario
   for (const date in bookings) {
     const bDate = new Date(date + 'T00:00:00');
     if (bDate < today) {
