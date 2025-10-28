@@ -371,11 +371,11 @@ const res = await fetch(API_URL, {
 deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
-  await fetch(API_URL, { 
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId })
-  });
+await fetch(`${API_URL}/${activeDate}`, { 
+  method: 'DELETE',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ userId })
+});
 
   await refreshBookings(); // aggiorna i dati reali dal server
 
