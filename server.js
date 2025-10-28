@@ -131,7 +131,8 @@ await sendEmail(
 });
 
 // Elimina prenotazione (solo chi l’ha creata)
-app.delete("/api/bookings/:date", (req, res) => {
+// Elimina prenotazione (solo chi l’ha creata) e invia email
+app.delete("/api/bookings/:date", async (req, res) => {
   const { date } = req.params;
   const { userId } = req.body;
 
@@ -143,8 +144,27 @@ app.delete("/api/bookings/:date", (req, res) => {
     return res.json({ success: false, error: "Non hai i permessi per eliminare questa prenotazione" });
   }
 
+  // Prendi i dati della prenotazione prima di cancellarla
+  const { name, time } = bookings[date];
+
+  // Elimina la prenotazione
   delete bookings[date];
   saveBookingsToFile();
+
+  // Invia email di notifica dell'eliminazione
+  const formattedDate = new Date(date).toLocaleDateString('it-IT', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  await sendEmail(
+    "info@abatel.org",
+    `❌ Prenotazione eliminata: ${formattedDate}`,
+    `La seguente prenotazione è stata eliminata:\n\n👤 Nome: ${name}\n📅 Data: ${formattedDate}\n⏰ Orario: ${time}\n📧 UserID: ${userId}`
+  );
+
   res.json({ success: true, bookings });
 });
 // --- Pulizia prenotazioni passate ---
