@@ -5628,7 +5628,7 @@ opacity: 0;
 }
 @media (orientation: portrait) {
   .parte-finale {
-    margin-top: -20rem; /* riduci il margine negativo per spostarla più in basso su schermi verticali */
+    margin-top: -10rem; /* riduci il margine negativo per spostarla più in basso su schermi verticali */
     padding: 2rem;      /* opzionale: puoi ridurre anche il padding per dispositivi piccoli */
   }
 }
@@ -6186,7 +6186,7 @@ form input, form textarea {
 
 
 
-
+.parte-finale
 
 
 
