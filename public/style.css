@@ -5419,7 +5419,7 @@ opacity: 0;
 @media (orientation: portrait) {
   .ftt-cab-abatel {
     position: relative;   /* mantiene il flusso */
-    top: 26vh;            /* sposta verso il basso del 10% dell'altezza viewport */
+    top: 16vh;            /* sposta verso il basso del 10% dell'altezza viewport */
     right: 0;             /* centrata rispetto al contenitore */
     margin: 0 auto;       /* centrata orizzontalmente */
     width: 50%;           /* opzionale: puoi adattarla più grande se vuoi */
@@ -5667,7 +5667,7 @@ opacity: 0;
   flex: 1;
   padding: 1.25rem;
 }
-
+.pulsante-messaggi
 .descrizione-blocco h5 {
   margin-bottom: 0.3125rem;
   font-size: 1rem;
@@ -5743,7 +5743,7 @@ opacity: 0;
 
   /* Abbassiamo la scatola informazioni */
   .scatola-informazioni {
-    top: 20vh;      /* più bassa rispetto a desktop, ma relativa */
+    top: 25vh;      /* più bassa rispetto a desktop, ma relativa */
     left: 0;         /* eventualmente centrata orizzontalmente */
     position: relative;
     margin: 2rem auto 1rem auto; /* margini adattati per mobile */
@@ -6174,7 +6174,6 @@ form input, form textarea {
     margin-top: 3rem;  /* distanza dal contact-container */
   }
 }
-
 
 
 
