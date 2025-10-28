@@ -5419,7 +5419,7 @@ opacity: 0;
 @media (orientation: portrait) {
   .ftt-cab-abatel {
     position: relative;   /* mantiene il flusso */
-    top: 26vh;            /* sposta verso il basso del 10% dell'altezza viewport */
+    top: 29vh;            /* sposta verso il basso del 10% dell'altezza viewport */
     right: 0;             /* centrata rispetto al contenitore */
     margin: 0 auto;       /* centrata orizzontalmente */
     width: 50%;           /* opzionale: puoi adattarla più grande se vuoi */
