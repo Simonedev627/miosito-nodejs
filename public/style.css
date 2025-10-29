@@ -6446,6 +6446,96 @@ html, body, main {
 }
 
 
+/* Footer */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #2c2c2c;
+  color: #fff;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+  margin-top: -40.9rem;
+  flex-wrap: wrap;
+}
+
+.footer-about {
+  margin-bottom: 0.9375rem;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-about p {
+  max-width: 18.75rem;
+  line-height: 1.5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-nav a {
+  color: #ddd;
+  text-decoration: none;
+  margin: 0.3125rem 0;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover,
+.footer-nav a:active {
+  color: orange;
+}
+
+/* Tablet */
+@media (max-width: 64rem) { /* 1024px */
+  .footer-container {
+    padding: 1.875rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-about,
+  .footer-nav {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 48rem) { /* 768px */
+  .footer-container {
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-about p,
+  .footer-nav {
+    max-width: 100%;
+    margin-bottom: 0.9375rem;
+  }
+
+  .footer-about h3,
+  .footer-nav h2 {
+    font-size: 1.2rem;
+  }
+
+  .footer-nav a {
+    font-size: 1rem;
+    margin: 0.1875rem 0;
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .footer-container {
+    margin-top: -30rem;
+    padding: 2rem;
+  }
+}
 
 /* Contenitore informazioni */
 .info-container {
