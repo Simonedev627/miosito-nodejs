@@ -1,36 +1,37 @@
 
 /* ================= Header Bar ================= */
 
+/* ================= HEADER BAR ================= */
 .header-bar {
   position: relative;
   z-index: 100;
   display: flex;
-  align-items: center; /* centra verticalmente tutti gli elementi */
+  align-items: center;
   justify-content: flex-start;
   background-color: #fff;
-  height: 17vh;          /* prima era 170px */
-  margin: 2vh auto;      /* prima 20px */
-  padding: 0 4vw;        /* prima 40px */
-  max-width: 108vw;      /* prima 1080px */
+  height: 17vh;
+  margin: 2vh auto;
+  padding: 0 4vw;
+  max-width: 108vw;
   box-sizing: border-box;
-  border: 0.1vh solid #ccc; /* prima 1px */
-  border-radius: 0.8vh;      /* prima 8px */
+  border: 0.1vh solid #ccc;
+  border-radius: 0.8vh;
 }
 
 /* Logo */
 .header-bar img {
-  height: 14vh;           /* prima 140px */
+  height: 14vh;
   object-fit: contain;
-  margin-right: 5vw;      /* prima 50px */
+  margin-right: 5vw;
 }
 
 /* Nav Links */
 .nav-links {
   display: flex;
-  align-items: center; /* centra verticalmente tutti i link */
-  gap: 2.5vw;          /* prima 25px */
+  align-items: center;
+  gap: 2.5vw;
   position: relative;
-  margin-left: -5vw;    /* prima -50px */
+  margin-left: -5vw;
 }
 
 .nav-links a,
@@ -38,14 +39,14 @@
 .nav-links .dropdown-content .submenu > a {
   display: flex;
   align-items: center;
-  height: 4vh;         /* prima 40px */
-  padding: 0 1.5vw;    /* prima 0 15px */
-  font-size: 1.6vh;    /* prima 16px */
+  height: 4vh;
+  padding: 0 1.5vw;
+  font-size: 1.6vh;
   text-decoration: none;
   font-family: 'Segoe UI', sans-serif;
   font-weight: 500;
   color: #000;
-  border-radius: 0.6vh; /* prima 6px */
+  border-radius: 0.6vh;
   transition: all 0.3s ease;
 }
 
@@ -68,22 +69,20 @@
   top: 100%;
   left: 0;
   background-color: #fff;
-  min-width: 20vw;          /* prima 200px */
-  border-radius: 0.6vh;     /* prima 6px */
-  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.15); /* prima 0 4px 8px */
+  min-width: 20vw;
+  border-radius: 0.6vh;
+  box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.15);
   z-index: 200;
 }
 
-/* Mostra dropdown principale al passaggio */
 .nav-links .dropdown:hover .dropdown-content {
   display: block;
 }
 
-/* Link dentro dropdown */
 .nav-links .dropdown-content a {
   display: block;
-  padding: 1vh 1.5vw;     /* prima 10px 15px */
-  font-size: 1.5vh;       /* prima 15px */
+  padding: 1vh 1.5vw;
+  font-size: 1.5vh;
   color: #000;
   text-decoration: none;
   transition: background 0.3s ease;
@@ -103,9 +102,9 @@
   display: none;
   position: absolute;
   top: 0;
-  left: 100%; /* appare a destra del link */
+  left: 100%;
   background-color: #fff;
-  min-width: 18vw;          /* prima 180px */
+  min-width: 18vw;
   border-radius: 0.6vh;
   box-shadow: 0 0.4vh 0.8vh rgba(0,0,0,0.1);
 }
@@ -114,20 +113,20 @@
   display: block;
 }
 
-/* Frecce per indicare dropdown e sottomenù */
+/* Frecce dropdown */
 .nav-links .dropdown > a::after {
   content: ' ';
-  font-size: 1.2vh;   /* prima 12px */
-  margin-left: 0.5vw; /* prima 5px */
+  font-size: 1.2vh;
+  margin-left: 0.5vw;
 }
 
 .nav-links .dropdown-content .submenu > a::after {
   content: ' ▸';
-  font-size: 1.2vh;   /* prima 12px */
-  margin-left: 0.5vw; /* prima 5px */
+  font-size: 1.2vh;
+  margin-left: 0.5vw;
 }
 
-/* ================= Responsive ================= */
+/* ================= Responsive Smartphone ================= */
 @media screen and (max-width: 900px) {
   .header-bar {
     flex-direction: column;
@@ -146,20 +145,63 @@
     left: 0;
     top: 0;
     box-shadow: none;
-    min-width: 90%; /* adattamento mobile */
+    min-width: 90%;
   }
 }
+
+/* ================= Responsive Tablet (fino a 1024px) ================= */
+@media screen and (max-width: 1024px) and (min-width: 901px) {
+  .header-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2vh 5vw;
+    height: auto;
+    border-radius: 1vh;
+  }
+
+  .header-bar img {
+    height: 12vh;
+    margin-right: 0;
+    margin-bottom: 2vh;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2vh;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 2vh;
+    padding: 1vh 2vw;
+  }
+
+  .nav-links .dropdown-content {
+    min-width: 40vw;
+  }
+
+  .nav-links .dropdown-content .submenu-content {
+    left: auto;
+    top: 100%;
+    position: relative;
+    box-shadow: none;
+    min-width: 90%;
+  }
+}
+/*fine headbar*/
 .prima-sezione {
-  width: 100%;           /* prende tutta la larghezza */
-  min-height: 80vh;      /* altezza minima fluida */
-  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6%, 8vw); /* padding fluido verticale e orizzontale */
+  width: 100%;
+  min-height: 80vh;
+  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6%, 8vw);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centra verticalmente i contenuti */
-  align-items: center;     /* centra orizzontalmente i contenuti */
-  gap: clamp(2vh, 3vw, 4vh); /* distanza fluida tra elementi interni */
-  background-color: #f5f5f5; /* esempio colore di sfondo */
+  justify-content: center;
+  align-items: center;
+  gap: clamp(2vh, 3vw, 4vh);
+  background-color: #f5f5f5;
 }
 
 /* Smartphone */
@@ -171,11 +213,20 @@
   }
 }
 
-/* Tablet */
-@media (min-width: 481px) and (max-width: 1024px) {
+/* Tablet orizzontale */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .prima-sezione {
     min-height: 75vh;
     padding: clamp(3vh, 5vw, 6vh) clamp(5vw, 7%, 8vw);
+  }
+}
+
+/* Tablet verticale */
+@media (min-width: 600px) and (max-width: 900px) {
+  .prima-sezione {
+    min-height: 80vh;
+    padding: clamp(5vh, 6vw, 7vh) clamp(6vw, 8%, 10vw);
+    gap: clamp(3vh, 4vw, 5vh);
   }
 }
 
@@ -239,9 +290,40 @@ margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) clamp(6vh, 12vw, 15vh
 
 /* Contenitore per il blocco descrizione */
 .descrizione {
-  margin-left: 40px; /* sposta leggermente a destra */
-  margin-top: 30px;
+  margin-left: clamp(2vw, 4vw, 6vw);  /* margine fluido laterale */
+  margin-top: clamp(2vh, 3vh, 4vh);   /* margine fluido verticale */
   font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(2.5vw, 2.8vw, 3.5vw); /* dimensione testo scalabile */
+  line-height: 1.6;
+  text-align: justify;
+  max-width: 90%; /* per non allargare troppo su schermi grandi */
+}
+
+/* Smartphone */
+@media (max-width: 480px) {
+  .descrizione {
+    margin-left: 5%;
+    margin-top: 3vh;
+    font-size: 4vw;
+    text-align: left;
+  }
+}
+
+/* Tablet verticale */
+@media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
+  .descrizione {
+    margin-left: 6%;
+    margin-top: 3.5vh;
+    font-size: 3vw;
+  }
+}
+
+/* Tablet orizzontale */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .descrizione {
+    margin-left: 5vw;
+    font-size: 2.8vw;
+  }
 }
 
 /* Titolo piccolo in arancione */
@@ -2884,6 +2966,160 @@ body {
     line-height: 1.6;
   }
 }
+.process-container {
+  width: 80vw; /* larghezza relativa */
+  max-width: 90%; 
+  margin: 5vh auto; /* distanza verticale e centrato */
+  padding: 2vh 2vw;
+  background: linear-gradient(135deg, #0a0a3d, #4b0082, #ff6600); /* sfumatura blu/viola/arancione */
+  border-radius: 1vw;
+  box-sizing: border-box;
+
+  /* Animazione iniziale */
+  opacity: 0;
+  transform: translateY(5vh);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 85;
+}
+
+/* Quando visibile */
+.process-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Riga dei blocchi */
+.process-row {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  gap: 2vw;
+}
+
+/* Singolo blocco */
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(15vw, 18%, 25vw); /* larghezza relativa e scalabile */
+  padding: 2vh 2vw;
+  background-color: white;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover su blocco */
+.process-step:hover {
+  background-color: orange;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Icone */
+.process-step i {
+  font-size: clamp(1.5vw, 3vw, 4vw); /* responsivo */
+  margin-bottom: 1vh;
+}
+
+/* Titolo blocco */
+.process-step h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1vw, 2vw, 2.5vw);
+  margin: 0;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.process-step:hover h3 {
+  color: white;
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  .process-container {
+    width: 90vw;
+    padding: 3vh 3vw;
+  }
+  .process-step {
+    width: clamp(25vw, 30%, 40vw);
+  }
+}
+
+/* Responsive smartphone */
+@media (max-width: 480px) {
+  .process-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .process-step {
+    width: 80vw;
+    margin-bottom: 2vh;
+  }
+}
+
+/* Solo dispositivi verticali */
+@media (orientation: portrait), (max-width: 480px) {
+  .process-container {
+    width: 90vw;
+    max-width: 95%;
+    margin: 50vh auto 5vh auto;
+    padding: 4vh 4vw;
+    border-radius: 2vw;
+    opacity: 0;
+    transform: translateY(0vh);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; /* ✅ i blocchi restano dentro */
+  }
+
+  .process-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5vh, 2.5vh, 3vh); /* ✅ distanza scalabile */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .process-step {
+    width: clamp(65vw, 75vw, 85vw); /* ✅ sempre dentro al rettangolo */
+    max-width: 90%;
+    padding: clamp(2vh, 3vh, 4vh) clamp(2vw, 3vw, 4vw);
+    margin: clamp(1vh, 1.5vh, 2vh) 0;
+    box-sizing: border-box;
+  }
+
+  .process-step i {
+    font-size: clamp(3vw, 5vw, 6vw);
+    margin-bottom: 2vh;
+  }
+
+  .process-step h3 {
+    font-size: clamp(2.5vw, 4vw, 5vw);
+  }
+}
+
+/* Animazione dal basso con spostamento a sinistra */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(-40px);
+  }
+}
+
 /*fine servizi ftt cab*/
 /*inizio impianti ele.. civili*/
 /*sezione impianti elettrici*/
