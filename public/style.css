@@ -5604,14 +5604,86 @@ opacity: 0;
     transform: translateX(0);   /* arriva nella posizione normale */
   }
 }/* Tablet */ 
-    @media (max-width: 1024px) { 
-      .mauro { 
-        top: 15vh; 
-        right: 5vw; 
-        width: 20vw; } 
-        .mauro img { 
-          width: 20vw; } 
-        } /* Dispositivi verticali */ 
+    /* Tablet: larghezza tra 481px e 1024px */
+@media (min-width: 481px) and (max-width: 1024px) {
+
+  /* Team container */
+  .il-nostro-team {
+    top: 10vh !important;
+    padding: 2vh 4vw;
+  }
+
+  /* Logo su maglia */
+  .logo-su-maglia {
+    top: 12vh !important;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35vw;
+    max-width: 45vw;
+  }
+
+  /* Mauro */
+  .mauro {
+    top: 15vh !important;
+    right: 5vw !important;
+    width: 30vw;
+    max-width: 40vw;
+  }
+  .mauro img {
+    width: 100%;
+  }
+
+  /* FTT CAB Abatel */
+  .ftt-cab-abatel {
+    top: 20vh !important;
+    width: 45%;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+  .ftt-cab-abatel img {
+    width: 100%;
+  }
+
+  /* Pulsante messaggi */
+  .animazione {
+    top: -10vh !important;
+    left: 5vw !important;
+    transform: rotate(-15deg);
+  }
+  .pulsante-messaggi {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    padding: 0.8vh 1.5vw;
+  }
+
+  /* Pulsante servizi */
+  .animazione-servizi {
+    top: -9vh !important;
+    left: 70vw !important;
+  }
+  .pulsante-servizi {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    padding: 0.8vh 1.5vw;
+  }
+
+  /* Parte finale */
+  .parte-finale {
+    margin-top: -20vh !important;
+    padding: 2vh 3vw;
+  }
+
+  /* Scatola informazioni */
+  .scatola-informazioni {
+    top: 15vh !important;
+    left: 5vw !important;
+    width: 90%;
+  }
+
+  /* Settima */
+  .settima {
+    top: 50vh !important;
+  }
+}
+
     @media (orientation: portrait) { 
       .mauro { 
         position: absolute; /* sopra gli altri elementi */ 
