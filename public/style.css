@@ -3688,6 +3688,9 @@ body {
     gap: clamp(1vh, 2vw, 3vh);
     align-items: center;
   }
+   .pulsanti-container .home {
+      top: 30vh;
+  }
 }
 /*work rectangle solo per imp ele indu*/
 .work-process- {
