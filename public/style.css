@@ -5453,208 +5453,39 @@ opacity: 0;
   }
 }
 /*Team*/
-/* TEAM SECTION CON IMMAGINI A SINISTRA E DESTRA */
 .sezione-del-team {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 5%;
-    background-color: #eaeaea;
-    flex-wrap: wrap; /* permette di andare a capo sui telefoni */
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vw;
 }
 
-.sezione-del-team .logo-su-maglia {
-    flex: 1 1 20%;
-    display: flex;
-    justify-content: flex-start;
+.team-immagini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3vw;
+  justify-content: center;
 }
 
-.sezione-del-team .logo-su-maglia img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 1rem;
+.team-immagini img {
+  width: 30vw;
+  height: auto;
 }
 
-.sezione-del-team .il-nostro-team {
-    flex: 1 1 50%;
-    text-align: left;
+@media (max-width: 1024px) {
+  .team-immagini img {
+    width: 50vw;
+  }
 }
 
-.sezione-del-team .il-nostro-team h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.sezione-del-team .il-nostro-team p {
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-.sezione-del-team .mauro {
-    flex: 1 1 25%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.sezione-del-team .mauro img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 1rem;
-}
-
-/* MEDIA QUERY PER TELEFONI IN PORTRAIT */
 @media (max-width: 768px) {
-    .sezione-del-team {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .sezione-del-team .il-nostro-team {
-        flex: 1 1 100%;
-    }
-
-    .sezione-del-team .logo-su-maglia,
-    .sezione-del-team .mauro {
-        flex: 1 1 100%;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-
-    .sezione-del-team .il-nostro-team h1 {
-        font-size: 2rem;
-    }
-
-    .sezione-del-team .il-nostro-team p {
-        font-size: 0.9rem;
-    }
+  .team-immagini img {
+    width: 80vw;
+  }
 }
-
-/* MEDIA QUERY PER TELEFONI PICCOLI */
-@media (max-width: 480px) {
-    .sezione-del-team .il-nostro-team h1 {
-        font-size: 1.8rem;
-    }
-
-    .sezione-del-team .il-nostro-team p {
-        font-size: 0.85rem;
-    }
-}
-
 /*pulsante messaggi (whatsapp)*/
 /* Animazione e pulsante normali (desktop/orizzontale) */
-.animazione {
-  position: relative;
-  top: -160vh;
-  left: 22vw;
-  opacity: 0;
-  transform: rotate(-30deg);
-  animation: fadeRotateIn 1s forwards;
-}
 
-.pulsante-messaggi {
-  display: inline-block;
-  background-color: #25D366;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  font-weight: 600;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  padding: 1vh 2vw;
-  border-radius: 2rem;
-  text-decoration: none;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.pulsante-messaggi:hover {
-  transform: scale(1.05);
-  background-color: #1ebe5d;
-}
-
-/* --- Solo dispositivi verticali (smartphone/tablet in portrait) --- */
-@media (orientation: portrait) {
-  .animazione {
-    top: -14vh;    /* più in basso rispetto al -160vh desktop */
-    left: 5vw;    /* leggermente più centrato */
-    transform: rotate(-20deg); /* meno inclinato per stare meglio su schermi stretti */
-  }
-
-  .pulsante-messaggi {
-    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-    padding: 0.6vh 1.4vw;
-    border-radius: 1.6rem;
-  }
-}
-
-@keyframes fadeRotateIn {
-  0% {
-    opacity: 0;
-    transform: rotate(-30deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-}
-/* Responsive per smartphone */
-
-/*pulsante i nostri servizi (team)*/
-.animazione-servizi {
-  position: relative;
-  top: -162vh;
-  left: 68vw;
-  opacity: 0;
-  transform: rotate(-30deg);
-  animation: fadeRotateIn 1s forwards;
-}
-
-/* ANIMAZIONE */
-@keyframes fadeRotateIn {
-  from {
-    opacity: 0;
-    transform: rotate(-30deg) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-}
-
-.pulsante-servizi {
-  display: inline-block;
-  font-family: 'Segoe UI', sans-serif;
-  font-weight: 600;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);  /* testo fluido */
-  padding: 1.5vh 3vw;                     /* padding fluido */
-  border-radius: 1.5rem;
-  text-decoration: none;
-  background: linear-gradient(135deg, #0f4983 0%, #bd16ff 100%); /* blu-viola */
-  color: white;
-  transition: all 0.5s ease;
-  width: auto;
-  max-width: 90%;
-  text-align: center;
-}
-
-/* Hover: cambia in verde/arancione */
-.pulsante-servizi:hover {
-  background: linear-gradient(45deg, #FF8C00, #25D366);
-  transform: scale(1.05);
-}
-
-/* Responsive per smartphone e tablet verticali */
-@media (orientation: portrait) {
-  .animazione-servizi {
-    top: -11vh; /* sposta più in basso su smartphone */
-    left: 75vw; /* più centrato */
-  }
-
-  .pulsante-servizi {
-    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
-    padding: 0.6vh 1.4vw;
-    border-radius: 1.6rem;
-    max-width: 80%;
-  }
-}
 
 
 .parte-finale {
