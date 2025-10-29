@@ -2202,7 +2202,7 @@ body {
   .work-process-rectangle {
     width: 90vw;
     max-width: 95%;
-    margin: 90vh auto 5vh auto;
+    margin: 50vh auto 5vh auto;
     padding: 4vh 4vw;
     border-radius: 2vw;
     opacity: 0;
@@ -3689,7 +3689,7 @@ body {
     align-items: center;
   }
    .pulsanti-container .home {
-      top: 90vh;
+      top: 130vh;
   }
 }
 /*work rectangle solo per imp ele indu*/
