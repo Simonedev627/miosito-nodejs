@@ -168,19 +168,28 @@ app.delete("/api/bookings/:date", async (req, res) => {
   res.json({ success: true, bookings });
 });
 // --- Pulizia prenotazioni passate ---
+// --- Pulizia prenotazioni passate (solo dopo il giorno prenotato) ---
 function cleanupBookings() {
   const today = new Date();
-  today.setHours(0,0,0,0); // azzera orario
+  today.setHours(0, 0, 0, 0); // azzera l'orario, così conta solo la data
+
   for (const date in bookings) {
-    const bDate = new Date(date + 'T00:00:00');
-    if (bDate < today) {
-      console.log(`🗑 Prenotazione scaduta eliminata: ${date}`);
+    const bookingDate = new Date(date + 'T00:00:00');
+    bookingDate.setHours(0, 0, 0, 0);
+
+    // Elimina solo se la prenotazione è di un giorno PRIMA di oggi
+    if (bookingDate < today) {
+      console.log(`🗑 Prenotazione eliminata (data passata): ${date}`);
       delete bookings[date];
     }
   }
+
   saveBookingsToFile();
 }
-setInterval(cleanupBookings, 24*60*60*1000);
+
+// Controlla 1 volta al giorno (ogni 24 ore)
+setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
+
 
 // --- LAVORA CON NOI ---
 const upload = multer({
