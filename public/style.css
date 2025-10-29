@@ -6605,6 +6605,7 @@ html, body, main {
     flex-direction: column; /* impila i blocchi */
     align-items: center;
     padding: 2rem;
+    top: 56vh;
   }
 
   .info-logo,
