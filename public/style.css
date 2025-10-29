@@ -5453,34 +5453,222 @@ opacity: 0;
   }
 }
 /*Team*/
-.sezione-del-team {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 5vw;
+.il-nostro-team strong {
+  font-weight: normal;
+}
+.il-nostro-team h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* min 1.5rem, max 3rem, fluido in mezzo */
+  text-align: center;
+  line-height: 1.2;
+  margin: 1rem auto;
+  color: #000;
+
+  /* ANIMAZIONE FADE-IN DAL BASSO */
+  opacity: 0;
+  transform: translateY(40px);  /* parte leggermente più in basso */
+  animation: fadeUp 1.5s ease forwards;
 }
 
-.team-immagini {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3vw;
-  justify-content: center;
+/* Definizione dell’animazione */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.il-nostro-team p {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* dimensione fluida da smartphone a desktop */
+  line-height: 1.6;                        /* leggibilità */
+  text-align: center;                      /* centra il testo */
+  margin: 0 auto;                          /* centraggio orizzontale */
+  max-width: 90%;                          /* evita larghezze eccessive */
+
+  /* ANIMAZIONE FADE-IN + INGRANDIMENTO DAL BASSO */
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);  /* parte più in basso e leggermente ridotto */
+  animation: fadeUpZoom 1.5s ease forwards;
 }
 
-.team-immagini img {
-  width: 30vw;
-  height: auto;
-}
-
-@media (max-width: 1024px) {
-  .team-immagini img {
-    width: 50vw;
+/* Definizione animazione */
+@keyframes fadeUpZoom {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-@media (max-width: 768px) {
-  .team-immagini img {
-    width: 80vw;
+.logo-su-maglia {
+  position: relative;
+  top: -39vh;      /* ancora più in alto */
+  left: 1vw;       /* leggermente più a destra */
+  width: 16vw;
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE SLIDE DA SINISTRA */
+  opacity: 0;
+  transform: translateX(-60px);   /* parte spostato a sinistra */
+  animation: slideFromLeft 1.5s ease forwards;
+}
+
+.logo-su-maglia img {
+  width: 18vw;
+  max-width: 30vw;
+  min-width: 10vw;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .logo-su-maglia {
+    position: absolute;   /* sopra tutti gli altri elementi */
+    top: 51vh;             /* distanza dal bordo superiore */
+    left: 12%;            /* centro orizzontale */
+    transform: translateX(-50%); /* centra perfettamente */
+    width: 40vw;          /* larghezza più grande o adattabile */
+    max-width: 60vw;      /* non supera il 60% del viewport */
+    z-index: 120;          /* sopra tutti gli altri elementi */
+  }
+
+  .logo-su-maglia img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;         
+    object-fit: contain;
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .il-nostro-team {
+    position: relative;  /* necessario per usare top senza rompere layout */
+    top: 26vh;           /* sposta tutto il contenitore verso il basso del 10% dell'altezza viewport */
+  }
+}
+/*fine logo su maglia*/
+/*inizio logo mauro*/
+ .mauro { 
+  position: relative; 
+  top: -92vh;           /* altezza relativa */ 
+  right: -79vw;         /* distanza dal lato destro */
+  width: 16vw; 
+  max-width: 25vw; 
+  height: auto;
+
+  /* ANIMAZIONE FADE-IN + SLIDE DA DESTRA */
+  opacity: 0;
+  transform: translateX(60px); /* parte spostato a destra */
+  animation: slideFromRight 1.5s ease forwards;
+}
+
+.mauro img { 
+  width: 18vw;                     /* larghezza relativa al viewport width */ 
+  max-width: 30vw;                 /* non supera il 30% della larghezza viewport */ 
+  min-width: 10vw;                 /* non scende sotto il 10% della larghezza viewport */ 
+  height: auto;                    /* mantiene proporzioni */ 
+  object-fit: contain; 
+  border-radius: 18px;
+}
+
+/* Definizione animazione */
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px); /* parte da destra */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);   /* arriva nella posizione normale */
+  }
+}/* Tablet */ 
+    @media (max-width: 1024px) { 
+      .mauro { 
+        top: 15vh; 
+        right: 5vw; 
+        width: 20vw; } 
+        .mauro img { 
+          width: 20vw; } 
+        } /* Dispositivi verticali */ 
+    @media (orientation: portrait) { 
+      .mauro { 
+        position: absolute; /* sopra gli altri elementi */ 
+        top: 51vh; /* più in alto sullo schermo verticale */ 
+        right: 5vw; /* più a destra */ 
+        width: 35vw; /* larghezza adattabile */ 
+        max-width: 40vw; /* non supera il 40% del viewport */ 
+        z-index: 120; /* sopra gli altri elementi */ } 
+      .mauro img {
+        width: 100%; /* occupa tutta la larghezza del contenitore */
+        height: auto;
+        object-fit: contain; /* mantiene proporzioni */ } }
+
+
+/*inizio immagine ftt cab abatel*/
+.ftt-cab-abatel {
+  position: relative;
+  width: 15%;
+  max-width: 60%;
+  min-width: 20%;
+  top: -92vh;
+  right: -1vw;
+  margin: 0 auto;
+              /* parte invisibile */
+  transform: translateY(50px); /* parte più in basso */
+  transition: all 1s ease-out;
+}
+
+.ftt-cab-abatel.show {
+  opacity: 1;
+  transform: translateY(0); /* posizione finale */
+}
+
+.ftt-cab-abatel img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+}
+/* Quando entra in viewport */
+
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+  .ftt-cab-abatel {
+    position: relative;   /* mantiene il flusso */
+    top: 34vh;            /* sposta verso il basso del 10% dell'altezza viewport */
+    right: 0;             /* centrata rispetto al contenitore */
+    margin: 0 auto;       /* centrata orizzontalmente */
+    width: 50%;           /* opzionale: puoi adattarla più grande se vuoi */
+    max-width: 80%;       /* non supera il 80% del viewport */
+  }
+
+  .ftt-cab-abatel img {
+    width: 100%;          /* occupa tutta la larghezza del contenitore */
+    height: auto;
+    object-fit: contain;  
   }
 }
 /*pulsante messaggi (whatsapp)*/
