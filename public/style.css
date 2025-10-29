@@ -6472,6 +6472,69 @@ form input, form textarea {
 
 
 
+/* ================= BODY ================= */
+.corpo {
+  width: 100%;
+  min-height: 100vh;        /* occupa almeno tutto lo schermo */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  background-color: #fff;   /* colore di sfondo esempio */
+}
+
+/* ================= MAIN ================= */
+.principale {
+  width: 100%;
+  min-height: 80vh;         /* altezza minima fluida */
+  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6vw, 8vw); /* padding fluido */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: clamp(2vh, 3vw, 4vh);
+}
+
+/* ================= Smartphone portrait ================= */
+@media (max-width: 480px) {
+  .principale {
+    min-height: 70vh;
+    padding: clamp(4vh, 6vw, 5vh) clamp(4vw, 8vw, 6vw);
+    gap: clamp(3vh, 5vw, 4vh);
+  }
+}
+
+/* ================= Tablet verticale ================= */
+@media (min-width: 600px) and (max-width: 900px)  {
+  .principale {
+    min-height: 75vh;
+    padding: clamp(4vh, 5vw, 6vh) clamp(5vw, 7vw, 8vw);
+    gap: clamp(2.5vh, 3.5vw, 4vh);
+  }
+}
+
+/* ================= Tablet orizzontale ================= */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .principale {
+    min-height: 80vh;
+    padding: clamp(3.5vh, 4.5vw, 5vh) clamp(5vw, 6vw, 7vw);
+    gap: clamp(2.5vh, 3vw, 3.5vh);
+  }
+}
+
+/* ================= Schermi grandi ================= */
+@media (min-width: 1200px) {
+  .principale {
+    min-height: 85vh;
+    padding: clamp(4vh, 5vw, 6vh) clamp(6vw, 8vw, 10vw);
+    gap: clamp(3vh, 4vw, 5vh);
+  }
+}
 
 
 
