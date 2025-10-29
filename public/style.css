@@ -6397,7 +6397,118 @@ html, body, main {
 
 
 
+.animazione {
+  position: relative;
+  top: -160vh;
+  left: 22vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
 
+.pulsante-messaggi {
+  display: inline-block;
+  background-color: #25D366;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: 1vh 2vw;
+  border-radius: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pulsante-messaggi:hover {
+  transform: scale(1.05);
+  background-color: #1ebe5d;
+}
+
+/* --- Solo dispositivi verticali (smartphone/tablet in portrait) --- */
+@media (orientation: portrait) {
+  .animazione {
+    top: -14vh;    /* più in basso rispetto al -160vh desktop */
+    left: 5vw;    /* leggermente più centrato */
+    transform: rotate(-20deg); /* meno inclinato per stare meglio su schermi stretti */
+  }
+
+  .pulsante-messaggi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+  }
+}
+
+@keyframes fadeRotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+/* Responsive per smartphone */
+
+/*pulsante i nostri servizi (team)*/
+.animazione-servizi {
+  position: relative;
+  top: -162vh;
+  left: 68vw;
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: fadeRotateIn 1s forwards;
+}
+
+/* ANIMAZIONE */
+@keyframes fadeRotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.pulsante-servizi {
+  display: inline-block;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);  /* testo fluido */
+  padding: 1.5vh 3vw;                     /* padding fluido */
+  border-radius: 1.5rem;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0f4983 0%, #bd16ff 100%); /* blu-viola */
+  color: white;
+  transition: all 0.5s ease;
+  width: auto;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Hover: cambia in verde/arancione */
+.pulsante-servizi:hover {
+  background: linear-gradient(45deg, #FF8C00, #25D366);
+  transform: scale(1.05);
+}
+
+/* Responsive per smartphone e tablet verticali */
+@media (orientation: portrait) {
+  .animazione-servizi {
+    top: -11vh; /* sposta più in basso su smartphone */
+    left: 75vw; /* più centrato */
+  }
+
+  .pulsante-servizi {
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    padding: 0.6vh 1.4vw;
+    border-radius: 1.6rem;
+    max-width: 80%;
+  }
+}
 
 
 
