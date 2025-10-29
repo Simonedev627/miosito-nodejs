@@ -6658,6 +6658,34 @@ html, body, main {
   }
 }
 
+/* 📱 Dispositivi verticali (smartphone e tablet in portrait) */
+@media (orientation: portrait) {
+  .footer {
+    margin-top: 5vh;          /* più spazio sopra */
+    padding: 3vh 4vw;         /* padding adattivo */
+    position: relative;
+  }
+
+  .info-box {
+    margin-top: 20vh;         /* spinge più in basso */
+    margin-bottom: 3vh;
+    left: 0;
+    position: relative;
+    width: 95vw;              /* un po’ più stretta per adattarsi allo schermo */
+  }
+
+  .logo-blocco img {
+    max-width: 7rem;
+  }
+
+  .info-blocco h5 {
+    font-size: 0.9rem;
+  }
+
+  .info-blocco p {
+    font-size: 0.8rem;
+  }
+}
 
 
 
