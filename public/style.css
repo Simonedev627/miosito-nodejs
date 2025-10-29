@@ -3689,7 +3689,7 @@ body {
     align-items: center;
   }
    .pulsanti-container .home {
-      top: 30vh;
+      top: 90vh;
   }
 }
 /*work rectangle solo per imp ele indu*/
@@ -6182,6 +6182,7 @@ form input, form textarea {
     margin-top: 3rem;  /* distanza dal contact-container */
   }
 }
+
 
 
 
