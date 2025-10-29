@@ -3066,7 +3066,7 @@ body {
   .process-container {
     width: 90vw;
     max-width: 95%;
-    margin: 50vh auto 5vh auto;
+    margin: 30vh auto 5vh auto;
     padding: 4vh 4vw;
     border-radius: 2vw;
     opacity: 0;
