@@ -6332,71 +6332,6 @@ html, body, main {
   padding: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .animazione {
   position: relative;
   top: -160vh;
@@ -6512,6 +6447,125 @@ html, body, main {
 
 
 
+/* Contenitore informazioni */
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background: #2c2c2c77;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  max-width: 90vw;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  top: -40.9rem; /* alza il blocco senza modificare il flusso */
+  left: 4.5vw;    /* sposta il blocco verso destra */
+}
+
+/* Blocco logo blu */
+.info-logo {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0.5;              
+  padding: 1rem;           
+  border-radius: 0;
+}
+
+.info-logo img {
+  max-width: 10rem;        
+  height: auto;
+}
+
+/* Altri blocchi */
+.info-block {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.info-block h5 {
+  margin-bottom: 0.3125rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+  justify-content: center; /* centra icone + testo */
+}
+
+.info-block p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hover sul blocco */
+.info-block:hover {
+  background: #3a3a3a;
+}
+
+/* Tablet */
+@media (max-width: 64rem) { /* 1024px */
+  .info-container {
+    flex-direction: column; /* impila i blocchi */
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .info-logo,
+  .info-block {
+    flex: 1 1 100%;         
+    margin-bottom: 1rem;
+  }
+
+  .info-logo img {
+    max-width: 8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 48rem) { /* 768px */
+  .info-container {
+    padding: 1.5rem;
+    margin: 2rem auto 1rem auto;
+  }
+
+  .info-logo img {
+    max-width: 6rem;
+  }
+
+  .info-block h5 {
+    font-size: 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .info-block p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dispositivi verticali */
+@media (orientation: portrait) {
+
+  /* Abbassiamo il footer */
+  .footer-container {
+    top: 90vh;
+    position: relative;
+  }
+
+  /* Abbassiamo il contenitore info */
+  .info-container {
+    top: 25vh;      
+    left: 0;         
+    position: relative;
+    margin: 2rem auto 1rem auto; 
+  }
+}
 
 
 
