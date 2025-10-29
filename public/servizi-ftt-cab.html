@@ -275,6 +275,20 @@ window.addEventListener('resize', () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.querySelector(".process-container");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.classList.add("visible"); // aggiunge l’animazione
+        observer.unobserve(section); // smette di osservare (una sola volta)
+      }
+    });
+  }, { threshold: 0.2 }); // attiva quando il 20% è visibile
+
+  if (section) observer.observe(section);
+});
 </script>
         </section>
       <section class="sesta-sezione">
