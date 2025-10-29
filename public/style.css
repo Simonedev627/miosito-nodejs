@@ -6421,6 +6421,54 @@ form input, form textarea {
 
 
 
+.sezione-del-team {
+  width: 100%;                          /* sempre tutta la larghezza */
+  min-height: 60vh;                      /* altezza minima fluida */
+  padding: clamp(3vh, 5vw, 6vh) clamp(4vw, 6vw, 8vw); /* padding fluido */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;              /* centra verticalmente */
+  align-items: center;                  /* centra orizzontalmente */
+  gap: clamp(2vh, 3vw, 4vh);            /* distanza fluida tra eventuali elementi */
+  background-color: #f0f0f0;            /* colore di sfondo esempio */
+}
+
+/* Smartphone portrait */
+@media (max-width: 480px) {
+  .sezione-del-team {
+    min-height: 50vh;
+    padding: clamp(4vh, 6vw, 5vh) clamp(4vw, 8vw, 6vw);
+    gap: clamp(3vh, 5vw, 4vh);
+  }
+}
+
+/* Tablet verticale */
+@media (min-width: 600px) and (max-width: 900px) {
+  .sezione-del-team {
+    min-height: 55vh;
+    padding: clamp(4vh, 5vw, 6vh) clamp(5vw, 7vw, 8vw);
+    gap: clamp(2.5vh, 3.5vw, 4vh);
+  }
+}
+
+/* Tablet orizzontale */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .sezione-del-team {
+    min-height: 60vh;
+    padding: clamp(3.5vh, 4.5vw, 5vh) clamp(5vw, 6vw, 7vw);
+    gap: clamp(2.5vh, 3vw, 3.5vh);
+  }
+}
+
+/* Schermi grandi (fino a 4K) */
+@media (min-width: 1200px) {
+  .sezione-del-team {
+    min-height: 65vh;
+    padding: clamp(4vh, 5vw, 6vh) clamp(6vw, 8vw, 10vw);
+    gap: clamp(3vh, 4vw, 5vh);
+  }
+}
 
 
 
