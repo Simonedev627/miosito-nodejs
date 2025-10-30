@@ -420,14 +420,15 @@ document.getElementById('prevYear').addEventListener('click', () => { currentYea
 document.getElementById('nextYear').addEventListener('click', () => { currentYear++; renderYear(currentYear); });
 
 // --- Refresh bookings ---
-async function refreshBookings() {
+async function refreshBookings(){
   try {
     const res = await fetch(API_URL);
     const newBookings = await res.json();
-    const updated = {};
-
-    newBookings.forEach(b => updated[b.date] = b);
-    bookings = updated;
+    bookings = {};
+    newBookings.forEach(b => {
+      const iso = new Date(b.date).toISOString().split('T')[0];
+      bookings[iso] = b;
+    });
 
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
@@ -443,6 +444,7 @@ async function refreshBookings() {
     console.error('Errore durante il refresh:', e);
   }
 }
+
 
 setInterval(refreshBookings, 3000);
 renderYear(currentYear);
