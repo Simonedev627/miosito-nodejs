@@ -130,8 +130,12 @@ app.delete("/api/bookings/:date", async (req, res) => {
     const booking = await Booking.findOne({ date });
     if (!booking)
       return res.json({ success: false, error: "Prenotazione non trovata" });
+
     if (booking.userId !== userId)
-      return res.json({ success: false, error: "Non hai i permessi per eliminare questa prenotazione" });
+      return res.json({
+        success: false,
+        error: "Non hai i permessi per eliminare questa prenotazione",
+      });
 
     await Booking.deleteOne({ date });
 
@@ -142,14 +146,16 @@ app.delete("/api/bookings/:date", async (req, res) => {
       day: "numeric",
     });
 
+    // 📧 invio notifica di eliminazione
     await sendEmail(
       "info@abatel.org",
       `❌ Prenotazione eliminata: ${formattedDate}`,
-      `La seguente prenotazione è stata eliminata:\nNome: ${booking.name}\nData: ${formattedDate}\nOrario: ${booking.time}\nUserID: ${userId}`
+      `La seguente prenotazione è stata eliminata:\n\n👤 Nome: ${booking.name}\n📅 Data: ${formattedDate}\n🕒 Orario: ${booking.time}\n🆔 UserID: ${userId}`
     );
 
     res.json({ success: true });
   } catch (err) {
+    console.error("Errore eliminazione prenotazione:", err);
     res.status(500).json({ success: false, error: err.message });
   }
 });
@@ -157,10 +163,13 @@ app.delete("/api/bookings/:date", async (req, res) => {
 // --- Pulizia prenotazioni passate ---
 async function cleanupBookings() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const isoToday = `${today.getFullYear()}/${(today.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}/${today.getDate().toString().padStart(2, "0")}`;
+
   try {
     const result = await Booking.deleteMany({
-      date: { $lt: today.toISOString().split("T")[0] },
+      date: { $lt: isoToday },
     });
     if (result.deletedCount)
       console.log(`🗑 Eliminate ${result.deletedCount} prenotazioni passate`);
@@ -168,6 +177,7 @@ async function cleanupBookings() {
     console.error("Errore pulizia prenotazioni:", err);
   }
 }
+
 setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
 
 // --- LAVORA CON NOI ---
