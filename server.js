@@ -123,34 +123,29 @@ app.post("/api/bookings", async (req, res) => {
 
 // ✅ Elimina prenotazione
 app.delete("/api/bookings/:date", async (req, res) => {
-  const { date } = req.params;
+  const dateParam = decodeURIComponent(req.params.date); // decodifica correttamente la data
   const { userId } = req.body;
 
   try {
-    const booking = await Booking.findOne({ date });
-    if (!booking)
-      return res.json({ success: false, error: "Prenotazione non trovata" });
-
+    const booking = await Booking.findOne({ date: dateParam });
+    if (!booking) return res.json({ success: false, error: "Prenotazione non trovata" });
     if (booking.userId !== userId)
-      return res.json({
-        success: false,
-        error: "Non hai i permessi per eliminare questa prenotazione",
-      });
+      return res.json({ success: false, error: "Non hai i permessi per eliminare questa prenotazione" });
 
-    await Booking.deleteOne({ date });
+    await Booking.deleteOne({ date: dateParam });
 
-    const formattedDate = new Date(date).toLocaleDateString("it-IT", {
+    const formattedDate = new Date(dateParam).toLocaleDateString("it-IT", {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     });
 
-    // 📧 invio notifica di eliminazione
+    // invio mail di notifica
     await sendEmail(
       "info@abatel.org",
       `❌ Prenotazione eliminata: ${formattedDate}`,
-      `La seguente prenotazione è stata eliminata:\n\n👤 Nome: ${booking.name}\n📅 Data: ${formattedDate}\n🕒 Orario: ${booking.time}\n🆔 UserID: ${userId}`
+      `La prenotazione è stata eliminata:\n\n👤 Nome: ${booking.name}\n📅 Data: ${formattedDate}\n🕒 Orario: ${booking.time}\n🆔 UserID: ${userId}`
     );
 
     res.json({ success: true });

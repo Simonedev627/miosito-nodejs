@@ -393,25 +393,30 @@ deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
   try {
-    await fetch(`${API_URL}/${activeDate}`, {
+    // ✅ encodeURIComponent per gestire le date con slash
+    const res = await fetch(`${API_URL}/${encodeURIComponent(activeDate)}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId })
     });
 
-    document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => updateDayElement(el, {}));
-    delete bookings[activeDate];
-    localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 aggiorna anche in locale
-    alert("Prenotazione eliminata con successo!");
-    closeModal();
+    const json = await res.json();
+
+    if (json.success) {
+      // aggiorna il calendario
+      document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => updateDayElement(el, {}));
+      delete bookings[activeDate];
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+      alert("Prenotazione eliminata con successo!");
+      closeModal();
+    } else {
+      alert("Errore: " + json.error);
+    }
   } catch (err) {
     console.error("Errore nella cancellazione:", err);
     alert("Errore di connessione al server.");
   }
-});
-
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+})
 
 // --- Update day element ---
 function updateDayElement(el, booking) {
