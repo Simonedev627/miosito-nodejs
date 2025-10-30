@@ -425,15 +425,22 @@ async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
-    const newBookings = Array.isArray(data) ? data : Object.values(data.bookings || {});
-    bookings = {};
-    newBookings.forEach(b => bookings[b.date] = b);
+    
+    // Trasforma l'oggetto del server in array
+    const serverBookings = Object.values(data.bookings || {});
 
+    // Aggiorna le prenotazioni locali senza cancellare quelle già presenti
+    serverBookings.forEach(b => {
+      bookings[b.date] = b;
+    });
+
+    // Aggiorna il calendario
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
       if (bookings[date]) updateDayElement(el, bookings[date]);
       else updateDayElement(el, {});
     });
+
   } catch (e) {
     console.error('Errore durante il refresh:', e);
   }
