@@ -234,9 +234,8 @@
 
   <script>
   /* --- Config --- */
-const LO_KEY = 'bookings'; // rimane per eventuale backup locale
-let bookings = {}; // memorizza le prenotazioni
-// ID univoco utente per identificare chi ha prenotato
+const LO_KEY = 'bookings'; // backup locale
+let bookings = {}; 
 let userId = localStorage.getItem('userId');
 if (!userId) {
   userId = 'user-' + Math.random().toString(36).substring(2, 10);
@@ -257,61 +256,67 @@ const timeInput = document.getElementById('timeInput');
 const saveBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const closeBtn = document.getElementById('closeBtn');
+
+// 🔗 CAMBIA SOLO QUESTO URL CON QUELLO DEL TUO SERVER RENDER
 const API_URL = 'https://miosito-nodejs.onrender.com/api/bookings';
+
 let activeDate = null;
 let activeElem = null;
 
 // --- Render calendario ---
-function renderYear(year){
+function renderYear(year) {
   monthsGrid.innerHTML = '';
   currentYearSpan.textContent = year;
-  for(let m=0;m<12;m++){
-    monthsGrid.appendChild(createMonthCard(year,m));
+  for (let m = 0; m < 12; m++) {
+    monthsGrid.appendChild(createMonthCard(year, m));
   }
 }
 
-// Crea un mese
-
-function createMonthCard(year,monthIndex){
+function createMonthCard(year, monthIndex) {
   const card = document.createElement('div');
   card.className = 'month-card';
 
-  const monthName = new Date(year,monthIndex,1).toLocaleString(locale,{month:'long'});
-  const header = document.createElement('div'); header.className='month-header';
-  header.innerHTML = `<div class="month-title">${monthName.charAt(0).toUpperCase()+monthName.slice(1)} ${year}</div>`;
+  const monthName = new Date(year, monthIndex, 1).toLocaleString(locale, { month: 'long' });
+  const header = document.createElement('div');
+  header.className = 'month-header';
+  header.innerHTML = `<div class="month-title">${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${year}</div>`;
   card.appendChild(header);
 
-  const weekdays = document.createElement('div'); weekdays.className='weekdays';
+  const weekdays = document.createElement('div');
+  weekdays.className = 'weekdays';
   const baseWeekdays = [];
-  for(let i=0;i<7;i++){
-    let dayIndex = startWeekOnMonday ? ((i+1)%7) : i;
-    const d = new Date(2021,7,dayIndex+1);
-    baseWeekdays.push(d.toLocaleString(locale,{weekday:'short'}).slice(0,2));
+  for (let i = 0; i < 7; i++) {
+    let dayIndex = startWeekOnMonday ? ((i + 1) % 7) : i;
+    const d = new Date(2021, 7, dayIndex + 1);
+    baseWeekdays.push(d.toLocaleString(locale, { weekday: 'short' }).slice(0, 2));
   }
-  weekdays.innerHTML = baseWeekdays.map(d=>`<div>${d}</div>`).join('');
+  weekdays.innerHTML = baseWeekdays.map(d => `<div>${d}</div>`).join('');
   card.appendChild(weekdays);
 
-  const days = document.createElement('div'); days.className='days';
-  const firstOfMonth = new Date(year,monthIndex,1);
-  const lastOfMonth = new Date(year,monthIndex+1,0);
+  const days = document.createElement('div');
+  days.className = 'days';
+  const firstOfMonth = new Date(year, monthIndex, 1);
+  const lastOfMonth = new Date(year, monthIndex + 1, 0);
   let startDay = firstOfMonth.getDay();
-  if(startWeekOnMonday) startDay = (startDay===0)?6:startDay-1;
+  if (startWeekOnMonday) startDay = (startDay === 0) ? 6 : startDay - 1;
 
-  for(let i=0;i<startDay;i++){
-    const blank = document.createElement('div'); blank.className='day out'; days.appendChild(blank); blank.disabled = true;
+  for (let i = 0; i < startDay; i++) {
+    const blank = document.createElement('div');
+    blank.className = 'day out';
+    days.appendChild(blank);
   }
 
-  for(let d=1; d<= lastOfMonth.getDate(); d++){
-    const date = new Date(year,monthIndex,d);
-    const iso = `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
-    const el = document.createElement('button'); el.className='day free'; el.setAttribute('data-date', iso);
+  for (let d = 1; d <= lastOfMonth.getDate(); d++) {
+    const date = new Date(year, monthIndex, d);
+    const iso = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
+    const el = document.createElement('button');
+    el.className = 'day free';
+    el.setAttribute('data-date', iso);
     el.innerHTML = `<div class="num">${d}</div>`;
 
-    if(bookings[iso]){
-      updateDayElement(el, bookings[iso]);
-    }
+    if (bookings[iso]) updateDayElement(el, bookings[iso]);
 
-    el.addEventListener('click', ()=> openModal(iso, el));
+    el.addEventListener('click', () => openModal(iso, el));
     days.appendChild(el);
   }
 
@@ -320,97 +325,109 @@ function createMonthCard(year,monthIndex){
 }
 
 // --- Modal ---
-function openModal(iso, elem){
-  // Se il giorno è prenotato da un altro utente → blocca
-if (bookings[iso] && bookings[iso].userId !== userId) {
-  alert("Questo giorno è già prenotato da un altro utente.");
-  return;
-}
-  activeDate = iso; activeElem = elem;
+function openModal(iso, elem) {
+  if (bookings[iso] && bookings[iso].userId !== userId) {
+    alert("Questo giorno è già prenotato da un altro utente.");
+    return;
+  }
+  activeDate = iso;
+  activeElem = elem;
   const d = new Date(iso);
-  modalTitle.textContent = 'Dettagli: '+d.toLocaleDateString(locale, {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  modalTitle.textContent = 'Dettagli: ' + d.toLocaleDateString(locale, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   modalDate.textContent = iso;
-  nameInput.value = bookings[iso] ? bookings[iso].name||'' : '';
-  timeInput.value = bookings[iso] ? bookings[iso].time||'' : '';
+  nameInput.value = bookings[iso] ? bookings[iso].name || '' : '';
+  timeInput.value = bookings[iso] ? bookings[iso].time || '' : '';
   modal.classList.add('show');
 }
-function closeModal(){ modal.classList.remove('show'); activeDate=null; activeElem=null }
+function closeModal() {
+  modal.classList.remove('show');
+  activeDate = null;
+  activeElem = null;
+}
 
+// ✅ FIX: blocco corretto per salvare la prenotazione
+saveBtn.addEventListener('click', async () => {
+  if (!activeDate) return;
 
-saveBtn.addEventListener('click', async ()=>{
-  if(!activeDate) return;
   const name = nameInput.value.trim();
   const time = timeInput.value;
-
-  if(!name || !time){
+  if (!name || !time) {
     alert("Inserisci nome e orario!");
     return;
   }
 
-  if(!confirm(`Confermi la prenotazione il ${activeDate} alle ${time}?`)){
-    return;
+  if (!confirm(`Confermi la prenotazione il ${activeDate} alle ${time}?`)) return;
+
+  const data = { date: activeDate, name, time, userId };
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      bookings[activeDate] = { name, time, userId, ts: Date.now() };
+      updateDayElement(activeElem, bookings[activeDate]);
+      closeModal();
+      alert("Prenotazione salvata con successo!");
+    } else {
+      alert("Errore durante il salvataggio!");
+    }
+  } catch (err) {
+    console.error("Errore nella richiesta:", err);
+    alert("Errore di connessione al server.");
   }
-
-// CAMBIA QUESTA RIGA
-const data = { date: activeDate, name, time, userId };
-const res = await fetch(API_URL, {
-  method:'POST',
-  headers:{'Content-Type':'application/json'},
-  body: JSON.stringify(data)
-});
-  const json = await res.json();
- if(json.success){
-  bookings[activeDate] = {name, time, userId, ts: Date.now()};
-  updateDayElement(activeElem, bookings[activeDate]);
-  closeModal();
-}
-
 });
 
-
+// ✅ FIX: blocco elimina corretto
 deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
-await fetch(`${API_URL}/${activeDate}`, { 
-  method: 'DELETE',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ userId })
+  await fetch(`${API_URL}/${activeDate}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId })
+  });
+
+  delete bookings[activeDate];
+  updateDayElement(activeElem, {});
+  alert("Prenotazione eliminata con successo!");
+  closeModal();
 });
 
-  await refreshBookings(); // aggiorna i dati reali dal server
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => {
+// --- Utility ---
+function updateDayElement(el, booking) {
+  if (!el) return;
+  if (booking && booking.name) {
+    el.classList.remove('free');
+    el.classList.add('booked');
+    el.title = `Prenotato: ${booking.name} (${booking.time})`;
+  } else {
     el.classList.remove('booked');
     el.classList.add('free');
     el.title = '';
-  });
-alert("Prenotazione salvata con successo!");
-  closeModal();
-});
-closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click',(e)=>{if(e.target===modal) closeModal();});
-
-// --- Utility ---
-function updateDayElement(el, booking){
-  if(el){
-    el.classList.remove('free');
-    el.classList.add('booked');
-    el.title = booking.name ? `Prenotato: ${booking.name} (${booking.time})` : 'Prenotato';
   }
-  if (booking.userId && booking.userId !== userId) el.style.cursor = "not-allowed";
-else el.style.cursor = "pointer";
+  el.style.cursor = (booking.userId && booking.userId !== userId) ? "not-allowed" : "pointer";
 }
 
 // --- Year controls ---
-document.getElementById('prevYear').addEventListener('click', ()=>{ currentYear--; renderYear(currentYear); });
-document.getElementById('nextYear').addEventListener('click', ()=>{ currentYear++; renderYear(currentYear); });
+document.getElementById('prevYear').addEventListener('click', () => { currentYear--; renderYear(currentYear); });
+document.getElementById('nextYear').addEventListener('click', () => { currentYear++; renderYear(currentYear); });
 
-// --- Refresh bookings in real-time ---
-async function refreshBookings(){
+// --- Refresh bookings ---
+async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
     const newBookings = await res.json();
-    bookings = newBookings.bookings || newBookings;
+    const updated = {};
+
+    newBookings.forEach(b => updated[b.date] = b);
+    bookings = updated;
 
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
@@ -427,12 +444,10 @@ async function refreshBookings(){
   }
 }
 
-setInterval(refreshBookings, 3000); // ogni 3 secondi
+setInterval(refreshBookings, 3000);
 renderYear(currentYear);
 refreshBookings();
 
-
-  /* utility */
 
   </script>
   </main>
