@@ -234,13 +234,14 @@
 
   <script>
   /* --- Config --- */
-const LO_KEY = 'bookings'; // backup locale
+// --- Config ---
 let bookings = {}; 
 let userId = localStorage.getItem('userId');
 if (!userId) {
   userId = 'user-' + Math.random().toString(36).substring(2, 10);
   localStorage.setItem('userId', userId);
 }
+
 const monthsGrid = document.getElementById('monthsGrid');
 const currentYearSpan = document.getElementById('currentYear');
 let currentYear = new Date().getFullYear();
@@ -257,7 +258,7 @@ const saveBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const closeBtn = document.getElementById('closeBtn');
 
-// 🔗 CAMBIA SOLO QUESTO URL CON QUELLO DEL TUO SERVER RENDER
+// URL API
 const API_URL = 'https://miosito-nodejs.onrender.com/api/bookings';
 
 let activeDate = null;
@@ -313,9 +314,7 @@ function createMonthCard(year, monthIndex) {
     el.className = 'day free';
     el.setAttribute('data-date', iso);
     el.innerHTML = `<div class="num">${d}</div>`;
-
     if (bookings[iso]) updateDayElement(el, bookings[iso]);
-
     el.addEventListener('click', () => openModal(iso, el));
     days.appendChild(el);
   }
@@ -345,17 +344,15 @@ function closeModal() {
   activeElem = null;
 }
 
-// ✅ FIX: blocco corretto per salvare la prenotazione
+// --- Save ---
 saveBtn.addEventListener('click', async () => {
   if (!activeDate) return;
-
   const name = nameInput.value.trim();
   const time = timeInput.value;
   if (!name || !time) {
     alert("Inserisci nome e orario!");
     return;
   }
-
   if (!confirm(`Confermi la prenotazione il ${activeDate} alle ${time}?`)) return;
 
   const data = { date: activeDate, name, time, userId };
@@ -366,7 +363,6 @@ saveBtn.addEventListener('click', async () => {
       body: JSON.stringify(data)
     });
     const json = await res.json();
-
     if (json.success) {
       bookings[activeDate] = { name, time, userId, ts: Date.now() };
       updateDayElement(activeElem, bookings[activeDate]);
@@ -381,26 +377,31 @@ saveBtn.addEventListener('click', async () => {
   }
 });
 
-// ✅ FIX: blocco elimina corretto
+// --- Delete ---
 deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
-  await fetch(`${API_URL}/${activeDate}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userId })
-  });
+  try {
+    await fetch(`${API_URL}/${activeDate}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId })
+    });
 
-  delete bookings[activeDate];
-  updateDayElement(activeElem, {});
-  alert("Prenotazione eliminata con successo!");
-  closeModal();
+    document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => updateDayElement(el, {}));
+    delete bookings[activeDate];
+    alert("Prenotazione eliminata con successo!");
+    closeModal();
+  } catch (err) {
+    console.error("Errore nella cancellazione:", err);
+    alert("Errore di connessione al server.");
+  }
 });
 
 closeBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 
-// --- Utility ---
+// --- Update day element ---
 function updateDayElement(el, booking) {
   if (!el) return;
   if (booking && booking.name) {
@@ -420,31 +421,23 @@ document.getElementById('prevYear').addEventListener('click', () => { currentYea
 document.getElementById('nextYear').addEventListener('click', () => { currentYear++; renderYear(currentYear); });
 
 // --- Refresh bookings ---
-async function refreshBookings(){
+async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
-    const newBookings = await res.json();
+    const data = await res.json();
+    const newBookings = Array.isArray(data) ? data : data.bookings || [];
     bookings = {};
-    newBookings.forEach(b => {
-      const iso = new Date(b.date).toISOString().split('T')[0];
-      bookings[iso] = b;
-    });
+    newBookings.forEach(b => bookings[b.date] = b);
 
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
-      if (bookings[date]) {
-        updateDayElement(el, bookings[date]);
-      } else {
-        el.classList.remove('booked');
-        el.classList.add('free');
-        el.title = '';
-      }
+      if (bookings[date]) updateDayElement(el, bookings[date]);
+      else updateDayElement(el, {});
     });
   } catch (e) {
     console.error('Errore durante il refresh:', e);
   }
 }
-
 
 setInterval(refreshBookings, 3000);
 renderYear(currentYear);
