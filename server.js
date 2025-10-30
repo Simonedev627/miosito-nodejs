@@ -1,119 +1,171 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const sgMail = require('@sendgrid/mail');
-const cors = require('cors');
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
+
+// --- Configura SendGrid ---
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+// --- Permetti richieste dal frontend ---
 app.use(cors({
-  origin: 'https://abatel.org',
-  methods: ['GET','POST','DELETE'],
+  origin: 'https://abatel.org', // o '*' per tutti
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }));
 
+// --- Middleware ---
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads"))); // CV
 
-// --- File prenotazioni ---
-const bookingsFile = path.join(__dirname, 'bookings.json');
+// --- Connessione MongoDB Atlas ---
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ Connesso a MongoDB Atlas"))
+.catch(err => console.error("❌ Errore connessione MongoDB:", err));
 
-// --- Carica prenotazioni ---
-let bookings = {};
-function loadBookings() {
-  try {
-    bookings = JSON.parse(fs.readFileSync(bookingsFile, 'utf8') || '{}');
-    console.log("📂 Prenotazioni caricate:", bookings);
-  } catch (e) {
-    bookings = {};
-    console.log("⚠️ bookings.json vuoto o mancante, creo nuovo oggetto");
-  }
-}
-loadBookings();
+// --- Modello Prenotazione ---
+const bookingSchema = new mongoose.Schema({
+  date: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  time: { type: String, required: true },
+  userId: { type: String, required: true },
+  ts: { type: Date, default: Date.now }
+});
 
-// --- Salva prenotazioni ---
-function saveBookings() {
-  fs.writeFileSync(bookingsFile, JSON.stringify(bookings, null, 2));
-  console.log("💾 Prenotazioni salvate:", bookings);
-}
+const Booking = mongoose.model("Booking", bookingSchema);
 
 // --- Funzione invio email ---
 async function sendEmail(to, subject, text, attachments=[]) {
   const msg = { to, from: "info@abatel.org", subject, text, attachments };
-  try { await sgMail.send(msg); console.log("📧 Email inviata"); }
-  catch(err){ console.error("❌ Errore invio email:", err); }
+  try {
+    await sgMail.send(msg);
+    console.log("📧 Email inviata!");
+  } catch (err) {
+    console.error("❌ Errore invio email:", err);
+  }
 }
 
+// --- Routes Frontend ---
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "contatti.html"));
+});
+
+app.post("/send", async (req, res) => {
+  const { nome, email, messaggio } = req.body;
+  const testoEmail = `Hai ricevuto un nuovo messaggio dal sito Abatel.org:\n\nNome: ${nome}\nEmail: ${email}\nMessaggio: ${messaggio}`;
+  await sendEmail("info@abatel.org", `📩 Nuovo messaggio da ${nome}`, testoEmail);
+  res.send("✅ Messaggio inviato con successo!");
+});
+
 // --- API PRENOTAZIONI ---
-app.get("/api/bookings", (req,res)=>{
-  loadBookings();
-  res.json(bookings);
+// Ottieni tutte le prenotazioni
+app.get("/api/bookings", async (req, res) => {
+  try {
+    const bookings = await Booking.find({});
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
-app.post("/api/bookings", async (req,res)=>{
+// Crea o aggiorna prenotazione
+app.post("/api/bookings", async (req, res) => {
   const { date, name, time, userId } = req.body;
-  if(!date || !name || !time || !userId) return res.json({ success:false, error:"Dati mancanti" });
+  if (!date || !name || !time || !userId) return res.json({ success: false, error: "Dati mancanti" });
 
-  if(bookings[date] && bookings[date].userId !== userId)
-    return res.json({ success:false, error:"Data già prenotata" });
+  try {
+    // Controlla se la data è già prenotata
+    const existing = await Booking.findOne({ date });
+    if (existing && existing.userId !== userId) {
+      return res.json({ success: false, error: "Questa data è già prenotata da un altro utente" });
+    }
 
-  bookings[date] = { name, time, userId, ts: Date.now() };
-  saveBookings();
+    const booking = await Booking.findOneAndUpdate(
+      { date },
+      { name, time, userId, ts: new Date() },
+      { upsert: true, new: true }
+    );
 
-  const formattedDate = new Date(date).toLocaleDateString('it-IT',{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    // Invia email
+    const formattedDate = new Date(date).toLocaleDateString('it-IT', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    await sendEmail(
+      "info@abatel.org",
+      `📅 Nuova prenotazione: ${formattedDate}`,
+      `Hai ricevuto una nuova prenotazione!\nNome: ${name}\nEmail: ${userId}\nData: ${formattedDate}\nOrario: ${time}`
+    );
 
-  await sendEmail(
-    "info@abatel.org",
-    `📅 Nuova prenotazione: ${formattedDate}`,
-    `Hai ricevuto una nuova prenotazione!\n\n👤 Nome: ${name}\n📧 UserID: ${userId}\n📅 Data: ${formattedDate}\n⏰ Orario: ${time}`
-  );
-
-  res.json({ success:true, bookings });
+    res.json({ success: true, booking });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
-app.delete("/api/bookings/:date", async (req,res)=>{
+// Elimina prenotazione
+app.delete("/api/bookings/:date", async (req, res) => {
   const { date } = req.params;
   const { userId } = req.body;
+  try {
+    const booking = await Booking.findOne({ date });
+    if (!booking) return res.json({ success: false, error: "Prenotazione non trovata" });
+    if (booking.userId !== userId) return res.json({ success: false, error: "Non hai i permessi per eliminare questa prenotazione" });
 
-  loadBookings();
-  if(!bookings[date]) return res.json({ success:false, error:"Prenotazione non trovata" });
-  if(bookings[date].userId !== userId) return res.json({ success:false, error:"Non puoi eliminare questa prenotazione" });
+    await Booking.deleteOne({ date });
 
-  const { name, time } = bookings[date];
-  delete bookings[date];
-  saveBookings();
+    // Invia email
+    const formattedDate = new Date(date).toLocaleDateString('it-IT', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    await sendEmail(
+      "info@abatel.org",
+      `❌ Prenotazione eliminata: ${formattedDate}`,
+      `La seguente prenotazione è stata eliminata:\nNome: ${booking.name}\nData: ${formattedDate}\nOrario: ${booking.time}\nUserID: ${userId}`
+    );
 
-  const formattedDate = new Date(date).toLocaleDateString('it-IT',{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  await sendEmail(
-    "info@abatel.org",
-    `❌ Prenotazione eliminata: ${formattedDate}`,
-    `La seguente prenotazione è stata eliminata:\n\n👤 Nome: ${name}\n📧 UserID: ${userId}\n📅 Data: ${formattedDate}\n⏰ Orario: ${time}`
-  );
-
-  res.json({ success:true, bookings });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
 });
 
 // --- Pulizia prenotazioni passate ---
-function cleanupBookings() {
-  loadBookings();
+async function cleanupBookings() {
   const today = new Date();
   today.setHours(0,0,0,0);
-  for(const date in bookings){
-    const bookingDate = new Date(date+'T00:00:00');
-    bookingDate.setHours(0,0,0,0);
-    if(bookingDate < today){
-      console.log(`🗑 Prenotazione eliminata (data passata): ${date}`);
-      delete bookings[date];
-    }
+
+  try {
+    const result = await Booking.deleteMany({ date: { $lt: today.toISOString().split('T')[0] } });
+    if (result.deletedCount) console.log(`🗑 Eliminate ${result.deletedCount} prenotazioni passate`);
+  } catch (err) {
+    console.error("Errore pulizia prenotazioni:", err);
   }
-  saveBookings();
 }
-setInterval(cleanupBookings, 24*60*60*1000); // 1 volta al giorno
+setInterval(cleanupBookings, 24*60*60*1000);
+
+// --- LAVORA CON NOI ---
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req,file,cb) => { const dir="./uploads"; if(!fs.existsSync(dir)) fs.mkdirSync(dir); cb(null,dir); },
+    filename: (req,file,cb)=>cb(null,Date.now()+"-"+file.originalname)
+  })
+});
+
+app.get("/lavora-con-noi",(req,res)=>{
+  res.sendFile(path.join(__dirname,"views","lavora-con-noi.html"));
+});
+
+app.post("/lavora", upload.single("cv"), async (req,res)=>{
+  const { nome,email,esperienze,motivazione,ruolo } = req.body;
+  const file = req.file ? [{ content: fs.readFileSync(req.file.path).toString("base64"), filename: req.file.originalname, type: req.file.mimetype, disposition: 'attachment' }] : [];
+  await sendEmail("info@abatel.org", `💼 Nuova candidatura da ${nome}`, `Nuova candidatura ricevuta!\nNome: ${nome}\nEmail: ${email}\nEsperienze: ${esperienze}\nMotivazione: ${motivazione}\nRuolo: ${ruolo}`, file);
+  res.send("✅ Candidatura inviata con successo!");
+});
 
 // --- Avvio server ---
 const PORT = process.env.PORT || 10000;
