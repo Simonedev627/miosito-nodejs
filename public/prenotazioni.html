@@ -242,6 +242,16 @@ if (!userId) {
   localStorage.setItem('userId', userId);
 }
 
+// --- Carica prenotazioni salvate in locale ---
+const savedBookings = localStorage.getItem('bookings');
+if (savedBookings) {
+  try {
+    bookings = JSON.parse(savedBookings);
+  } catch (e) {
+    console.error("Errore parsing localStorage bookings:", e);
+  }
+}
+
 const monthsGrid = document.getElementById('monthsGrid');
 const currentYearSpan = document.getElementById('currentYear');
 let currentYear = new Date().getFullYear();
@@ -365,6 +375,7 @@ saveBtn.addEventListener('click', async () => {
     const json = await res.json();
     if (json.success) {
       bookings[activeDate] = { name, time, userId, ts: Date.now() };
+      localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 salva anche in locale
       updateDayElement(activeElem, bookings[activeDate]);
       closeModal();
       alert("Prenotazione salvata con successo!");
@@ -390,6 +401,7 @@ deleteBtn.addEventListener('click', async () => {
 
     document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => updateDayElement(el, {}));
     delete bookings[activeDate];
+    localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 aggiorna anche in locale
     alert("Prenotazione eliminata con successo!");
     closeModal();
   } catch (err) {
@@ -425,16 +437,14 @@ async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
-    
-    // Trasforma l'oggetto del server in array
     const serverBookings = Object.values(data.bookings || {});
 
-    // Aggiorna le prenotazioni locali senza cancellare quelle già presenti
     serverBookings.forEach(b => {
       bookings[b.date] = b;
     });
 
-    // Aggiorna il calendario
+    localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 aggiorna anche cache locale
+
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
       if (bookings[date]) updateDayElement(el, bookings[date]);
@@ -449,6 +459,7 @@ async function refreshBookings() {
 setInterval(refreshBookings, 3000);
 renderYear(currentYear);
 refreshBookings();
+
 
 
   </script>
