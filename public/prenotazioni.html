@@ -425,7 +425,7 @@ async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
-    const newBookings = Array.isArray(data) ? data : data.bookings || [];
+    const newBookings = Array.isArray(data) ? data : Object.values(data.bookings || {});
     bookings = {};
     newBookings.forEach(b => bookings[b.date] = b);
 
