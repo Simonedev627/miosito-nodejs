@@ -6076,6 +6076,10 @@ opacity: 0;
 #lavora-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
+main.lavora-container .lavora-wrapper form {
+  display: block;
+  width: 100%;
+}
 
 /* Hover e focus su input/textarea */
 #lavora-form input:hover,
