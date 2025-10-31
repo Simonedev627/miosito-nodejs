@@ -6317,12 +6317,17 @@ form input, form textarea {
 
 /* MEDIA QUERY portrait */
 /* MEDIA QUERY portrait */
-@media (orientation: portrait) {
+@media screen and (orientation: portrait) {
   .contact-container {
-    margin-top: 74vh; /* più in basso rispetto ai 37rem originali */
+    /* margin-top limitato e sicuro */
+    margin-top: 60vh;
+    
+    /* aggiunta per spostamento extra senza rischiare overflow */
+    transform: translateY(10vh);
   }
+
   .site-footer {
-    margin-top: 8vh;  /* mantiene la distanza dal contact-container */
+    margin-top: 8vh;
   }
 }
 
@@ -6871,19 +6876,27 @@ html, body, main {
 /* ===== MEDIA QUERY ORIENTAMENTO PORTRAIT ===== */
 @media screen and (orientation: portrait) {
   .contact-section {
-    margin-top: 74vh; /* sposta la sezione più in basso in base all'altezza dello schermo */
+    /* margin-top limitato e sicuro */
+    margin-top: 60vh;
+    
+    /* aggiunta per spostamento extra senza rischiare overflow */
+    transform: translateY(10vh);
   }
 
   .site-footer {
-    margin-top: 8vh; /* footer si adatta proporzionalmente */
+    margin-top: 8vh;
   }
 }
 
 
 
+@media (orientation: portrait) {
+  .Titolo {
+    margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) clamp(6vh, 12vw, 15vh);
+  }
+}
 
-
-
+.contact-container
 
 
 
