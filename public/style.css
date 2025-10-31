@@ -246,7 +246,7 @@
   
 
   /* Margini fluidi */
-margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) clamp(6vh, 12vw, 15vh);
+margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) clamp(3vh, 6vw, 8vh);
 
 
 
@@ -4783,9 +4783,10 @@ opacity: 0;
 }
 @media (orientation: portrait) {
   .sparti {
-    top: 10vh; /* sposta leggermente più in alto rispetto ai 4vh originali */
+    top: 2.5vh; /* leggermente più in alto rispetto ai 4vh originali */
   }
 }
+
 .cinqueg {
   width: clamp(10rem, 50vw, 26rem);
   border-radius: 1.8rem;
@@ -6318,10 +6319,10 @@ form input, form textarea {
 /* MEDIA QUERY portrait */
 @media (orientation: portrait) {
   .contact-container {
-    margin-top: 52rem; /* più in basso rispetto ai 37rem originali */
+    margin-top: 60vh; /* più in basso rispetto ai 37rem originali */
   }
   .site-footer {
-    margin-top: 3rem;  /* mantiene la distanza dal contact-container */
+    margin-top: 8vh;  /* mantiene la distanza dal contact-container */
   }
 }
 
@@ -6870,15 +6871,15 @@ html, body, main {
 /* ===== MEDIA QUERY ORIENTAMENTO PORTRAIT ===== */
 @media screen and (orientation: portrait) {
   .contact-section {
-    margin-top: 52rem; /* sposta tutta la sezione più in basso */
+    margin-top: 60vh; /* sposta la sezione più in basso in base all'altezza dello schermo */
   }
 
   .site-footer {
-    margin-top: 8rem; /* anche il footer scende un po’ */
+    margin-top: 8vh; /* footer si adatta proporzionalmente */
   }
-} 
+}
 
-
+.Titolo
 
 
 
