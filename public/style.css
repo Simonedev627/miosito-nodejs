@@ -4765,25 +4765,21 @@ opacity: 0;
 }
 
 /* Smartphone grandi */
-@media (max-width: 480px) {
+@media (max-width: 480px) and (orientation: portrait)  {
   .sparti {
-    top: 2vh;
+    top: -2vh;
     height: 0.4vh;
   }
 }
 
 /* Smartphone piccoli */
-@media (max-width: 360px) {
+@media (max-width: 360px) and (orientation: portrait) {
   .sparti {
     top: 1.8vh;
     height: 0.5vh;
   }
 }
-@media (orientation: portrait) {
-  .sparti {
-    top: -2vh; !important; /* forza lo spostamento */
-  }
-}
+
 
 .cinqueg {
   width: clamp(10rem, 50vw, 26rem);
