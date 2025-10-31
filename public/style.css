@@ -6014,6 +6014,7 @@ opacity: 0;
   background-color: #0f1724;
 }
 /* Container principale */
+/* CONTENITORE MODULO */
 .lavora-container {
   max-width: 800px;
   width: 90%;
@@ -6025,11 +6026,12 @@ opacity: 0;
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 
-  min-height: 70vh; /* cresce verso il basso */
   display: flex;
   flex-direction: column;
+  min-height: 80vh;   /* cresce verso il basso */
+  overflow: hidden;   /* ingloba tutto il contenuto */
+  padding-bottom: 6rem; /* spazio extra sotto il pulsante */
 }
-
 
 /* Titolo e descrizione */
 .lavora-container h1 {
@@ -6045,6 +6047,13 @@ opacity: 0;
   margin-bottom: 2rem;
 }
 
+/* FORM INTERNO */
+.lavora-container form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* forza il form a occupare tutto lo spazio verticale */
+}
+
 /* Etichette form */
 form label {
   display: block;
@@ -6055,7 +6064,8 @@ form label {
 }
 
 /* Input e textarea */
-form input, form textarea {
+form input,
+form textarea {
   width: 100%;
   padding: 0.8rem;
   border-radius: 0.5rem;
@@ -6063,12 +6073,13 @@ form input, form textarea {
   margin-top: 0.3rem;
   font-size: clamp(0.9rem, 2vw, 1rem);
   box-sizing: border-box;
+  resize: vertical; /* permette ridimensionamento verticale per textarea */
 }
 
 /* Pulsante invio */
 .btn-noi {
   display: inline-block;
-  margin-top: 1.5rem;
+  margin-top: auto; /* spinge il pulsante verso il basso */
   width: 100%;
   text-align: center;
   background: linear-gradient(135deg, #007bff, #7f00ff);
@@ -6087,16 +6098,53 @@ form input, form textarea {
   transform: scale(1.05);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* MEDIA QUERY TABLET */
+@media (max-width: 64rem) {
   .lavora-container {
-    padding: 1rem;
+    width: 95%;
+    padding: 1.5rem;
+    min-height: 70vh;
   }
-  form label, form input, form textarea {
-    font-size: clamp(0.8rem, 2vw, 0.95rem);
+
+  .lavora-container h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
   }
+
+  .lavora-container p {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  form label,
+  form input,
+  form textarea,
   .btn-noi {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+  }
+}
+
+/* MEDIA QUERY MOBILE */
+@media (max-width: 48rem) {
+  .lavora-container {
+    width: 100%;
+    padding: 1rem;
+    min-height: 60vh;
+    margin: 3vh auto;
+    padding-bottom: 4rem;
+  }
+
+  .lavora-container h1 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+
+  .lavora-container p {
     font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  form label,
+  form input,
+  form textarea,
+  .btn-noi {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
   }
 }
 
