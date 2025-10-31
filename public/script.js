@@ -826,7 +826,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelectorAll('.nav-links .dropdown > a').forEach(link => {
   link.addEventListener('click', e => {
-    e.preventDefault(); // evita navigazione
-    link.parentElement.classList.toggle('active');
+    if (window.innerWidth <= 900) {  // solo mobile
+      e.preventDefault(); // evita navigazione
+      link.parentElement.classList.toggle('active');
+    }
   });
 });
