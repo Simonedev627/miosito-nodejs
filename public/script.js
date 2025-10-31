@@ -827,8 +827,19 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll('.nav-links .dropdown > a').forEach(link => {
   link.addEventListener('click', e => {
     if (window.innerWidth <= 900) {  // solo mobile
-      e.preventDefault(); // evita navigazione
-      link.parentElement.classList.toggle('active');
+      const parent = link.parentElement;
+
+      // chiudi tutti gli altri dropdown attivi
+      document.querySelectorAll('.nav-links .dropdown.active').forEach(d => {
+        if (d !== parent) d.classList.remove('active');
+      });
+
+      parent.classList.toggle('active'); // toggle il dropdown cliccato
+
+      // Se vuoi navigazione, NON fare preventDefault
+      // Se vuoi solo toggle, decommenta la prossima riga:
+      // e.preventDefault();
     }
   });
 });
+
