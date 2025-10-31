@@ -7076,9 +7076,31 @@ html, body, main {
     font-size: 0.8rem;
   }
 }
+.partita-iva {
+  background-color: #000;
+}
+
+.partita-iva p {
+  color: white;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
 
 
 
+@media screen and (orientation: portrait) {
+  .neon-container {
+    /* margin-top più basso e sicuro per mobile verticale */
+    margin-top: 70vh;
+
+    /* spostamento extra senza overflow */
+    transform: translateY(10vh);
+  }
+
+  .cyber-footer {
+    margin-top: 15vh; /* più in basso rispetto a prima */
+  }
+}
 
 
 
