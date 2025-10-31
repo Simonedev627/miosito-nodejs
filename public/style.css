@@ -7159,6 +7159,52 @@ html, body, main {
   }
 }
 
+/* Reset mirato per il form nella sezione Lavora */
+main.lavora-wrapper, .lavora-wrapper {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* Selettore molto specifico per il tuo form */
+main.lavora-wrapper form#lavora-form,
+.lavora-wrapper form#lavora-form,
+.lavora-wrapper > form#lavora-form {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  float: none !important;
+  position: static !important;
+  align-items: stretch !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box !important;
+  margin: 0 auto !important;
+  padding: 0 !important; /* se vuoi ripristinare il padding interno del form, togli questa linea */
+}
+
+/* Inputs e textarea full-width */
+#lavora-form input,
+#lavora-form textarea,
+#lavora-form input[type="file"] {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Se il problema è che qualche regola imposta display:flex sugli elementi figli */
+#lavora-form > * {
+  flex: none !important;
+}
+
+/* Forza il wrapper a comportarsi come contenitore che si allunga verticalmente */
+.lavora-wrapper {
+  min-height: calc(70vh);
+  padding-bottom: 2rem;
+}
+
+
 
 
 
