@@ -571,3 +571,7 @@ ease;
     pointer-events: none;
     z-index: 10002;
 }
+#btn-torna-su:hover {
+  background: linear-gradient(135deg, #00c851, #ff8800);
+  transform: scale(1.1);
+}
