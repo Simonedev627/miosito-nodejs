@@ -4781,7 +4781,7 @@ opacity: 0;
 }
 @media (orientation: portrait) {
   .sparti {
-    top: -2vh; /* sale verso l’alto rispetto ai 4vh originali */
+    top: -2vh; !important; /* forza lo spostamento */
   }
 }
 
