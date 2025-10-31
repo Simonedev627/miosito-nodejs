@@ -6018,16 +6018,16 @@ opacity: 0;
   max-width: 800px;
   width: 90%;
   margin: 5vh auto;
-  padding: 2rem 2rem 3rem 2rem; /* padding-bottom più grande */
+  padding: 2rem;
   background: #f9f9f9;
   border-radius: 1rem;
   box-shadow: 0 6px 15px rgba(0,0,0,0.15);
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 
+  min-height: 70vh; /* cresce verso il basso */
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* forza il contenitore a inglobare tutto */
 }
 
 
