@@ -58,42 +58,42 @@
 
   </div>
 </div>
-  <main class="lavora-container">
-    <h1>Lavora con noi</h1>
-    <p>Compila il modulo per proporre la tua candidatura. Cerchiamo persone con passione, iniziativa e voglia di crescere.</p>
+<main class="lavora-wrapper">
+  <h1>Lavora con noi</h1>
+  <p>Compila il modulo per proporre la tua candidatura. Cerchiamo persone con passione, iniziativa e voglia di crescere.</p>
 
-    <form id="form-lavora" action="/lavora" method="POST" enctype="multipart/form-data">
+  <form id="lavora-form" action="/lavora" method="POST" enctype="multipart/form-data">
 
-      <label>Nome e Cognome:</label>
-      <input type="text" name="nome" required>
+    <label>Nome e Cognome:</label>
+    <input type="text" name="nome" required>
 
-      <label>Email:</label>
-      <input type="email" name="email" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
 
-      <label>Telefono:</label>
-      <input type="tel" name="telefono" placeholder="es. 3331234567">
+    <label>Telefono:</label>
+    <input type="tel" name="telefono" placeholder="es. 3331234567">
 
-      <label>Esperienze lavorative precedenti:</label>
-      <textarea name="esperienze" rows="4" placeholder="Descrivi brevemente la tua esperienza..."></textarea>
+    <label>Esperienze lavorative precedenti:</label>
+    <textarea name="esperienze" rows="4" placeholder="Descrivi brevemente la tua esperienza..."></textarea>
 
-      <label>Perché dovremmo scegliere te?</label>
-      <textarea name="motivazione" rows="4" placeholder="Spiega cosa ti rende unico..."></textarea>
+    <label>Perché dovremmo scegliere te?</label>
+    <textarea name="motivazione" rows="4" placeholder="Spiega cosa ti rende unico..."></textarea>
 
-      <label>Ruolo desiderato:</label>
-      <input type="text" name="ruolo" placeholder="Es. tecnico di rete, programmatore, consulente...">
+    <label>Ruolo desiderato:</label>
+    <input type="text" name="ruolo" placeholder="Es. tecnico di rete, programmatore, consulente...">
 
-      <label>Competenze principali:</label>
-      <input type="text" name="competenze" placeholder="Es. Lingua, Manodopera, Excel, Teamwork...">
+    <label>Competenze principali:</label>
+    <input type="text" name="competenze" placeholder="Es. Lingua, Manodopera, Excel, Teamwork...">
 
-      <label>Disponibilità (full-time / part-time / freelance):</label>
-      <input type="text" name="disponibilita" placeholder="Es. full-time">
+    <label>Disponibilità (full-time / part-time / freelance):</label>
+    <input type="text" name="disponibilita" placeholder="Es. full-time">
 
-      <label>Allega il tuo Curriculum (PDF, JPG, PNG):</label>
-      <input type="file" name="cv" accept=".pdf,.jpg,.jpeg,.png" required>
+    <label>Allega il tuo Curriculum (PDF, JPG, PNG):</label>
+    <input type="file" name="cv" accept=".pdf,.jpg,.jpeg,.png" required>
 
-      <button type="submit" class="btn-noi">Invia candidatura</button>
-    </form>
-    </main>
+    <button type="submit" class="btn-candidatura">Invia candidatura</button>
+  </form>
+</main>
 <div class="neon-container">
   <!-- Blocco Logo -->
   <div class="neon-logo">

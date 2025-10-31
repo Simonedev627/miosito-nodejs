@@ -6016,7 +6016,8 @@ opacity: 0;
 /* Container principale */
 /* CONTENITORE MODULO */
 /* --- Stili generali del container --- */
-.lavora-container {
+/* --- Stili generali del container --- */
+.lavora-wrapper {
   max-width: 90%;
   width: 100%;
   margin: 5vh auto;
@@ -6029,32 +6030,32 @@ opacity: 0;
   text-align: center;
 }
 
-.lavora-container h1 {
+.lavora-wrapper h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.lavora-container p {
+.lavora-wrapper p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
 /* --- Stile form --- */
-#form-lavora {
+#lavora-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   text-align: left;
 }
 
-#form-lavora label {
+#lavora-form label {
   font-size: 1.1rem;
   font-weight: 600;
 }
 
-#form-lavora input,
-#form-lavora textarea {
+#lavora-form input,
+#lavora-form textarea {
   padding: 0.8rem 1rem;
   font-size: 1rem;
   border: 0.1rem solid #fff;
@@ -6067,81 +6068,80 @@ opacity: 0;
   box-sizing: border-box;
 }
 
-#form-lavora input::placeholder,
-#form-lavora textarea::placeholder {
+#lavora-form input::placeholder,
+#lavora-form textarea::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
 /* Hover e focus su input/textarea */
-#form-lavora input:hover,
-#form-lavora textarea:hover,
-#form-lavora input:focus,
-#form-lavora textarea:focus {
+#lavora-form input:hover,
+#lavora-form textarea:hover,
+#lavora-form input:focus,
+#lavora-form textarea:focus {
   border-color: #00ff7f;
   background-color: rgba(0, 255, 127, 0.1);
 }
 
 /* Pulsante Invia candidatura lungo quanto il modulo */
-.btn-noi {
-  display: inline-block;
-  margin-top: auto; /* spinge il pulsante verso il basso */
-  width: 100%;
-  text-align: center;
-  background: linear-gradient(135deg, #007bff, #7f00ff);
-  color: white;
-  padding: 0.9rem;
-  border-radius: 2rem;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
+.btn-candidatura {
+  padding: 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
   border: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #4b0082, #191970); /* sfumatura più scura */
+  transition: all 0.4s ease;
+  width: 100%; /* lungo quanto il modulo */
+  margin-top: 1rem;
 }
 
-.btn-noi:hover {
-  background: linear-gradient(135deg, #00c851, #ff8800);
-  transform: scale(1.05);
+.btn-candidatura:hover {
+  background: linear-gradient(135deg, #006400, #cccc00); /* verde e giallo scuro */
+  color: #fff;
+  transform: scale(1.03);
 }
-
 
 /* --- Responsività completa --- */
 @media (max-width: 60rem) {
-  .lavora-container {
+  .lavora-wrapper {
     padding: 1.5rem;
   }
 
-  .lavora-container h1 {
+  .lavora-wrapper h1 {
     font-size: 2rem;
   }
 
-  #form-lavora input,
-  #form-lavora textarea {
+  #lavora-form input,
+  #lavora-form textarea {
     font-size: 0.95rem;
     padding: 0.7rem;
   }
 
-  .btn-noi {
+  .btn-candidatura {
     font-size: 1.1rem;
     padding: 0.9rem 0;
   }
 }
 
 @media (max-width: 40rem) {
-  .lavora-container h1 {
+  .lavora-wrapper h1 {
     font-size: 1.7rem;
   }
 
-  #form-lavora input,
-  #form-lavora textarea {
+  #lavora-form input,
+  #lavora-form textarea {
     font-size: 0.9rem;
     padding: 0.6rem;
   }
 
-  .btn-noi {
+  .btn-candidatura {
     font-size: 1rem;
     padding: 0.8rem 0;
   }
 }
+
 
 
 #btn-torna-su {
