@@ -126,29 +126,34 @@ app.post("/api/bookings", async (req, res) => {
 });
 
 // === PULIZIA AUTOMATICA PRENOTAZIONI SCADUTE ===
+// === PULIZIA AUTOMATICA PRENOTAZIONI SCADUTE ===
 async function cleanupBookings() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Rimuove ore, minuti, secondi
+  today.setHours(0, 0, 0, 0); // reset ore, minuti, secondi
+
+  // data di oggi in formato YYYY-MM-DD
   const isoToday = `${today.getFullYear()}-${(today.getMonth() + 1)
     .toString()
     .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
 
   try {
+    // elimina prenotazioni con data minore o uguale a oggi
     const result = await Booking.deleteMany({
-      date: { $lt: isoToday }, // elimina solo prenotazioni precedenti a oggi
+      date: { $lte: isoToday },
     });
     if (result.deletedCount)
-      console.log(`🗑️ Eliminate ${result.deletedCount} prenotazioni passate`);
+      console.log(`🗑️ Eliminate ${result.deletedCount} prenotazioni scadute`);
   } catch (err) {
     console.error("Errore pulizia prenotazioni:", err);
   }
 }
 
-// Esegui la pulizia una volta all’avvio del server
+// Esegui la pulizia subito all'avvio
 cleanupBookings();
 
-// E poi ogni 24 ore
+// Poi ogni 24 ore
 setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
+
 
 // ✅ Elimina prenotazione
 app.delete("/api/bookings/:date", async (req, res) => {
