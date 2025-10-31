@@ -6015,68 +6015,73 @@ opacity: 0;
 }
 /* Container principale */
 /* CONTENITORE MODULO */
+/* --- Stili generali del container --- */
 .lavora-container {
-  max-width: 800px;
-  width: 90%;
+  max-width: 90%;
+  width: 100%;
   margin: 5vh auto;
   padding: 2rem;
-  background: #f9f9f9;
+  background: linear-gradient(135deg, #4b0082, #191970); /* sfumatura blu/viola più scura */
   border-radius: 1rem;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
   font-family: 'Montserrat', sans-serif;
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 80vh;   /* cresce verso il basso */
-  overflow: hidden;   /* ingloba tutto il contenuto */
-  padding-bottom: 6rem; /* spazio extra sotto il pulsante */
+  color: #fff;
+  text-align: center;
 }
 
-/* Titolo e descrizione */
 .lavora-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   text-align: center;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  margin-bottom: 0.5rem;
 }
 
 .lavora-container p {
-  text-align: center;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #555;
+  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
-/* FORM INTERNO */
-.lavora-container form {
+/* --- Stile form --- */
+#form-lavora {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* forza il form a occupare tutto lo spazio verticale */
+  gap: 1.5rem;
+  text-align: left;
 }
 
-/* Etichette form */
-form label {
-  display: block;
-  margin-top: 1rem;
+#form-lavora label {
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #333;
-  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
-/* Input e textarea */
-form input,
-form textarea {
-  width: 100%;
-  padding: 0.8rem;
+#form-lavora input,
+#form-lavora textarea {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 0.1rem solid #fff;
   border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  margin-top: 0.3rem;
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
   box-sizing: border-box;
-  resize: vertical; /* permette ridimensionamento verticale per textarea */
 }
 
-/* Pulsante invio */
+#form-lavora input::placeholder,
+#form-lavora textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Hover e focus su input/textarea */
+#form-lavora input:hover,
+#form-lavora textarea:hover,
+#form-lavora input:focus,
+#form-lavora textarea:focus {
+  border-color: #00ff7f;
+  background-color: rgba(0, 255, 127, 0.1);
+}
+
+/* Pulsante Invia candidatura lungo quanto il modulo */
 .btn-noi {
   display: inline-block;
   margin-top: auto; /* spinge il pulsante verso il basso */
@@ -6098,55 +6103,46 @@ form textarea {
   transform: scale(1.05);
 }
 
-/* MEDIA QUERY TABLET */
-@media (max-width: 64rem) {
+
+/* --- Responsività completa --- */
+@media (max-width: 60rem) {
   .lavora-container {
-    width: 95%;
     padding: 1.5rem;
-    min-height: 70vh;
   }
 
   .lavora-container h1 {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: 2rem;
   }
 
-  .lavora-container p {
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  #form-lavora input,
+  #form-lavora textarea {
+    font-size: 0.95rem;
+    padding: 0.7rem;
   }
 
-  form label,
-  form input,
-  form textarea,
   .btn-noi {
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 1.1rem;
+    padding: 0.9rem 0;
   }
 }
 
-/* MEDIA QUERY MOBILE */
-@media (max-width: 48rem) {
-  .lavora-container {
-    width: 100%;
-    padding: 1rem;
-    min-height: 60vh;
-    margin: 3vh auto;
-    padding-bottom: 4rem;
-  }
-
+@media (max-width: 40rem) {
   .lavora-container h1 {
-    font-size: clamp(1.4rem, 5vw, 2rem);
+    font-size: 1.7rem;
   }
 
-  .lavora-container p {
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  #form-lavora input,
+  #form-lavora textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
 
-  form label,
-  form input,
-  form textarea,
   .btn-noi {
-    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-size: 1rem;
+    padding: 0.8rem 0;
   }
 }
+
 
 #btn-torna-su {
   position: fixed;
@@ -7147,14 +7143,13 @@ html, body, main {
     margin-top: 70vh;
 
     /* spostamento extra senza overflow */
-    transform: translateY(13vh);
+    transform: translateY(16vh);
   }
 
   .cyber-footer {
     margin-top: 15vh; /* più in basso rispetto a prima */
   }
 }
-
 
 
 
