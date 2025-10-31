@@ -404,15 +404,23 @@ deleteBtn.addEventListener('click', async () => {
 // --- Update day element ---
 function updateDayElement(el, booking) {
   if (!el) return;
+
   if (booking && booking.name) {
     el.classList.remove('free');
     el.classList.add('booked');
-    el.title = `Prenotato: ${booking.name} (${booking.time})`;
+
+    // mostra il tooltip solo se la prenotazione è tua
+    if (booking.userId === userId) {
+      el.title = `Prenotato: ${booking.name} (${booking.time})`;
+    } else {
+      el.title = "Giorno già prenotato";
+    }
   } else {
     el.classList.remove('booked');
     el.classList.add('free');
     el.title = '';
   }
+
   el.style.cursor = (booking.userId && booking.userId !== userId) ? "not-allowed" : "pointer";
 }
 
