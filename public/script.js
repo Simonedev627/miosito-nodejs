@@ -821,3 +821,12 @@ document.addEventListener("DOMContentLoaded", () => {
   handleScroll();
   window.addEventListener('scroll', handleScroll);
 });
+
+
+
+document.querySelectorAll('.nav-links .dropdown > a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault(); // evita navigazione
+    link.parentElement.classList.toggle('active');
+  });
+});
