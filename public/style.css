@@ -4778,6 +4778,11 @@ opacity: 0;
     height: 0.5vh;
   }
 }
+@media (orientation: portrait) {
+  .sparti {
+    top: 3vh; /* sposta leggermente più in alto rispetto ai 4vh originali */
+  }
+}
 .cinqueg {
   width: clamp(10rem, 50vw, 26rem);
   border-radius: 1.8rem;
@@ -5047,6 +5052,14 @@ opacity: 0;
     top: -20vh;
     padding: 0.5rem 1rem;
     font-size: clamp(0.7rem, 3.5vw, 0.9rem);
+  }
+}
+@media (orientation: portrait) {
+  .pulsante-sipario {
+    padding: clamp(0.8rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 3rem); /* altezza e larghezza relative */
+    font-size: clamp(1rem, 3vw, 2rem); /* dimensione testo scalabile */
+    top: -40vh; /* sposta il pulsante più in alto */
+    right: -70vw; /* eventualmente ridimensiona anche la posizione orizzontale */
   }
 }
 /* Stato quando entra nello schermo */
@@ -6301,10 +6314,10 @@ form input, form textarea {
 /* MEDIA QUERY portrait */
 @media (orientation: portrait) {
   .contact-container {
-    margin-top: 37rem; /* aumentato per spostarlo più in basso */
+    margin-top: 42rem; /* più in basso rispetto ai 37rem originali */
   }
   .site-footer {
-    margin-top: 3rem;  /* distanza dal contact-container */
+    margin-top: 3rem;  /* mantiene la distanza dal contact-container */
   }
 }
 
@@ -6852,13 +6865,13 @@ html, body, main {
 /* ===== MEDIA QUERY ORIENTAMENTO PORTRAIT ===== */
 @media screen and (orientation: portrait) {
   .contact-section {
-    margin-top: 35rem; /* sposta tutta la sezione più in basso */
+    margin-top: 42rem; /* sposta tutta la sezione più in basso */
   }
 
   .site-footer {
     margin-top: 8rem; /* anche il footer scende un po’ */
   }
-}
+} 
 
 
 
