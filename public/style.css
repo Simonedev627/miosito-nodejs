@@ -4737,9 +4737,12 @@ opacity: 0;
     margin-right: 0.8vw;
   }
 }
+.linea-bassa-verticale {
+  position: absolute;
+}
 .sparti { 
   position: relative;
-  top: 4vh;           /* altezza relativa al viewport */
+  top: 6vh;           /* altezza relativa al viewport */
   left: 0; 
   width: 100%;        /* sempre tutta la larghezza */
   height: 0.2vh;      /* spessore relativo */
@@ -6211,6 +6214,7 @@ form input, form textarea {
 
 /* CONTACT CONTAINER */
 .contact-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -6674,6 +6678,7 @@ html, body, main {
 
 /* ===== SEZIONE CONTATTI ===== */
 .contact-section {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
