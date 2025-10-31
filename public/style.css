@@ -4737,9 +4737,7 @@ opacity: 0;
     margin-right: 0.8vw;
   }
 }
-.linea-bassa-verticale {
-  position: absolute;
-}
+
 .sparti { 
   position: relative;
   top: 6vh;           /* altezza relativa al viewport */
@@ -4783,7 +4781,7 @@ opacity: 0;
 }
 @media (orientation: portrait) {
   .sparti {
-    top: 4vh; /* leggermente più in alto rispetto ai 4vh originali */
+    transform: translateY(-10vh); /* leggermente più in alto rispetto ai 4vh originali */
   }
 }
 
@@ -6896,7 +6894,7 @@ html, body, main {
   }
 }
 
-.contact-container
+.sparti
 
 
 
