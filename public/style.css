@@ -4767,7 +4767,7 @@ opacity: 0;
 /* Smartphone grandi */
 @media (max-width: 480px) and (orientation: portrait)  {
   .sparti {
-    top: -4vh;
+    top: 2vh;
     height: 0.4vh;
   }
 }
