@@ -242,16 +242,6 @@ if (!userId) {
   localStorage.setItem('userId', userId);
 }
 
-// --- Carica prenotazioni salvate in locale ---
-const savedBookings = localStorage.getItem('bookings');
-if (savedBookings) {
-  try {
-    bookings = JSON.parse(savedBookings);
-  } catch (e) {
-    console.error("Errore parsing localStorage bookings:", e);
-  }
-}
-
 const monthsGrid = document.getElementById('monthsGrid');
 const currentYearSpan = document.getElementById('currentYear');
 let currentYear = new Date().getFullYear();
@@ -268,7 +258,6 @@ const saveBtn = document.getElementById('saveBtn');
 const deleteBtn = document.getElementById('deleteBtn');
 const closeBtn = document.getElementById('closeBtn');
 
-// URL API
 const API_URL = 'https://miosito-nodejs.onrender.com/api/bookings';
 
 let activeDate = null;
@@ -320,8 +309,8 @@ function createMonthCard(year, monthIndex) {
   for (let d = 1; d <= lastOfMonth.getDate(); d++) {
     const date = new Date(year, monthIndex, d);
     const iso = `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
+      .toString()
+      .padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
     const el = document.createElement('button');
     el.className = 'day free';
     el.setAttribute('data-date', iso);
@@ -350,6 +339,7 @@ function openModal(iso, elem) {
   timeInput.value = bookings[iso] ? bookings[iso].time || '' : '';
   modal.classList.add('show');
 }
+
 function closeModal() {
   modal.classList.remove('show');
   activeDate = null;
@@ -376,13 +366,11 @@ saveBtn.addEventListener('click', async () => {
     });
     const json = await res.json();
     if (json.success) {
-      bookings[activeDate] = { name, time, userId, ts: Date.now() };
-      localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 salva anche in locale
-      updateDayElement(activeElem, bookings[activeDate]);
       closeModal();
       alert("Prenotazione salvata con successo!");
+      refreshBookings(); // aggiorna dal server
     } else {
-      alert("Errore durante il salvataggio!");
+      alert("Errore durante il salvataggio: " + (json.error || ''));
     }
   } catch (err) {
     console.error("Errore nella richiesta:", err);
@@ -395,7 +383,6 @@ deleteBtn.addEventListener('click', async () => {
   if (!activeDate) return;
 
   try {
-    // ✅ encodeURIComponent per gestire le date con slash
     const res = await fetch(`${API_URL}/${encodeURIComponent(activeDate)}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
@@ -403,14 +390,10 @@ deleteBtn.addEventListener('click', async () => {
     });
 
     const json = await res.json();
-
     if (json.success) {
-      // aggiorna il calendario
-      document.querySelectorAll(`[data-date="${activeDate}"]`).forEach(el => updateDayElement(el, {}));
-      delete bookings[activeDate];
-      localStorage.setItem('bookings', JSON.stringify(bookings));
-      alert("Prenotazione eliminata con successo!");
       closeModal();
+      alert("Prenotazione eliminata con successo!");
+      refreshBookings(); // aggiorna dal server
     } else {
       alert("Errore: " + json.error);
     }
@@ -418,7 +401,7 @@ deleteBtn.addEventListener('click', async () => {
     console.error("Errore nella cancellazione:", err);
     alert("Errore di connessione al server.");
   }
-})
+});
 
 // --- Update day element ---
 function updateDayElement(el, booking) {
@@ -445,16 +428,12 @@ async function refreshBookings() {
     const res = await fetch(API_URL);
     const data = await res.json();
 
-    const serverBookings = Object.values(data.bookings || {});
-    // 🔥 unisci server + locale
-    const localBookings = JSON.parse(localStorage.getItem('bookings') || '{}');
-    bookings = { ...localBookings }; 
+    // usa solo server come fonte principale
+    bookings = data.bookings || {};
 
-    serverBookings.forEach(b => {
-      bookings[b.date] = b; // priorità al server
-    });
-
+    // salva in locale come cache
     localStorage.setItem('bookings', JSON.stringify(bookings));
+
     // aggiorna il calendario
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
@@ -465,7 +444,10 @@ async function refreshBookings() {
   }
 }
 
+// refresh automatico ogni 3 secondi
 setInterval(refreshBookings, 3000);
+
+// inizializza
 renderYear(currentYear);
 refreshBookings();
 
