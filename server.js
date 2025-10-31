@@ -86,40 +86,69 @@ app.get("/api/bookings", async (req, res) => {
 });
 
 // ✅ Crea o aggiorna una prenotazione
+// === SALVATAGGIO PRENOTAZIONE ===
 app.post("/api/bookings", async (req, res) => {
-  const { date, name, time, userId } = req.body;
-  if (!date || !name || !time || !userId)
-    return res.json({ success: false, error: "Dati mancanti" });
-
   try {
-    const existing = await Booking.findOne({ date });
-    if (existing && existing.userId !== userId)
-      return res.json({ success: false, error: "Questa data è già prenotata da un altro utente" });
+    const { name, date, time, userId } = req.body;
 
-    const booking = await Booking.findOneAndUpdate(
-      { date },
-      { name, time, userId, ts: new Date() },
-      { upsert: true, new: true }
-    );
+    // ✅ Normalizza la data nel formato YYYY-MM-DD (senza orario)
+    const d = new Date(date);
+    const formattedDate = `${d.getFullYear()}-${(d.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${d.getDate().toString().padStart(2, "0")}`;
 
-    const formattedDate = new Date(date).toLocaleDateString("it-IT", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+    // ✅ Controlla se esiste già una prenotazione per quella data
+    const existing = await Booking.findOne({ date: formattedDate });
+    if (existing)
+      return res.json({ success: false, error: "Data già prenotata" });
+
+    // ✅ Crea la prenotazione con data formattata
+    const newBooking = new Booking({
+      name,
+      date: formattedDate,
+      time,
+      userId,
     });
+    await newBooking.save();
 
+    // (Opzionale) Email di conferma
     await sendEmail(
       "info@abatel.org",
       `📅 Nuova prenotazione: ${formattedDate}`,
-      `Hai ricevuto una nuova prenotazione!\nNome: ${name}\nEmail: ${userId}\nData: ${formattedDate}\nOrario: ${time}`
+      `Nome: ${name}\nData: ${formattedDate}\nOrario: ${time}\nUserID: ${userId}`
     );
 
-    res.json({ success: true, booking });
+    res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error("Errore creazione prenotazione:", err);
+    res.status(500).json({ success: false, error: "Errore del server" });
   }
 });
+
+// === PULIZIA AUTOMATICA PRENOTAZIONI SCADUTE ===
+async function cleanupBookings() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Rimuove ore, minuti, secondi
+  const isoToday = `${today.getFullYear()}-${(today.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
+  try {
+    const result = await Booking.deleteMany({
+      date: { $lt: isoToday }, // elimina solo prenotazioni precedenti a oggi
+    });
+    if (result.deletedCount)
+      console.log(`🗑️ Eliminate ${result.deletedCount} prenotazioni passate`);
+  } catch (err) {
+    console.error("Errore pulizia prenotazioni:", err);
+  }
+}
+
+// Esegui la pulizia una volta all’avvio del server
+cleanupBookings();
+
+// E poi ogni 24 ore
+setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
 
 // ✅ Elimina prenotazione
 app.delete("/api/bookings/:date", async (req, res) => {
@@ -156,25 +185,7 @@ app.delete("/api/bookings/:date", async (req, res) => {
 });
 
 // --- Pulizia prenotazioni passate ---
-async function cleanupBookings() {
-  const today = new Date();
-const isoToday = `${today.getFullYear()}-${(today.getMonth() + 1)
-  .toString()
-  .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
 
-
-  try {
-    const result = await Booking.deleteMany({
-      date: { $lt: isoToday },
-    });
-    if (result.deletedCount)
-      console.log(`🗑 Eliminate ${result.deletedCount} prenotazioni passate`);
-  } catch (err) {
-    console.error("Errore pulizia prenotazioni:", err);
-  }
-}
-
-setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
 
 // --- LAVORA CON NOI ---
 const upload = multer({
