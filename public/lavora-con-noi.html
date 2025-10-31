@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lavora con noi</title>
   <link rel="stylesheet" href="style2.css">
-    <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="fulmine.css">
+   
+ 
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script src="script.js" defer></script>
-  <link rel="stylesheet" href="style.css">
   
 </head>
 <body class="corpo">
@@ -60,13 +59,12 @@
 
   </div>
 </div>
-<main class="lavora-area">
-  <h1 class="titolo-lavora">Lavora con noi</h1>
-  <p class="descrizione-lavora">
-    Compila il modulo per proporre la tua candidatura. Cerchiamo persone con passione, iniziativa e voglia di crescere.
-  </p>
+<main class="lavora-wrapper">
+  <h1>Lavora con noi</h1>
+  <p>Compila il modulo per proporre la tua candidatura. Cerchiamo persone con passione, iniziativa e voglia di crescere.</p>
 
-  <form id="form-candidatura" action="/lavora" method="POST" enctype="multipart/form-data">
+  <form id="lavora-form" action="/lavora" method="POST" enctype="multipart/form-data">
+
     <label>Nome e Cognome:</label>
     <input type="text" name="nome" required>
 
@@ -97,7 +95,6 @@
     <button type="submit" class="btn-candidatura">Invia candidatura</button>
   </form>
 </main>
-
 <div class="neon-container">
   <!-- Blocco Logo -->
   <div class="neon-logo">
