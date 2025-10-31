@@ -138,14 +138,14 @@
     flex-direction: column;
     gap: 1vh;
   }
-
-  .nav-links .dropdown-content, 
+.nav-links .dropdown-content,
   .nav-links .dropdown-content .submenu-content {
-    position: relative;
-    left: 0;
-    top: 0;
-    box-shadow: none;
-    min-width: 90%;
+    display: none; /* nascosto di default */
+    width: 100%;
+  }
+
+  .dropdown.active .dropdown-content {
+    display: block; /* diventa visibile */
   }
 }
 
