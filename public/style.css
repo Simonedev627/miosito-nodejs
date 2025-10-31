@@ -4738,16 +4738,20 @@ opacity: 0;
   }
 }
 
-.sparti { 
-  position: relative;
-  top: 6vh;           /* altezza relativa al viewport */
-  left: 0; 
-  width: 100%;        /* sempre tutta la larghezza */
-  height: 0.2vh;      /* spessore relativo */
-  background-color: grey; 
-  z-index: 1; 
+.linea-bassa-verticale {
+  position: relative;      /* permette ai figli di usare top/transform */
+  height: auto;            /* lascia spazio sufficiente */
+  overflow: visible;       /* permette lo spostamento di .sparti */
 }
 
+.sparti {
+  position: relative;      
+  top: 0;                  /* punto di partenza */
+  width: 100%;
+  height: 0.2vh;
+  background-color: grey;
+  transition: transform 0.5s ease;
+}
 /* Tablet medi/grandi */
 @media (max-width: 1024px) {
   .sparti {
@@ -4767,8 +4771,7 @@ opacity: 0;
 /* Smartphone grandi */
 @media (max-width: 480px) and (orientation: portrait)  {
   .sparti {
-    top: 2vh;
-    height: 0.4vh;
+    transform: translateY(-3vh); /* visibile perché overflow è visible */
   }
 }
 
