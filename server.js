@@ -150,7 +150,6 @@ async function cleanupBookings() {
 
 // Esegui la pulizia subito all'avvio
 cleanupBookings();
-
 // Poi ogni 24 ore
 setInterval(cleanupBookings, 24 * 60 * 60 * 1000);
 

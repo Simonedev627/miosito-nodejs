@@ -357,12 +357,11 @@ saveBtn.addEventListener('click', async () => {
   }
   if (!confirm(`Confermi la prenotazione il ${activeDate} alle ${time}?`)) return;
 
-  const data = { date: activeDate, name, time, userId };
   try {
     const res = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ date: activeDate, name, time, userId })
     });
     const json = await res.json();
     if (json.success) {
@@ -388,7 +387,6 @@ deleteBtn.addEventListener('click', async () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId })
     });
-
     const json = await res.json();
     if (json.success) {
       closeModal();
