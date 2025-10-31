@@ -319,7 +319,9 @@ function createMonthCard(year, monthIndex) {
 
   for (let d = 1; d <= lastOfMonth.getDate(); d++) {
     const date = new Date(year, monthIndex, d);
-    const iso = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${d.toString().padStart(2, '0')}`;
+    const iso = `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}-${d.toString().padStart(2, '0')}`;
     const el = document.createElement('button');
     el.className = 'day free';
     el.setAttribute('data-date', iso);
@@ -442,20 +444,22 @@ async function refreshBookings() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
+
     const serverBookings = Object.values(data.bookings || {});
+    // 🔥 unisci server + locale
+    const localBookings = JSON.parse(localStorage.getItem('bookings') || '{}');
+    bookings = { ...localBookings }; 
 
     serverBookings.forEach(b => {
-      bookings[b.date] = b;
+      bookings[b.date] = b; // priorità al server
     });
 
-    localStorage.setItem('bookings', JSON.stringify(bookings)); // 🔥 aggiorna anche cache locale
-
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+    // aggiorna il calendario
     document.querySelectorAll('.day').forEach(el => {
       const date = el.getAttribute('data-date');
-      if (bookings[date]) updateDayElement(el, bookings[date]);
-      else updateDayElement(el, {});
+      updateDayElement(el, bookings[date] || {});
     });
-
   } catch (e) {
     console.error('Errore durante il refresh:', e);
   }

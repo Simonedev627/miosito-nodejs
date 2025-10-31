@@ -158,9 +158,10 @@ app.delete("/api/bookings/:date", async (req, res) => {
 // --- Pulizia prenotazioni passate ---
 async function cleanupBookings() {
   const today = new Date();
-  const isoToday = `${today.getFullYear()}/${(today.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}/${today.getDate().toString().padStart(2, "0")}`;
+const isoToday = `${today.getFullYear()}-${(today.getMonth() + 1)
+  .toString()
+  .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+
 
   try {
     const result = await Booking.deleteMany({
