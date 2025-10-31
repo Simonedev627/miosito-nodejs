@@ -127,15 +127,25 @@
 }
 
 /* ================= Responsive Smartphone ================= */
-@media screen and (max-width: 900px)  {
-  .nav-links .dropdown-content,
-  .nav-links .dropdown-content .submenu-content {
-    display: none; /* nascosto di default */
-    width: 100%;
+@media screen and (max-width: 900px) {
+  .header-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 2vh 4vw;
   }
 
-  .dropdown.active .dropdown-content {
-    display: block; /* diventa visibile */
+  .nav-links {
+    flex-direction: column;
+    gap: 1vh;
+  }
+
+  .nav-links .dropdown-content, 
+  .nav-links .dropdown-content .submenu-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    box-shadow: none;
+    min-width: 90%;
   }
 }
 
