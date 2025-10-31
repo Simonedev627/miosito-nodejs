@@ -6024,7 +6024,12 @@ opacity: 0;
   box-shadow: 0 6px 15px rgba(0,0,0,0.15);
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* forza il contenitore a inglobare tutto */
 }
+
 
 /* Titolo e descrizione */
 .lavora-container h1 {
@@ -7094,7 +7099,7 @@ html, body, main {
     margin-top: 70vh;
 
     /* spostamento extra senza overflow */
-    transform: translateY(10vh);
+    transform: translateY(13vh);
   }
 
   .cyber-footer {
