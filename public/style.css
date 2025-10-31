@@ -5062,7 +5062,7 @@ opacity: 0;
   .pulsante-sipario {
     padding: clamp(0.8rem, 2vw, 1.5rem) clamp(1.5rem, 5vw, 3rem); /* altezza e larghezza relative */
     font-size: clamp(1rem, 3vw, 2rem); /* dimensione testo scalabile */
-    top: -40vh; /* sposta il pulsante più in alto */
+    top: -30vh; /* sposta il pulsante più in alto */
     right: -70vw; /* eventualmente ridimensiona anche la posizione orizzontale */
   }
 }
@@ -6319,7 +6319,7 @@ form input, form textarea {
 /* MEDIA QUERY portrait */
 @media (orientation: portrait) {
   .contact-container {
-    margin-top: 60vh; /* più in basso rispetto ai 37rem originali */
+    margin-top: 66vh; /* più in basso rispetto ai 37rem originali */
   }
   .site-footer {
     margin-top: 8vh;  /* mantiene la distanza dal contact-container */
@@ -6871,15 +6871,15 @@ html, body, main {
 /* ===== MEDIA QUERY ORIENTAMENTO PORTRAIT ===== */
 @media screen and (orientation: portrait) {
   .contact-section {
-    margin-top: 60vh; /* sposta la sezione più in basso in base all'altezza dello schermo */
+    margin-top: 66vh; /* sposta la sezione più in basso in base all'altezza dello schermo */
   }
 
   .site-footer {
     margin-top: 8vh; /* footer si adatta proporzionalmente */
   }
 }
+.pulsante-sipario
 
-.Titolo
 
 
 
