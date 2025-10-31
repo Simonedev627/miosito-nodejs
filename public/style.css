@@ -6010,9 +6010,7 @@ opacity: 0;
   transform: translateX(0);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.corpo {
-  background-color: #0f1724;
-}
+
 /* Container principale */
 /* CONTENITORE MODULO */
 /* --- Stili generali del container --- */
@@ -6949,7 +6947,6 @@ html, body, main {
     margin: clamp(2vh, 4vw, 5vh) auto clamp(1.5vh, 2.5vw, 4vh) clamp(6vh, 12vw, 15vh);
   }
 }
-
 
 
 
