@@ -1,4 +1,4 @@
-.dropcap
+.section-titolo
 /* ================= Header Bar ================= */
 
 /* ================= HEADER BAR ================= */
@@ -2515,7 +2515,7 @@ body {
 .titolo-centrale {
   position: absolute;
   top: clamp(-18vh, -8vw, -14vh);  /* altezza invariata */
-  left: clamp(1vw, 2%, 5vw);
+ left: clamp(-10vw, -5%, -2vw); /* 🔥 più a sinistra in modo fluido */
 
   text-align: left;
   font-family: 'Montserrat', sans-serif;
@@ -4663,7 +4663,7 @@ opacity: 0;
 }
 .abatel-description {
   position: relative;
-  left: -15%; /* prima -28px */
+  right: 1.8vw; /* prima -28px */
   font-family: 'Segoe UI', sans-serif;
   font-size: clamp(1rem, 2vw, 1.2rem); /* dimensione fluida */
   line-height: 1.6;
