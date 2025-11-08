@@ -1,4 +1,4 @@
-.abatel-description
+.btn-candidatura
 /* ================= Header Bar ================= */
 
 /* ================= HEADER BAR ================= */
@@ -6097,12 +6097,31 @@ main.lavora-container .lavora-wrapper form {
   border-radius: 0.7rem;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, #4b0082, #191970); /* sfumatura più scura */
+    text-decoration: none;
   transition: all 0.4s ease;
+  
+  background: linear-gradient(
+    to right,
+    #029ddf,
+    #68efaf,
+    #ff01d9,
+    #6702ff,
+    #029ddf
+  );
+
+  transition: all 0.4s ease;
+
   width: 100%; /* lungo quanto il modulo */
   margin-top: 1rem;
 }
-
+@keyframes kvAnimate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
 .btn-candidatura:hover {
   background: linear-gradient(135deg, #006400, #cccc00); /* verde e giallo scuro */
   color: #fff;
