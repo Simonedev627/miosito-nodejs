@@ -1,4 +1,4 @@
-
+.abatel-description
 /* ================= Header Bar ================= */
 
 /* ================= HEADER BAR ================= */
@@ -4663,7 +4663,7 @@ opacity: 0;
 }
 .abatel-description {
   position: relative;
-  right: 1.8vw; /* prima -28px */
+  right: -1.8vw; /* prima -28px */
   font-family: 'Segoe UI', sans-serif;
   font-size: clamp(1rem, 2vw, 1.2rem); /* dimensione fluida */
   line-height: 1.6;
