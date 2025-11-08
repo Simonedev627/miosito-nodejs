@@ -2515,7 +2515,7 @@ body {
 .titolo-centrale {
   position: absolute;
   top: clamp(-18vh, -8vw, -14vh);  /* altezza invariata */
- left: clamp(-15vw, -8%, -5vw); /* 🔥 più a sinistra in modo fluido */
+ left: clamp(-18vw, -10%, -8vw); /* 🔥 più a sinistra in modo fluido */
 
   text-align: left;
   font-family: 'Montserrat', sans-serif;
